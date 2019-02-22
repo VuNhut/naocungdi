@@ -197,7 +197,7 @@ function dazzling_scripts() {
 
   wp_enqueue_script( 'dazzling-scriptanimation', get_template_directory_uri() . '/inc/js/script-animation.js', array('jquery'), '1.5.4', true );
 
-  if (!(is_single() && in_category('cam-nang-du-lich'))) {
+  if (!(is_single() && in_category(array('cam-nang-du-lich', 've-tham-quan')))) {
 	wp_enqueue_script( 'dazzling-animation', get_template_directory_uri() . '/inc/js/menu-animation.js', array('jquery'), '1.5.4', true );
   }
   
@@ -226,7 +226,15 @@ function dazzling_scripts() {
 	wp_enqueue_script( 'dazzling-scriptmapapi', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC75DNSPpK5JTSltYE74rjvYFqJQVfBIv4&language=vi&region=VN', array('jquery'), '1.5.4', true);
 
 	wp_enqueue_script( 'dazzling-scriptgooglemap', get_template_directory_uri() . '/inc/js/google-map.js');
-  }
+	}
+	
+	if (is_single() && in_category('ve-tham-quan')) {
+		wp_enqueue_script( 'dazzling-scriptproject', get_template_directory_uri() . '/inc/js/script-project.js', array('jquery'), '1.5.4', true );
+
+		wp_enqueue_script( 'dazzling-scriptmapapi', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC75DNSPpK5JTSltYE74rjvYFqJQVfBIv4&language=vi&region=VN', array('jquery'), '1.5.4', true);
+
+		wp_enqueue_script( 'dazzling-scriptgooglemap', get_template_directory_uri() . '/inc/js/google-map.js');
+	}
 
   if (is_page('san-ve-may-bay')) {
 	wp_enqueue_style( 'dazzling-awesome', get_template_directory_uri() . '/inc/css/all.min.css' );
@@ -457,6 +465,50 @@ function get_meta_box_tongquanduan( $meta_boxes ) {
 }
 
 add_filter( 'rwmb_meta_boxes', 'get_meta_box_tongquanduan' );
+
+/* Meta Box Vé Tham Quan */
+function get_meta_box_vethamquan( $meta_boxes ) {
+	$prefix = '';
+
+	$meta_boxes[] = array(
+		'id' => 've-tham-quan',
+		'title' => esc_html__( 'Thông tin vé tham quan', 'dazzling' ),
+		'post_types' => array( 'post' ),
+		'context' => 'advanced',
+		'priority' => 'default',
+		'autosave' => false,
+		'fields' => array(
+			array(
+				'id'      => 'chi-tiet-ve',
+				'name'    => 'Chi tiết vé',
+				'type'    => 'fieldset_text',
+				'options' => array(
+					'hoan-huy'    => 'Hoàn hủy',
+					'vao-cong' => 'Hình thức vào cổng',
+					'loai-ve'   => 'Loại vé',
+					'thoi-han' => 'Hạn sử dụng',
+					'gia-quay' => 'Giá vé tại quầy',
+					'gia-naocungdi' => 'Giá NaoCungDi',
+					've-da-ban' => 'Số lượng vé đã bán',
+				),
+			),
+			array(
+				'id' => $prefix . 'trai-nghiem-gi',
+				'name' => 'Trải nghiệm gi?',
+				'type' => 'wysiwyg',
+			),
+			array(
+				'id' => $prefix . 'huong-dan-su-dung-ve',
+				'name' => 'Hướng dẫn sử dụng',
+				'type' => 'wysiwyg',
+			),
+		),
+	);
+
+	return $meta_boxes;
+}
+
+add_filter( 'rwmb_meta_boxes', 'get_meta_box_vethamquan' );
 
 /** Meta Box Gallery Project */
 function get_meta_box_gallery_project( $meta_boxes ) {

@@ -15,7 +15,7 @@
 				if ($images_num == 0) {
 					$images_item.= 'data-no-lazy="1" src="'. $image['url'] .'" alt="'. $image['title'] .'" srcset="'. $image['srcset'] .'"></a>';
 				} else {
-					$images_item.= 'data-lazyloaded="1" data-src="'. $image['url'] .'" alt="'. $image['title'] .'" srcset="'. $image['srcset'] .'"></a>';
+					$images_item.= 'data-src="'. $image['url'] .'" alt="'. $image['title'] .'" srcset="'. $image['srcset'] .'"></a>';
 				}
 				$images_num++;
 			}
@@ -27,6 +27,18 @@
 			</div>
 		</div>
 	</header><!-- .entry-header -->
+	<div class="menu-project moveRight-500 duration-1000 hidden">
+		<div class="container">
+			<div class="row">
+				<ul class="col-xs-12">
+					<li class="active"><a href="#detail-ticket">Thông tin vé</a></li>
+					<li><a href="#experience">Trải nghiệm</a></li>
+					<li><a href="#user-manual">Hướng dẫn sử dụng</a></li>
+					<li><a href="#refund-policy">Chính sách hoàn vé</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -34,7 +46,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="header-title col-sm-8">
-                                <h1 class="project-title">
+                                <h1 class="project-title fw-600">
                                     <?php the_title(); ?>
                                     <?php
                                         if (in_category('khach-san-homestay')) {
@@ -61,68 +73,64 @@
             </div>
         </div>
     </div>
-	<div class="subinfo-project moveTop-500 duration-1000 hidden">
-		<div class="container">
-			<div class="row">
-				<p class="project-location col-md-4 col-sm-6" data-toggle="tooltip" title="Địa điểm du lịch"><i class="fas fa-map-marker-alt"></i>Điểm đến: <span><?php rwmb_the_value('vi-tri'); ?></span></p>
-				<?php
-					if (rwmb_meta( 'chi-phi-du-lich' )) :
-						if (in_category('dia-chi-an-uong')) {
-                            $type_value = array('Mức giá trung bình', 'Mức giá');
-                        } elseif (in_category('khach-san-homestay')) {
-                            $type_value = array('Giá phòng tham khảo', 'Giá phòng');
-                        } elseif (in_category('dia-diem-du-lich')) {
-                            $type_value = array('Chi phí tham quan điểm du lịch', 'Giá vé');
-                        } elseif (in_category('kinh-nghiem-du-lich')) {
-                            $type_value = array('Tổng chi phí chuyến du lịch', 'Chi phí');
-                        }
-				?>
-					<p class="info-investment col-md-4 col-sm-6" data-toggle="tooltip" title="<?php echo $type_value[0]; ?>"><i class="far fa-money-bill-alt"></i><?php echo $type_value[1]; ?>:<span><?php rwmb_the_value('chi-phi-du-lich'); if (rwmb_meta('chi-phi-du-lich') != "Miễn phí") { echo '<sup>đ</sup>'; } ?></span></p>
-				<?php endif; ?>
-				<?php if (rwmb_meta( 'so-ngay-du-lich' )) : ?>
-					<p class="info-area col-md-4 col-sm-6" data-toggle="tooltip" title="Thời gian du lịch"><i class="fas fa-cube"></i>Thời gian:<span><?php rwmb_the_value('so-ngay-du-lich'); ?></span></p>
-				<?php endif; ?>
-			</div>
-		</div>
-	</div>
 	<div class="content-project">
 		<div class="container">
 			<div class="row">
 				<div class="info-left col-lg-8">
-					<div class="info-introdution">
-						<h2 id="introdution">Giới thiệu</h2>
-						<div class="info-content">
-							<?php the_content(); ?>
-						</div>
-					</div>
-					<?php
-						$travel_time = rwmb_meta( 'travel-time' );
-						if ($travel_time[0][0] != "") {
-					?>
-					<div class="travel-time moveRight-500 duration-1000 hidden">
-						<?php
-							foreach ($travel_time as $time) {
-								echo '<span class="data-time" data-time="', $time[0] , '" data-suitable="', $time[1] ,'"></span>';
-							}
-						?>
-						<h3>Thời điểm thích hợp để du lịch <?php rwmb_the_value('vi-tri'); ?></h3>
-						<div class="container">
-							<div class="row">
-								<div class="col-xs-12">
-									<canvas id="suitable-time"></canvas>
+					<div id="detail-ticket">
+						<div class="subinfo-ticket moveTop-500 duration-1000 hidden">
+							<div class="container">
+								<div class="row">
+									<?php $info_ticket = rwmb_meta('chi-tiet-ve'); ?>
+									<?php if ($info_ticket['hoan-huy'] != "") : ?>
+									<p class="cancel-ticket">
+										<svg class="icon icon-cancel" viewBox="0 0 24 24" width="100%" height="100%"><path d="M6.635 4.717l1.463.293a.5.5 0 0 1-.196.98l-2.5-.5a.5.5 0 0 1-.387-.614l.495-2.474a.5.5 0 0 1 .98.196L6.258 3.76A10.225 10.225 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12a.5.5 0 1 1 1 0 9 9 0 1 0 9-9 9.213 9.213 0 0 0-5.365 1.717zM11.5 15.99v-3.643c-1.693-.654-2.5-1.34-2.5-2.62 0-1.383 1.088-2.515 2.5-2.734V6.5a.5.5 0 1 1 1 0v.493c1.412.22 2.5 1.351 2.5 2.734a.5.5 0 1 1-1 0c0-.817-.632-1.519-1.5-1.717v3.633c1.674.6 2.5 1.328 2.5 2.63 0 1.383-1.088 2.515-2.5 2.734v.493a.5.5 0 1 1-1 0v-.493c-1.412-.22-2.5-1.351-2.5-2.734a.5.5 0 1 1 1 0c0 .817.632 1.519 1.5 1.717zm1 0c.868-.198 1.5-.9 1.5-1.717 0-.68-.443-1.135-1.5-1.561v3.278zm-1-4.722V8.01c-.868.198-1.5.9-1.5 1.717 0 .647.443 1.086 1.5 1.54z"></path></svg>
+										<span><?php echo $info_ticket['hoan-huy']; ?></span>
+									</p>
+									<?php endif; ?>
+									<?php if ($info_ticket['loai-ve'] != "") : ?>
+									<p class="type-ticket">
+										<svg class="icon icon-type" viewBox="0 0 24 24" width="100%" height="100%"><path d="M18 8h-3a1.5 1.5 0 0 1-1.5-1.5V4h-6A1.5 1.5 0 0 0 6 5.5V12h12V8zm-4.028-5a.49.49 0 0 1 .36.126l4.5 4c.126.112.177.26.168.402V12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2V5.5A2.5 2.5 0 0 1 7.5 3h6.472zM18.5 13H5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1h-.5zm-4-6.5a.5.5 0 0 0 .5.5h2.185L14.5 4.613V6.5zM7 17a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path></svg>
+										<span><?php echo $info_ticket['loai-ve']; ?></span>
+									</p>
+									<?php endif; ?>
+									<?php if ($info_ticket['vao-cong'] != "") : ?>
+									<p class="gate-ticket">
+										<svg class="icon icon-gate" viewBox="0 0 24 24" width="100%" height="100%"><path d="M6 4a1 1 0 0 0-1 1v15.365l1.36-1.133a1 1 0 0 1 1.265-.012l1.871 1.5 1.88-1.501a1 1 0 0 1 1.249 0l1.875 1.5 1.875-1.5a1 1 0 0 1 1.265.013L19 20.365V5a1 1 0 0 0-1-1H6zm0-1h12a2 2 0 0 1 2 2v15.365a1 1 0 0 1-1.64.768L17 20l-1.875 1.5a1 1 0 0 1-1.25 0L12 20l-1.88 1.5a1 1 0 0 1-1.249 0L7 20l-1.36 1.133A1 1 0 0 1 4 20.365V5a2 2 0 0 1 2-2zm2 4.5a.5.5 0 0 1 0-1h8a.5.5 0 1 1 0 1H8zm0 4a.5.5 0 1 1 0-1h8a.5.5 0 1 1 0 1H8zm0 4a.5.5 0 1 1 0-1h4a.5.5 0 1 1 0 1H8z"></path></svg>
+										<span><?php echo $info_ticket['vao-cong']; ?></span>
+									</p>
+									<?php endif; ?>
+									<?php if ($info_ticket['thoi-han'] != "") : ?>
+									<p class="date-ticket">
+										<svg class="icon icon-date" viewBox="0 0 24 24" width="100%" height="100%"><path d="M5.935 19.951a.5.5 0 0 1 .607-.794A8.957 8.957 0 0 0 12 21a9 9 0 1 0-9-9c0 2.004.656 3.903 1.85 5.461a.5.5 0 0 1-.794.608A9.94 9.94 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.957 9.957 0 0 1-6.065-2.049zM12 11.997h5a.5.5 0 0 1 0 1h-5.5a.5.5 0 0 1-.5-.5V7a.5.5 0 1 1 1 0v4.997z"></path></svg>
+										<span><?php echo $info_ticket['thoi-han']; ?></span>
+									</p>
+									<?php endif; ?>
 								</div>
-								<?php
-									$detail_time = rwmb_meta( 'detail-travel-time' );
-									if ($detail_time != "") :
-								?>
-								<div class="col-xs-12">
-									<?php echo $detail_time; ?>
-								</div>
-								<?php endif; ?>
 							</div>
 						</div>
+						<?php if (get_the_content()) : ?>
+						<div class="description-ticket moveTop-500 duration-1000 hidden">
+							<?php the_content(); ?>
+						</div>
+						<?php endif; ?>
 					</div>
-					<?php } ?>
+					<?php if (rwmb_meta('trai-nghiem-gi')) : ?>
+					<div class="info-introdution info-ticket moveTop-500 duration-1000 hidden">
+						<h2 id="experience">Trải nghiệm thú vị tại <?php rwmb_the_value('vi-tri'); ?></h2>
+						<div class="info-content">
+							<?php echo rwmb_meta('trai-nghiem-gi'); ?>
+						</div>
+					</div>
+					<?php endif; ?>
+					<?php if (rwmb_meta('huong-dan-su-dung-ve')) : ?>
+					<div class="info-introdution info-ticket moveTop-500 duration-1000 hidden">
+						<h2 id="user-manual">Hướng dẫn sử dụng</h2>
+						<div class="info-content">
+							<?php echo rwmb_meta('huong-dan-su-dung-ve'); ?>
+						</div>
+					</div>
+					<?php endif; ?>
 					<?php
 						$info_traveling = rwmb_meta( 'info-traveling' );
 						$info_eating = rwmb_meta( 'info-eating' );
@@ -130,19 +138,6 @@
 					?>
 					<div id="accordion">
 						<div>
-							<div class="card-header moveTop-500 duration-1000 hidden" id="title-location">
-								<h3 id="location" class="mb-0">
-									<p class="link">Địa điểm</p>
-									<p class="type-location">
-									<?php if ($info_traveling[0][0] != "") : ?>
-										<span class="traveling active">Địa điểm du lịch <?php if (!in_category('kinh-nghiem-du-lich')) { echo 'lân cận'; } ?></span>
-									<?php endif; if ($info_eating[0][0] != "") : ?>
-										<span class="eating">Địa chỉ ăn uống <?php if (!in_category('kinh-nghiem-du-lich')) { echo 'lân cận'; } ?></span>
-									<?php endif; if ($info_staying[0][0] != "") : ?>
-										<span class="staying">Khách sạn - Homestay <?php if (!in_category('kinh-nghiem-du-lich')) { echo 'lân cận'; } ?></span></p>
-									<?php endif; ?>
-								</h3>
-							</div>
 							<div id="info-location" class="collapse in" aria-labelledby="title-location" data-parent="#accordion">
 							<div class="card-body moveTop-500 duration-1000 hidden">
 								<div class="map-location">
@@ -151,7 +146,7 @@
 									<div id="direction-panel">
 										<a href="#" id="hidden-panel" data-status="hidden">Ẩn bảng chỉ đường</a>
 									</div>
-									<p id="name-project"><i class="fas fa-star"></i><?php if (in_category('kinh-nghiem-du-lich')) { echo 'Trung tâm '; rwmb_the_value('vi-tri'); } else { the_title(); echo ' ('; rwmb_the_value('vi-tri'); echo ')'; } ?></p>
+									<p id="name-project"><i class="fas fa-star"></i><?php rwmb_the_value('vi-tri'); ?></p>
 								<?php
 									$id_traveling = 1;
 									if ($info_traveling[0][0] != "") {
@@ -186,117 +181,9 @@
 										</div>
 									</div>
 								<?php } ?>
-								<?php
-									$id_eating = 1;
-									if ($info_eating[0][0] != "") {
-								?>
-									<div class="container list-eating">
-										<div class="row">
-											<p class="guide-map">* Bấm vào tên những địa điểm bên dưới để xem chi tiết về địa điểm đó trong bản đồ</p>
-										<?php
-											foreach ( $info_eating as $value ) {
-												$latLng_eating = explode(',', $value[2]);
-												$labels_eating = explode('|', '0|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z');
-												$content = '<div class="col-md-6 location-item location-eating" data-lat="'. $latLng_eating[0] .'" data-lng="'. $latLng_eating[1] .'" data-name="<span class='. "info-window" .'>'. $value[0] .'</span>';
-												if ($value[3] != "") {
-													$content.= "<a class='more-info' href='". $value[3] ."' target='_blank'>Xem chi tiết</a>";
-												}
-												if (in_category('kinh-nghiem-du-lich')) {
-													$content.= "<br/>cách Trung tâm ". rwmb_meta('vi-tri') ." ". $value[1] ."<br/><a href='#' id='view-direction' data-lat='". $latLng_eating[0] ."' data-lng='". $latLng_eating[1] ."' data-window='eating'>Chỉ đường từ vị trí của bạn đến nơi này</a>";
-												} else {
-													$content.= "<br/>cách ". get_the_title() ." ". $value[1] ."<br/><a href='#' id='view-direction' data-lat='". $latLng_eating[0] ."' data-lng='". $latLng_eating[1] ."' data-window='eating'>Chỉ đường từ vị trí của bạn đến nơi này</a>";
-												}
-												$content.= '"><i class="fas fa-map-marker"><span>'. $labels_eating[$id_eating] .'</span></i><span>'. $value[0] .'</span><span class="float-xs-right">'. $value[1] .'</span></div>';
-												echo $content;
-												$id_eating++;
-											}
-										?>
-										</div>
-									</div>
-								<?php } ?>
-								<?php
-									$id_staying = 1;
-									if ($info_staying[0][0] != "") {
-								?>
-									<div class="container list-staying">
-										<div class="row">
-											<p class="guide-map">* Bấm vào tên những địa điểm bên dưới để xem chi tiết về địa điểm đó trong bản đồ</p>
-										<?php
-											foreach ( $info_staying as $value ) {
-												$latLng_staying = explode(',', $value[2]);
-												$labels_staying = explode('|', '0|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z');
-												$content = '<div class="col-md-6 location-item location-staying" data-lat="'. $latLng_staying[0] .'" data-lng="'. $latLng_staying[1] .'" data-name="<span class='. "info-window" .'>'. $value[0] .'</span>';
-												if ($value[3] != "") {
-													$content.= "<a class='more-info' href='". $value[3] ."' target='_blank'>Xem chi tiết</a>";
-												}
-												if (in_category('kinh-nghiem-du-lich')) {
-													$content.= "<br/>cách Trung tâm ". rwmb_meta('vi-tri') ." ". $value[1] ."<br/><a href='#' id='view-direction' data-lat='". $latLng_staying[0] ."' data-lng='". $latLng_staying[1] ."' data-window='staying'>Chỉ đường từ vị trí của bạn đến nơi này</a>";
-												} else {
-													$content.= "<br/>cách ". get_the_title() ." ". $value[1] ."<br/><a href='#' id='view-direction' data-lat='". $latLng_staying[0] ."' data-lng='". $latLng_staying[1] ."' data-window='staying'>Chỉ đường từ vị trí của bạn đến nơi này</a>";
-												}
-												$content.= '"><i class="fas fa-map-marker"><span>'. $labels_staying[$id_staying] .'</span></i><span>'. $value[0];
-												if ($value[4] != "") {
-													for ($i=0; $i < (int)$value[4] ; $i++) { 
-														$content.= '<i class="fas fa-star"></i>';
-													}
-												}
-												$content.= '</span><span class="float-xs-right">'. $value[1] .'</span></div>';
-												echo $content;
-												$id_staying++;
-											}
-										?>
-										</div>
-									</div>
-								<?php } ?>
 								</div>
 							</div>
 							</div>
-						</div>
-						<div>
-							<div class="card-header moveRight-500 duration-1000 hidden" id="title-utilities">
-								<h3 id="utilities" class="mb-0">
-									<p class="link">Điểm đánh giá</p>
-								</h3>
-							</div>
-							<div class="container my-review">
-								<?php
-									$my_review = rwmb_meta( 'my-review' );
-									if ($my_review[0][0] != "") {
-										foreach ($my_review as $review) {
-											echo '<span class="data-review" data-name="', $review[0] , '" data-score="', $review[1] ,'"></span>';
-										}
-									}
-								?>
-								<div class="row">
-									<div class="col-sm-7 info moveRight-500 duration-1000 hidden">
-										<canvas id="info-review"></canvas>
-									</div>
-									<div class="col-sm-5 moveLeft-500 duration-1000 hidden">
-										<canvas id="review-progress"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div>
-						<?php if($info_progress[0][2] != "") : ?>
-							<div class="card-header moveTop-500 duration-1000 hidden" id="title-progress">
-								<h3 id="progress" class="mb-0">
-									<p class="link">Hướng dẫn</p>
-								</h3>
-							</div>
-							<div id="info-progress" class="collapse in" aria-labelledby="title-progress" data-parent="#accordion">
-							<div class="card-body">
-							<?php
-								foreach ( $info_progress as $value ) {
-									echo '<div class="container moveTop-500 duration-1000 hidden"><div class="row">';
-									echo '<div class="col-sm-3 col-xs-5 img-progress"><img src="', $value[0] ,'" alt="Hướng dẫn cách du lịch tiết kiệm" /></div>';
-									echo '<div class="col-sm-9 col-xs-7 link-progress"><a href="', $value[2] ,'">', $value[1] ,'</a></div>';
-									echo '</div></div>';
-								}
-							?>
-							</div>
-							</div>
-						<?php endif; ?>
 						</div>
 					</div>
 					<?php
@@ -344,7 +231,28 @@
 				?>
 				<div class="info-right col-lg-4">
 					<div class="sidebar-project moveTop-500 duration-1000 hidden">
-						<?php get_sidebar( 'project' ); ?>
+						<div class="hotline-project">
+							<div class="status-hotline">
+								<p>Đặt vé tại <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><strong>Nào Cùng Đi</strong></a> sẽ tiết kiệm hơn so với mua vé trực tiếp tại quầy vé <?php rwmb_the_value('vi-tri'); ?></p>
+								<div class="arrow"></div>
+							</div>
+							<div class="container">
+								<div class="row">
+									<div class="col-xs-12">
+										<p class="sales-off">Tiết kiệm đến <span>-<?php echo round((($info_ticket['gia-quay'] - $info_ticket['gia-naocungdi'])/$info_ticket['gia-quay'])*100); ?>%</span></p>
+										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo $info_ticket['gia-quay']; ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo $info_ticket['gia-naocungdi']; ?><sup>đ</sup></span></p>
+									</div>
+									<div class="col-xs-12 hotline-number">
+										<a id="order-online"><i class="fas fa-bolt"></i>Đặt vé ngay</a>
+										<a id="review-button"><i class="far fa-comments"></i>Đánh giá</a>
+									</div>
+									<div class="col-xs-12 footer-hotline">
+										<p class="receive-ticket"><i class="fas fa-clock"></i>Nhận vé ngay trong vòng 24h</p>
+										<p class="sold-ticket"><i class="fas fa-fire"></i><?php echo $info_ticket['ve-da-ban']; ?></p>
+									</div>
+								</div>
+							</div>
+						</div>
 						<?php
 							$query_topposts = array('category_name' => $cat_url, 'tag__in' => $tag_ids, 'posts_per_page' => 3, 'post__not_in' => array( get_the_ID()), 'meta_key' => 'total-score', 'orderby' => array('meta_value_num' => "DESC"));
 							$top_posts = new WP_Query($query_topposts);

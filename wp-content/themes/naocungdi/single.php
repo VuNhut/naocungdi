@@ -6,7 +6,7 @@
  */
 
 get_header(); ?>
-	<div id="primary" class="content-area col-sm-12 <?php if (!in_category(array('cam-nang-du-lich'))) { echo "col-lg-8"; } else { echo "p-0"; }?>">
+	<div id="primary" class="content-area col-sm-12 <?php if (!in_category(array('cam-nang-du-lich', 've-tham-quan'))) { echo "col-lg-8"; } else { echo "p-0"; }?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php while ( have_posts() ) : the_post(); ?>
@@ -29,7 +29,7 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-<?php if (!in_category(array('cam-nang-du-lich'))) : ?>
+<?php if (!in_category(array('cam-nang-du-lich', 've-tham-quan'))) : ?>
 	<?php get_sidebar(); ?>
 <?php endif; ?>
 <?php get_footer(); ?>

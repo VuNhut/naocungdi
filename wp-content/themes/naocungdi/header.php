@@ -84,7 +84,7 @@
     <?php if ( has_post_thumbnail() ) { the_post_thumbnail(); } ?>
   </div>
   <?php endif; ?>
-  <?php if(!is_home() && (!(is_single() && in_category(array('cam-nang-du-lich')))) ) : ?>
+  <?php if(!is_home() && (!(is_single() && in_category(array('cam-nang-du-lich', 've-tham-quan')))) ) : ?>
   <div id="content" class="site-content <?php if(!is_page('san-ve-may-bay')) { echo 'container'; } ?>">
     <div class="container main-content-area"><?php
       global $post;

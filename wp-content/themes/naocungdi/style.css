@@ -43,6 +43,9 @@ background-color: #ccc;
 ::-webkit-scrollbar-thumb:active {
   background-color: #ccc;
 }
+.menu-project ul::-webkit-scrollbar { 
+  display: none; 
+}
 
 /* Before Lazy Load */
 img[data-lazyloaded]{
@@ -215,6 +218,9 @@ textarea {
 }
 .card-columns {
   width: 100%;
+}
+.fw-600 {
+  font-weight: 600 !important;
 }
 
 /* Alignment */
@@ -1214,6 +1220,20 @@ div.asl_w .probox div.asl_simple-circle {
   font-weight: 700;
   margin-right: 5px;
 }
+.info-ticket {
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+.info-ticket h2 {
+  font-size: 22px;
+  line-height: 28px;
+}
+.info-ticket .info-content ul {
+  padding-left: 20px;
+}
+.info-ticket .info-content ul li {
+  margin-bottom: 5px;
+}
 #view-more, #view-collapse {
   display: block;
   color: #ed1a24;
@@ -1379,7 +1399,6 @@ div.asl_w .probox div.asl_simple-circle {
   padding: 10px;
   margin-bottom: 0;
   border-top: 1px solid #ddd;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.15);
 }
 #info-location .map-location span.info-window {
   display: inline-block;
@@ -1474,6 +1493,9 @@ div.asl_w .probox div.asl_simple-circle {
   top: 11px;
   left: 20px;
 }
+.status-hotline p a:hover {
+  color: #fff;
+}
 .hotline-project .container {
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -1495,7 +1517,6 @@ div.asl_w .probox div.asl_simple-circle {
   font-size: 15px;
 }
 .hotline-project .hotline-number a {
-  background: linear-gradient(45deg,#d71607 0%,#e33f39 50%);
   font-size: 20px;
   color: #fff;
   margin: 15px 0;
@@ -1505,6 +1526,12 @@ div.asl_w .probox div.asl_simple-circle {
   border-radius: 5px;
   cursor: pointer;
 }
+.hotline-project .hotline-number a#review-button {
+  background: linear-gradient(45deg,#fc9538 0%,#ef8424 50%);
+}
+.hotline-project .hotline-number a#order-online {
+  background: linear-gradient(45deg,#d71607 0%,#e33f39 50%);
+}
 .hotline-project .hotline-number a:hover {
   opacity: 0.85;
   color: #fff;
@@ -1512,6 +1539,50 @@ div.asl_w .probox div.asl_simple-circle {
 .hotline-project .hotline-number a i {
   font-size: 22px;
   margin-right: 10px;
+}
+.hotline-project .container p.sales-off {
+  color: #222;
+  margin-top: 7px;
+  margin-bottom: 10px;
+}
+.hotline-project .container p.sales-off span {
+  font-size: 20px;
+  color: #da2114;
+  font-weight: 700;
+}
+.hotline-project .container p.price {
+  color: #222;
+  margin-bottom: 0;
+  line-height: 100%;
+}
+.hotline-project .price-agent {
+  text-decoration: line-through;
+  font-size: 18px;
+  color: #555;
+}
+.hotline-project .price-naocungdi {
+  font-size: 28px;
+  color: #ec1a23;
+  font-weight: 700;
+  margin-left: 15px;
+}
+.hotline-project .container p.receive-ticket, .hotline-project .container p.sold-ticket {
+  color: #444;
+  font-size: 16px;
+  line-height: 20px;
+}
+.hotline-project .receive-ticket .fa-clock, .hotline-project .sold-ticket .fa-fire {
+  margin-right: 10px;
+}
+.hotline-project .receive-ticket .fa-clock {
+  color: #b2ad24;
+}
+.hotline-project .sold-ticket .fa-fire {
+  color: #d71607;
+}
+.hotline-project .footer-hotline {
+  padding-top: 8px;
+  border-top: 1px solid #ddd;
 }
 .related-project {
   padding: 0;
@@ -1658,6 +1729,35 @@ div.asl_w .probox div.asl_simple-circle {
   color: #fff;
   padding: 3px 15px;
 }
+/* Ticket */
+.subinfo-ticket {
+  color: #222;
+  padding-top: 10px;
+  margin-bottom: 15px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.subinfo-ticket p {
+  margin-right: 35px;
+  margin-bottom: 10px;
+}
+.subinfo-ticket .icon {
+  width: 24px;
+  fill: #666;
+  float: left;
+  margin-right: 10px;
+}
+.description-ticket {
+  color: #292929;
+}
+.description-ticket ul {
+  font-size: 18px;
+  padding-left: 20px;
+}
+.description-ticket li {
+  margin-bottom: 5px;
+}
+
 /* News */
 .news {
   padding-top: 30px;
@@ -3272,6 +3372,8 @@ p.logged-in-as {
   }
   .menu-project ul {
     text-align: center;
+    white-space: nowrap;
+    overflow-x: scroll;
   }
   .menu-project ul li {
     padding: 3px 0 0px 0;
