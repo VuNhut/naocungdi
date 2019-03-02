@@ -197,7 +197,7 @@ function dazzling_scripts() {
 
   wp_enqueue_script( 'dazzling-scriptanimation', get_template_directory_uri() . '/inc/js/script-animation.js', array('jquery'), '1.5.4', true );
 
-  if (!(is_single() && in_category(array('cam-nang-du-lich', 've-tham-quan')))) {
+  if (!(is_single() && in_category(array('cam-nang-du-lich', 've-tham-quan', 'shop-phuot')))) {
 	wp_enqueue_script( 'dazzling-animation', get_template_directory_uri() . '/inc/js/menu-animation.js', array('jquery'), '1.5.4', true );
   }
   
@@ -234,6 +234,20 @@ function dazzling_scripts() {
 		wp_enqueue_script( 'dazzling-scriptmapapi', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC75DNSPpK5JTSltYE74rjvYFqJQVfBIv4&language=vi&region=VN', array('jquery'), '1.5.4', true);
 
 		wp_enqueue_script( 'dazzling-scriptgooglemap', get_template_directory_uri() . '/inc/js/google-map.js');
+
+		wp_enqueue_script( 'dazzling-datapicker', get_template_directory_uri() . '/inc/js/bootstrap-datepicker.min.js');
+
+		wp_enqueue_script( 'dazzling-validate', get_template_directory_uri() . '/inc/js/jquery.validate.min.js');
+
+		wp_enqueue_script( 'dazzling-ticket', get_template_directory_uri() . '/inc/js/script-ticket.js', array('jquery'), '1.5.4', true);
+	}
+
+	if (is_single() && in_category('shop-phuot')) {
+		wp_enqueue_script( 'dazzling-scriptproject', get_template_directory_uri() . '/inc/js/script-project.js', array('jquery'), '1.5.4', true );
+
+		wp_enqueue_script( 'dazzling-validate', get_template_directory_uri() . '/inc/js/jquery.validate.min.js');
+
+		wp_enqueue_script( 'dazzling-scriptshopphuot', get_template_directory_uri() . '/inc/js/script-shopphuot.js',array('jquery'), '1.5.4', true );
 	}
 
   if (is_page('san-ve-may-bay')) {
@@ -489,6 +503,8 @@ function get_meta_box_vethamquan( $meta_boxes ) {
 					'thoi-han' => 'Hạn sử dụng',
 					'gia-quay' => 'Giá vé tại quầy',
 					'gia-naocungdi' => 'Giá NaoCungDi',
+					'ngay-dat-ve-tu' => 'Có thể đặt từ ngày',
+					'ngay-dat-ve-den' => 'Có thể đặt đến ngày',
 					've-da-ban' => 'Số lượng vé đã bán',
 				),
 			),
@@ -502,6 +518,24 @@ function get_meta_box_vethamquan( $meta_boxes ) {
 				'name' => 'Hướng dẫn sử dụng',
 				'type' => 'wysiwyg',
 			),
+			array(
+				'id'      => 'goi-dich-vu',
+				'name'    => 'Chi tiết gói dịch vụ',
+				'type'    => 'fieldset_text',
+				'clone'   => true,
+				'options' => array(
+					'ten-dich-vu'    => 'Tên dịch vụ',
+					'gia-quay' => 'Giá vé tại quầy',
+					'gia-naocungdi' => 'Giá NaoCungDi',
+					'gia-ve-tre-em' => 'Giá vé trẻ em',
+				),
+			),
+			array(
+				'id' => $prefix . 'mo-ta-goi-dich-vu',
+				'name' => 'Mô tả chi tiết gói dịch vụ',
+				'type' => 'wysiwyg',
+				'clone'   => true,
+			),
 		),
 	);
 
@@ -509,6 +543,67 @@ function get_meta_box_vethamquan( $meta_boxes ) {
 }
 
 add_filter( 'rwmb_meta_boxes', 'get_meta_box_vethamquan' );
+
+/* Meta Box Shop Phượt */
+function get_meta_box_shopphuot( $meta_boxes ) {
+	$prefix = '';
+
+	$meta_boxes[] = array(
+		'id' => 'shop-phuot',
+		'title' => esc_html__( 'Thông tin sản phẩm', 'dazzling' ),
+		'post_types' => array( 'post' ),
+		'context' => 'advanced',
+		'priority' => 'default',
+		'autosave' => false,
+		'fields' => array(
+			array(
+				'id'      => 'chi-tiet-san-pham',
+				'name'    => 'Chi tiết sản phẩm',
+				'type'    => 'fieldset_text',
+				'options' => array(
+					'thuong-hieu' => 'Thương hiệu',
+					'doi-tra' => 'Đổi trả',
+					'gia-thi-truong' => 'Giá thị trường',
+					'gia-khuyen-mai' => 'Giá khuyến mãi',
+					'so-luong-da-ban' => 'Số lượng đã bán',
+				),
+			),
+			array(
+				'id' => $prefix . 'thong-tin-chi-tiet',
+				'name' => 'Thông tin chi tiết',
+				'type' => 'wysiwyg',
+			),
+			array(
+				'id' => $prefix . 'huong-dan-lien-quan',
+				'name' => 'Hướng dẫn liên quan',
+				'type' => 'wysiwyg',
+			),
+			array(
+				'id'      => 'loai-san-pham',
+				'name'    => 'Loại sản phẩm',
+				'type'    => 'fieldset_text',
+				'clone'   => true,
+				'options' => array(
+					'ten-san-pham'	=> 'Tên sản phẩm',
+					'gia-thi-truong' => 'Giá thị trường',
+					'gia-khuyen-mai' => 'Giá khuyến mãi',
+					'size' => 'Size',
+					'hinh-anh' => 'Hình sản phẩm',
+				),
+			),
+			array(
+				'id' => $prefix . 'mo-ta-loai-san-pham',
+				'name' => 'Mô tả chi tiết loại sản phẩm',
+				'type' => 'wysiwyg',
+				'clone'   => true,
+			),
+		),
+	);
+
+	return $meta_boxes;
+}
+
+add_filter( 'rwmb_meta_boxes', 'get_meta_box_shopphuot' );
 
 /** Meta Box Gallery Project */
 function get_meta_box_gallery_project( $meta_boxes ) {

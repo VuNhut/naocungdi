@@ -32,6 +32,7 @@
 			<div class="row">
 				<ul class="col-xs-12">
 					<li class="active"><a href="#detail-ticket">Thông tin vé</a></li>
+					<li><a href="#service">Gói dịch vụ</a></li>
 					<li><a href="#experience">Trải nghiệm</a></li>
 					<li><a href="#user-manual">Hướng dẫn sử dụng</a></li>
 					<li><a href="#refund-policy">Chính sách hoàn vé</a></li>
@@ -48,16 +49,6 @@
                             <div class="header-title col-sm-8">
                                 <h1 class="project-title fw-600">
                                     <?php the_title(); ?>
-                                    <?php
-                                        if (in_category('khach-san-homestay')) {
-                                            $star = rwmb_meta('so-sao');
-                                            if ($star != "") {
-                                                for ($i=0; $i < (int)$star; $i++) { 
-                                                    echo '<i class="fas fa-star"></i>';
-                                                }
-                                            }
-                                        }
-                                    ?>
                                 </h1>
                             </div>
                             <div class="review-star col-sm-4">
@@ -78,7 +69,7 @@
 			<div class="row">
 				<div class="info-left col-lg-8">
 					<div id="detail-ticket">
-						<div class="subinfo-ticket moveTop-500 duration-1000 hidden">
+						<div class="subinfo-ticket border moveTop-500 duration-1000 hidden">
 							<div class="container">
 								<div class="row">
 									<?php $info_ticket = rwmb_meta('chi-tiet-ve'); ?>
@@ -106,6 +97,34 @@
 										<span><?php echo $info_ticket['thoi-han']; ?></span>
 									</p>
 									<?php endif; ?>
+									<?php
+										if ($info_ticket['ngay-dat-ve-tu'] == "ngày mai") { $startDay = new DateTime('tomorrow'); }
+										elseif ($info_ticket['ngay-dat-ve-tu'] == "hôm nay" || $info_ticket['ngay-dat-ve-tu'] == "") { $startDay = new DateTime(); }
+									?>
+									<input type="hidden" name="startDay" value="<?php if ($startDay) { echo $startDay->format('d/m/Y'); } else { echo $info_ticket['ngay-dat-ve-tu']; } ?>">
+									<input type="hidden" name="endDay" value="<?php echo $info_ticket['ngay-dat-ve-den']; ?>">
+								</div>
+							</div>
+						</div>
+						<div class="hotline-project mobile-box">
+							<div class="status-hotline">
+								<p>Đặt vé tại <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><strong>Nào Cùng Đi</strong></a> sẽ tiết kiệm hơn so với mua vé trực tiếp tại quầy vé <?php rwmb_the_value('vi-tri'); ?></p>
+								<div class="arrow"></div>
+							</div>
+							<div class="container">
+								<div class="row">
+									<div class="col-xs-12">
+										<p class="sales-off">Tiết kiệm đến <span>-<?php echo round((($info_ticket['gia-quay'] - $info_ticket['gia-naocungdi'])/$info_ticket['gia-quay'])*100); ?>%</span></p>
+										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo $info_ticket['gia-quay']; ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo $info_ticket['gia-naocungdi']; ?><sup>đ</sup></span></p>
+									</div>
+									<div class="col-xs-12 hotline-number">
+										<a id="order-online"><i class="fas fa-bolt"></i>Đặt vé ngay</a>
+										<a id="review-button"><i class="far fa-comments"></i>Đánh giá</a>
+									</div>
+									<div class="col-xs-12 footer-hotline">
+										<p class="receive-ticket"><i class="fas fa-clock"></i>Nhận vé ngay trong vòng 24h</p>
+										<p class="sold-ticket"><i class="fas fa-fire"></i><?php echo $info_ticket['ve-da-ban']; ?></p>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -115,9 +134,84 @@
 						</div>
 						<?php endif; ?>
 					</div>
+					<?php $info_service = rwmb_meta('goi-dich-vu'); ?>
+					<?php if ($info_service[0]['ten-dich-vu'] != "") : $detail_service = rwmb_meta('mo-ta-goi-dich-vu'); ?>
+					<div class="info-introdution info-ticket mb-2 moveTop-500 duration-1000 hidden">
+						<h2 id="service">Các gói dịch vụ</h2>
+						<div class="date-choose">
+							<span class="icon-date">
+								<i class="far fa-calendar-alt"></i>
+							</span>
+							<input class="date-ticket" placeholder="Chọn ngày đặt vé tham quan" readonly id="date">
+						</div>
+						<?php $i = 0; foreach ($info_service as $item_service) { ?>
+						<div class="info-content container">
+							<div class="item-service row">
+								<div class="name-service col-md-8 col-sm-12">
+									<p><?php echo $item_service['ten-dich-vu']; ?></p>
+									<?php if ($detail_service[$i] != "") : ?>
+									<p class="view-detail" data-toggle="collapse" data-target="#detail-service-<?php echo $i; ?>" aria-expanded="false" aria-controls="detail-service-<?php echo $i; ?>">Chi tiết gói dịch vụ <i class="fas fa-angle-down"></i></p>
+									<?php endif; ?>
+								</div>
+								<div class="price-service col-md-2 col-sm-6 col-xs-6">
+									<span><?php echo $item_service['gia-naocungdi'] ?><sup>đ</sup></span>
+									<span><?php echo $item_service['gia-quay'] ?><sup>đ</sup></span>
+								</div>
+								<div class="button-service col-md-2 col-sm-6 col-xs-6">
+									<a href="#" class="btn btn-service" data-form="#form-booking-<?php echo $i; ?>">Chọn</a>
+								</div>
+								<form id="form-booking-<?php echo $i; ?>" class="form-booking">
+									<div class="container">
+										<div class="row">
+											<div class="col-md-4 col-sm-6">
+												<label for="name">Họ tên</label>
+												<input type="text" name="name" class="name" placeholder="Họ tên của bạn">
+											</div>
+											<div class="col-md-4 col-sm-6">
+												<label for="email">Email</label>
+												<input type="email" name="email" class="email" placeholder="Email nhận vé điện tử">
+											</div>
+											<div class="col-md-4 col-sm-6">
+												<label for="phone">Số điện thoại</label>
+												<input type="text" name="phone" class="phone" placeholder="Số điện thoại liên hệ">
+											</div>
+											<div class="col-md-4 col-sm-6">
+												<label for="date-ticket">Ngày đặt vé</label>
+												<input name="date-ticket" class="date-ticket" placeholder="Ngày đặt vé tham quan" readonly>
+											</div>
+											<div class="col-md-4 col-sm-6">
+												<label for="adult-ticket">Số lượng vé người lớn</label>
+												<input type="number" min="0" name="adult-ticket" class="adult-ticket" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo $item_service['gia-naocungdi']; ?>" placeholder="<?php echo $item_service['gia-naocungdi']; ?>đ/vé">
+											</div>
+											<div class="col-md-4 col-sm-6">
+												<label for="child-ticket">Số lượng vé trẻ em (3 - 12 tuổi)</label>
+												<?php if ($item_service['gia-ve-tre-em']) : ?>
+												<input type="number" min="0" name="child-ticket" class="child-ticket" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo $item_service['gia-ve-tre-em']; ?>" placeholder="<?php echo $item_service['gia-ve-tre-em']; ?>đ/vé">
+												<?php else : ?>
+												<input type="number" min="0" name="child-ticket" class="child-ticket" data-form="#form-booking-<?php echo $i; ?>" placeholder="Bằng giá vé người lớn" disabled>
+												<?php endif; ?>
+											</div>
+											<div class="col-md-8 col-sm-6 total-price"></div>
+											<input type="hidden" name="name-ticket" class="name-ticket" value="<?php echo $item_service['ten-dich-vu']; ?>">
+											<input type="hidden" name="price-ticket" class="price-ticket" value="">
+											<input class="col-md-4 btn btn-booking" type="submit" value="Đặt vé" data-form="#form-booking-<?php echo $i; ?>">
+										</div>
+									</div>
+									<div class="status-booking"></div>
+								</form>
+								<?php if ($detail_service[$i] != "") : ?>
+								<div id="detail-service-<?php echo $i; ?>" class="detail-service collapse col-xs-12">
+									<?php echo $detail_service[$i]; ?>
+								</div>
+								<?php endif; ?>
+							</div>
+						</div>
+						<?php $i++; } ?>
+					</div>
+					<?php endif; ?>
 					<?php if (rwmb_meta('trai-nghiem-gi')) : ?>
 					<div class="info-introdution info-ticket moveTop-500 duration-1000 hidden">
-						<h2 id="experience">Trải nghiệm thú vị tại <?php rwmb_the_value('vi-tri'); ?></h2>
+						<h2 id="experience">Trải nghiệm tại <?php rwmb_the_value('vi-tri'); ?></h2>
 						<div class="info-content">
 							<?php echo rwmb_meta('trai-nghiem-gi'); ?>
 						</div>

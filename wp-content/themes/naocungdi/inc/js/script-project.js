@@ -96,7 +96,10 @@ $(document).ready(function(){
                 }
             })
         })
-    })
+    });
+    $("#order-online").on('click', function () {
+        $('#service').scrollTo(700, -100);
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -121,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Effect scroll menu project
         if ((document.body.scrollTop > posMenuProject) || (document.documentElement.scrollTop > posMenuProject)) {
-            menuProject.style.cssText = "position: fixed; top: 0; background-color: #fff; width: 100%; z-index: 10";
+            menuProject.style.cssText = "position: fixed; top: 0; background-color: #fff; width: 100%; z-index: 100";
         } else {
             menuProject.style.position = "relative";
         }

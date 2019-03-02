@@ -6,7 +6,7 @@
  */
 
 get_header(); ?>
-	<div id="primary" class="content-area col-sm-12 <?php if (!in_category(array('cam-nang-du-lich', 've-tham-quan'))) { echo "col-lg-8"; } else { echo "p-0"; }?>">
+	<div id="primary" class="content-area col-sm-12 <?php if (!in_category(array('cam-nang-du-lich', 've-tham-quan', 'shop-phuot'))) { echo "col-lg-8"; } else { echo "p-0"; }?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php while ( have_posts() ) : the_post(); ?>
@@ -18,6 +18,10 @@ get_header(); ?>
 			<?php elseif (in_category(array('ve-tham-quan'))) : ?>
 
 				<?php get_template_part( 'content', 'vethamquan' ); ?>
+
+			<?php elseif (in_category(array('shop-phuot'))) : ?>
+
+				<?php get_template_part( 'content', 'sanphamphuot' ); ?>
 			
 			<?php else : ?>
 
@@ -29,7 +33,7 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-<?php if (!in_category(array('cam-nang-du-lich', 've-tham-quan'))) : ?>
+<?php if (!in_category(array('cam-nang-du-lich', 've-tham-quan', 'shop-phuot'))) : ?>
 	<?php get_sidebar(); ?>
 <?php endif; ?>
 <?php get_footer(); ?>
