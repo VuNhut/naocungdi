@@ -4,40 +4,6 @@
  */
 ?>
 <?php $all_gallery = sizeof(rwmb_meta( 'gallery' )); ?>
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="header-project moveRight-500 duration-1000 hidden">
-				<div class="container">
-					<div class="row">
-						<div class="header-title col-sm-8">
-							<h1 class="project-title">
-								<?php the_title(); ?>
-								<?php
-									if (in_category('khach-san-homestay')) {
-										$star = rwmb_meta('so-sao');
-										if ($star != "") {
-											for ($i=0; $i < (int)$star; $i++) { 
-												echo '<i class="fas fa-star"></i>';
-											}
-										}
-									}
-								?>
-							</h1>
-						</div>
-						<div class="review-star col-sm-4">
-							<div class="review-step1">
-								<p class="text-step1">Theo bạn địa điểm này được mấy sao?</p>
-								<p class="arrow-step1 text-xs-center"><i class="fas fa-arrow-down"></i></p>
-							</div>
-							<?php if(function_exists('the_ratings')) { the_ratings(); } ?>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="gallery-project moveLeft-500 duration-1000 hidden">
 
@@ -76,27 +42,37 @@
 			</div>
 		</div>
 	</div>
-	<div class="subinfo-project moveTop-500 duration-1000 hidden">
-		<div class="container">
-			<div class="row">
-				<p class="project-location col-md-4 col-sm-6" data-toggle="tooltip" title="Địa điểm du lịch"><i class="fas fa-map-marker-alt"></i>Điểm đến: <span><?php rwmb_the_value('vi-tri'); ?></span></p>
-				<?php
-					if (rwmb_meta( 'chi-phi-du-lich' )) :
-						if (in_category('dia-chi-an-uong')) {
-                            $type_value = array('Mức giá trung bình', 'Mức giá');
-                        } elseif (in_category('khach-san-homestay')) {
-                            $type_value = array('Giá phòng tham khảo', 'Giá phòng');
-                        } elseif (in_category('dia-diem-du-lich')) {
-                            $type_value = array('Chi phí tham quan điểm du lịch', 'Giá vé');
-                        } elseif (in_category('kinh-nghiem-du-lich')) {
-                            $type_value = array('Tổng chi phí chuyến du lịch', 'Chi phí');
-                        }
-				?>
-					<p class="info-investment col-md-4 col-sm-6" data-toggle="tooltip" title="<?php echo $type_value[0]; ?>"><i class="far fa-money-bill-alt"></i><?php echo $type_value[1]; ?>:<span><?php rwmb_the_value('chi-phi-du-lich'); if (rwmb_meta('chi-phi-du-lich') != "Miễn phí") { echo '<sup>đ</sup>'; } ?></span></p>
-				<?php endif; ?>
-				<?php if (rwmb_meta( 'so-ngay-du-lich' )) : ?>
-					<p class="info-area col-md-4 col-sm-6" data-toggle="tooltip" title="Thời gian du lịch"><i class="fas fa-cube"></i>Thời gian:<span><?php rwmb_the_value('so-ngay-du-lich'); ?></span></p>
-				<?php endif; ?>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="header-project moveRight-500 duration-1000 hidden">
+					<div class="container">
+						<div class="row">
+							<div class="header-title col-lg-8">
+								<h1 class="project-title">
+									<?php the_title(); ?>
+									<?php
+										if (in_category('khach-san-homestay')) {
+											$star = rwmb_meta('so-sao');
+											if ($star != "") {
+												for ($i=0; $i < (int)$star; $i++) { 
+													echo '<i class="fas fa-star"></i>';
+												}
+											}
+										}
+									?>
+								</h1>
+							</div>
+							<div class="review-star col-lg-4">
+								<div class="review-step1">
+									<p class="text-step1">Theo bạn địa điểm này được mấy sao?</p>
+									<p class="arrow-step1 text-xs-center"><i class="fas fa-arrow-down"></i></p>
+								</div>
+								<?php if(function_exists('the_ratings')) { the_ratings(); } ?>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -104,6 +80,26 @@
 		<div class="container">
 			<div class="row">
 				<div class="info-left col-lg-8">
+					<div class="subinfo-project moveTop-500 duration-1000 hidden">
+						<p class="project-location" data-toggle="tooltip" title="Địa điểm du lịch"><i class="fas fa-map-marker-alt"></i>Điểm đến: <span><?php rwmb_the_value('vi-tri'); ?></span></p>
+						<?php
+							if (rwmb_meta( 'chi-phi-du-lich' )) :
+								if (in_category('dia-chi-an-uong')) {
+									$type_value = array('Mức giá trung bình', 'Mức giá');
+								} elseif (in_category('khach-san-homestay')) {
+									$type_value = array('Giá phòng tham khảo', 'Giá phòng');
+								} elseif (in_category('dia-diem-du-lich')) {
+									$type_value = array('Chi phí tham quan điểm du lịch', 'Giá vé');
+								} elseif (in_category('kinh-nghiem-du-lich')) {
+									$type_value = array('Tổng chi phí chuyến du lịch', 'Chi phí');
+								}
+						?>
+							<p class="info-investment" data-toggle="tooltip" title="<?php echo $type_value[0]; ?>"><i class="far fa-money-bill-alt"></i><?php echo $type_value[1]; ?>:<span><?php rwmb_the_value('chi-phi-du-lich'); if (rwmb_meta('chi-phi-du-lich') != "Miễn phí") { echo '<sup>đ</sup>'; } ?></span></p>
+						<?php endif; ?>
+						<?php if (rwmb_meta( 'so-ngay-du-lich' )) : ?>
+							<p class="info-area" data-toggle="tooltip" title="Thời gian du lịch"><i class="fas fa-cube"></i>Thời gian:<span><?php rwmb_the_value('so-ngay-du-lich'); ?></span></p>
+						<?php endif; ?>
+					</div>
 					<ins class="adsbygoogle"
 						 style="display:block"
 						 data-ad-client="ca-pub-7392610376438714"

@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             mirror: true,
                             labelOffset: -20,
                             fontSize: 15,
-                            fontFamily: "'Arsenal', sans-serif",
+                            fontFamily: "'Roboto', sans-serif",
                             fontStyle: '400',
                             fontColor: '#333'
                         },

@@ -230,7 +230,7 @@
 <?php endif; ?>
 
 <?php wp_footer(); ?>
-<link href="https://fonts.googleapis.com/css?family=Arsenal:400,400i,700,700i&amp;subset=vietnamese" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&amp;subset=vietnamese" rel="stylesheet">
 
 <script type="text/javascript">
 	$(document).ready(function(){

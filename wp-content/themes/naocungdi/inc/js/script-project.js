@@ -78,6 +78,7 @@ $(document).ready(function(){
         $('.review-step1').scrollTo(700, -40);
         $('.review-step1').css({"visibility": "visible"});
         $('.review-step').css({"opacity": "1", "visibility": "visible"});
+        $('.menu-project').css({"z-index": "10"});
         $('body').css({"overflow": "hidden"});
 
         $('.post-ratings img').on('click', function () {

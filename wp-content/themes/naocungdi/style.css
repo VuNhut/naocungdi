@@ -61,12 +61,12 @@ img.loaded{
 }
 
 body {
-  font-family: 'Arsenal', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #f1f1f1;
   color: #6B6B6B;
   word-wrap: break-word;
-  line-height: 1.7;
-  font-size: 17px;
+  line-height: 1.6;
+  font-size: 15px;
   overflow-x: hidden;
 }
 
@@ -101,7 +101,7 @@ a:focus {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #ec2028;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 h1,
@@ -138,6 +138,9 @@ h6,
 .h6 {
   font-size: 14px;
   line-height: 20px;
+}
+p {
+  margin-bottom: 10px;
 }
 
 img {
@@ -223,9 +226,6 @@ textarea {
 }
 .card-columns {
   width: 100%;
-}
-.fw-600 {
-  font-weight: 600 !important;
 }
 
 /* Alignment */
@@ -471,7 +471,7 @@ textarea {
   width: 190px;
 }
 .header.fixed .nav.navbar-nav {
-  margin: 8px 0;
+  margin: 14px 0;
 }
 .header.fixed .navbar-nav .nav-link {
   color: #333;
@@ -531,9 +531,9 @@ textarea {
   color: #fff;
 }
 .navbar-nav .nav-link {
-  font-size: 15px;
-  font-weight: 700;
-  color: #222;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
   text-transform: uppercase;
   padding-bottom: 0;
 }
@@ -587,17 +587,16 @@ textarea {
   padding-top: 100px;
 }
 .inner-banner h1, .inner-banner h2 {
-  font-family: 'Arsenal', sans-serif;
-  font-size: 56px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 42px;
   color: #fff;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 100%;
   text-transform: uppercase;
 }
 .inner-banner p {
-  font-family: 'Arsenal', sans-serif;
-  font-size: 21px;
-  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
   width: 100%;
   text-align: center;
 }
@@ -650,9 +649,9 @@ div.asl_r .results .item .asl_content {
 }
 .inner-banner div.asl_r .results .item .asl_content h3, div.asl_r .results .item .asl_content h3 a, .inner-banner div.asl_r .results .item .asl_content h3 a:hover {
   color: #333 !important;
-  font-size: 17px !important;
-  line-height: 23px !important;
-  font-weight: 700 !important;
+  font-size: 16px !important;
+  line-height: 22px !important;
+  font-weight: 500 !important;
 }
 .inner-banner div.asl_r .results .item .asl_content h3 a:hover {
   color: #ed1a24 !important;
@@ -674,8 +673,9 @@ div.asl_w .probox div.asl_simple-circle {
   background-color: #fff;
 }
 .travel h3.sub-title, .project h3.sub-title, .list-project h3.sub-title {
-  font-size: 17px;
-  color: #666;
+  font-size: 16px;
+  font-weight: normal;
+  color: #444;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -703,8 +703,8 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .travel-destination a p {
   width: 100%;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 500;
   color: #fff;
   position: absolute;
   left: 0;
@@ -753,7 +753,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .cat-project a .info-cat h3 {
   font-size: 27px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 34px;
   text-align: center;
   color: #fff;
@@ -761,12 +761,12 @@ div.asl_w .probox div.asl_simple-circle {
 .cat-project a .info-cat p.sub-info {
   width: 100%;
   text-align: center;
-  font-weight: 700
+  font-weight: 500
 }
 .cat-project a .info-cat p.btn {
   border: 1px solid #fff;
   border-radius: 2px;
-  font-weight: 700;
+  font-weight: 500;
 }
 .cat-project a .info-cat p.btn i {
   margin-right: 5px;
@@ -780,9 +780,9 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .travel h2, .project h2, .list-project h2, .news h2, .page-header .page-title, .page-header h1.entry-title, .quality-policy h2, .air-ticket h2, .trading-system h2 {
   color: #333;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 48px;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 46px;
   text-align: center;
   text-transform: uppercase;
   margin: 0 10px 10px 10px;
@@ -820,8 +820,7 @@ div.asl_w .probox div.asl_simple-circle {
   right: -25px;
 }
 .group-news {
-  color: #666;
-  font-weight: 700;
+  color: #444;
   text-align: center;
   text-transform: uppercase;
   margin: 20px 0;
@@ -850,15 +849,15 @@ div.asl_w .probox div.asl_simple-circle {
   animation: location-project 2s linear infinite;
 }
 .one-project .info-project {
-  color: #222;
-  padding: 5px 10px 10px 10px;
+  color: #333;
+  padding: 8px 10px 10px 10px;
 }
 .one-project .info-project h3, .news .news-item .title-news .info-news h4 {
   position: relative;
   color: #333;
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 23px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 21px;
   margin: 0 40px 5px 0;
   padding-right: 10px;
 }
@@ -870,8 +869,8 @@ div.asl_w .probox div.asl_simple-circle {
   width: 100%;
   margin-top: 10px;
   margin-bottom: 0;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
   line-height: initial;
   float: left;
 }
@@ -888,14 +887,14 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .one-project .info-project h3 .info-score {
   position: absolute;
-  top: -5px;
+  top: -8px;
   right: -38px;
   color: #fff;
-  font-size: 19px;
+  font-size: 17px;
   width: 35px;
   height: 45px;
   text-align: center;
-  padding-top: 2px;
+  padding-top: 4px;
 }
 .one-project .info-project h3 .info-score:after {
   content: '';
@@ -914,7 +913,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .post-ratings .star-rating {
   color: #ec1a23;
-  font-weight: 700;
+  font-weight: 500;
 }
 .news .news-item .title-news .info-news .icon-like {
   background-image: url(images/icon-like.png);
@@ -930,7 +929,7 @@ div.asl_w .probox div.asl_simple-circle {
   margin-top: 0;
 }
 .one-project .info-project p .value, .news-item .info-news p .value {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   color: #ed1a24;
 }
@@ -946,7 +945,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .project .more-project .btn-outline-danger, .list-project .more-project .btn-outline-danger {
   color: #ed1a24;
-  font-size: 18px;
+  font-size: 16px;
   border-color: #ed1a24;
 }
 .project .more-project .btn-outline-danger:hover, .list-project .more-project .btn-outline-danger:hover {
@@ -975,8 +974,8 @@ div.asl_w .probox div.asl_simple-circle {
 .list-post h3.name-project {
 	margin-right: 0;
   padding-right: 0;
-	font-size: 16px !important;
-  line-height: 21px !important;
+	font-size: 15px !important;
+  line-height: 20px !important;
 }
 .list-post .name-project, .list-post .post-ratings, .list-post .investment-project {
 	overflow: hidden;
@@ -984,7 +983,7 @@ div.asl_w .probox div.asl_simple-circle {
   white-space: nowrap;
 }
 .list-post .one-project .info-project p, .list-post .one-project .info-project p .value {
-  font-size: 14px;
+  font-size: 13px;
 }
 .list-post .post-ratings {
   font-size: 12px;
@@ -1025,7 +1024,7 @@ div.asl_w .probox div.asl_simple-circle {
 .list-project .info-item .bg-absolute a h4 {
   color: #fff;
   font-size: 19px;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   line-height: 28px;
 }
@@ -1073,10 +1072,10 @@ div.asl_w .probox div.asl_simple-circle {
   margin: 15px 0;
 }
 .header-project .project-title {
-  color: #333;
-  font-size: 26px;
-  line-height: 32px;
-  font-weight: 400;
+  color: #444;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 500;
   text-transform: uppercase;
   margin-bottom: 0;
   display: inline-block;
@@ -1096,7 +1095,7 @@ div.asl_w .probox div.asl_simple-circle {
   z-index: 11;
 }
 .header-project .review-star .post-ratings {
-  font-size: 16px;
+  font-size: 15px;
   display: inline-block;
   width: auto;
 }
@@ -1173,10 +1172,10 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .menu-project ul li.active {
   border-bottom: 2px solid #ed1a24;
-  font-weight: 700;
+  font-weight: 500;
 }
 .menu-project ul li a {
-  font-size: 17px;
+  font-size: 15px;
   color: #333;
 }
 .menu-project ul li a:hover {
@@ -1203,11 +1202,13 @@ div.asl_w .probox div.asl_simple-circle {
   color: #444;
   padding: 0;
   margin-bottom: 6px;
+  padding-right: 30px;
+  display: inline-block;
 }
 .subinfo-project p span {
   color: #333;
-  font-weight: 700;
-  margin-left: 10px;
+  font-weight: 500;
+  margin-left: 2px;
 }
 .subinfo-project p i {
   margin-right: 5px;
@@ -1221,9 +1222,9 @@ div.asl_w .probox div.asl_simple-circle {
   line-height: 30px;
 }
 .info-introdution .info-content {
-  color: #222;
-  font-size: 18px;
-  font-family: 'Arsenal', sans-serif;
+  color: #333;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
   text-align: justify;
   overflow: hidden;
   margin-top: 15px;
@@ -1233,17 +1234,17 @@ div.asl_w .probox div.asl_simple-circle {
 .info-introdution .info-content h2 {
   font-size: 20px;
   line-height: 28px;
-  font-weight: 700;
+  font-weight: 500;
 }
 .info-introdution .info-content h3 {
   font-size: 18px;
   line-height: 26px;
-  font-weight: 700;
+  font-weight: 500;
 }
 .info-introdution .info-content h4 {
   font-size: 17px;
   line-height: 25px;
-  font-weight: 700;
+  font-weight: 500;
 }
 .info-introdution .info-content .link-aff, .entry-content .link-aff {
   text-align: center;
@@ -1253,7 +1254,7 @@ div.asl_w .probox div.asl_simple-circle {
   background-color: #ed1a24;
   color: #fff;
   padding: 5px 15px;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: 3px;
 }
 .info-introdution .info-content .link-aff a:hover, .entry-content .link-aff a:hover {
@@ -1270,7 +1271,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .info-introdution .info-content .note .note-title, .entry-content .note .note-title {
   color: #ed1a24;
-  font-weight: 700;
+  font-weight: 500;
   margin-right: 5px;
 }
 .info-ticket {
@@ -1278,8 +1279,8 @@ div.asl_w .probox div.asl_simple-circle {
   border-top: 1px solid #ddd;
 }
 .info-ticket h2 {
-  font-size: 22px;
-  line-height: 28px;
+  font-size: 20px;
+  line-height: 26px;
 }
 .info-ticket .info-content ul {
   padding-left: 20px;
@@ -1294,8 +1295,7 @@ div.asl_w .probox div.asl_simple-circle {
   margin-bottom: 15px;
 }
 .info-gallery {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .info-gallery a {
   position: relative;
@@ -1342,7 +1342,7 @@ div.asl_w .probox div.asl_simple-circle {
   color: #444;
   padding: 15px 0;
   margin-bottom: 0;
-  font-weight: 700;
+  font-weight: 500;
   text-align: left;
 }
 .content-project #accordion .card-header h3#location .link {
@@ -1388,7 +1388,7 @@ div.asl_w .probox div.asl_simple-circle {
   margin-top: 3px;
 }
 .type-location {
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
 }
 .type-location span {
@@ -1403,9 +1403,9 @@ div.asl_w .probox div.asl_simple-circle {
   background-color: #ed1a24;
 }
 .travel-time {
-  color: #222;
-  font-family: 'Arsenal', sans-serif;
-  font-size: 18px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
 }
 .travel-time h3 {
   font-size: 18px;
@@ -1436,19 +1436,19 @@ div.asl_w .probox div.asl_simple-circle {
   margin-left: 5px;
 }
 #info-location .map-location p.guide-map {
-    margin: 0;
-    padding: 10px 15px;
-    font-weight: 400;
-    border: none;
-    box-shadow: none;
-    font-size: 16px;
-    font-style: italic;
+  margin: 0;
+  padding: 10px 15px;
+  font-weight: 400;
+  border: none;
+  box-shadow: none;
+  font-size: 15px;
+  font-style: italic;
 	cursor: auto;
 }
 #info-location .map-location p {
-  font-size: 16px;
+  font-size: 15px;
   color: #333;
-  font-weight: 700;
+  font-weight: 500;
   padding: 10px;
   margin-bottom: 0;
   border-top: 1px solid #ddd;
@@ -1456,7 +1456,7 @@ div.asl_w .probox div.asl_simple-circle {
 #info-location .map-location span.info-window {
   display: inline-block;
   margin-bottom: 4px;
-  font-weight: 700;
+  font-weight: 500;
 }
 #info-location .map-location p {
   cursor: pointer;
@@ -1466,7 +1466,7 @@ div.asl_w .probox div.asl_simple-circle {
   color: #ed1a24;
 }
 #info-location .location-item {
-  color: #222;
+  color: #333;
   margin-bottom: 10px;
   cursor: pointer;
 }
@@ -1508,9 +1508,9 @@ div.asl_w .probox div.asl_simple-circle {
   align-items: center;
 }
 #info-progress .link-progress a {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 24px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
   color: #444;
   padding: 5px 15px 5px 0;
 }
@@ -1533,7 +1533,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .hotline-project .status-hotline p {
   margin-bottom: 0 !important;
-  font-size: 15px;
+  font-size: 14px;
 }
 .status-hotline .arrow {
   width: 0;
@@ -1560,21 +1560,24 @@ div.asl_w .probox div.asl_simple-circle {
   color: #ed1a24;
 }
 .hotline-project h4 {
-  font-size: 20px;
+  font-size: 18px;
   color: #444;
   text-transform: uppercase;
   margin: 10px 0 0 0;
 }
 .hotline-project .container p {
-  margin-bottom: 8px;
-  font-size: 15px;
+  margin-bottom: 5px;
+  font-size: 14px;
 }
 .hotline-project .hotline-number a {
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
   color: #fff;
-  margin: 15px 0;
-  padding: 4px;
+  margin: 5px 0 12px 0;
+  padding: 6px;
   text-align: center;
+  text-transform: uppercase;
   display: block;
   border-radius: 5px;
   cursor: pointer;
@@ -1584,45 +1587,44 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .hotline-project .hotline-number a#order-online {
   background: linear-gradient(45deg,#d71607 0%,#e33f39 50%);
+  margin-top: 15px;
 }
 .hotline-project .hotline-number a:hover {
   opacity: 0.85;
   color: #fff;
 }
 .hotline-project .hotline-number a i {
-  font-size: 22px;
+  font-size: 20px;
   margin-right: 10px;
 }
 .hotline-project .container p.sales-off {
-  color: #222;
-  margin-top: 7px;
-  margin-bottom: 10px;
+  color: #333;
+  margin-top: 5px;
+  margin-bottom: 3px;
 }
 .hotline-project .container p.sales-off span {
-  font-size: 20px;
+  font-size: 18px;
   color: #da2114;
   font-weight: 700;
 }
 .hotline-project .container p.price {
-  color: #222;
+  color: #333;
   margin-bottom: 0;
   line-height: 100%;
 }
 .hotline-project .price-agent {
   text-decoration: line-through;
-  font-size: 18px;
+  font-size: 15px;
   color: #555;
 }
 .hotline-project .price-naocungdi {
-  font-size: 28px;
+  font-size: 26px;
   color: #ec1a23;
   font-weight: 700;
   margin-left: 15px;
 }
 .hotline-project .container p.receive-ticket, .hotline-project .container p.sold-ticket {
   color: #444;
-  font-size: 16px;
-  line-height: 20px;
 }
 .hotline-project .receive-ticket .fa-clock, .hotline-project .sold-ticket .fa-fire {
   margin-right: 10px;
@@ -1787,12 +1789,15 @@ div.asl_w .probox div.asl_simple-circle {
   display: none;
 }
 .subinfo-ticket {
-  font-size: 16px;
-  color: #222;
+  font-size: 15px;
+  color: #333;
   padding: 0 0 0 15px;
 }
+.subinfo-ticket.subinfo-product {
+  font-size: 14px;
+}
 .subinfo-ticket p {
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 10px;
   padding: 2px 7px;
   border-radius: 3px;
@@ -1840,10 +1845,10 @@ div.asl_w .probox div.asl_simple-circle {
   margin-right: 35px;
 }
 .description-ticket {
-  color: #292929;
+  color: #333;
 }
 .description-ticket ul {
-  font-size: 18px;
+  font-size: 15px;
   padding-left: 20px;
 }
 .description-ticket li {
@@ -1912,29 +1917,32 @@ div.asl_w .probox div.asl_simple-circle {
   margin-bottom: 0;
 }
 .item-service .name-service p:last-child {
-  font-size: 16px;
+  font-size: 14px;
   color: #666;
 }
 .item-service .name-service p:last-child i {
-  font-size: 12px;
+  font-size: 11px;
 }
 .item-service .name-service p:first-child, .item-service .price-service span:first-child {
-  font-weight: 700;
-  line-height: 22px;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
 }
 .item-service .name-service .view-detail {
+  margin-top: 3px;
   cursor: pointer;
 }
 .item-service .price-service span {
   display: block;
 }
 .item-service .price-service span:last-child {
-  font-size: 15px;
+  font-size: 14px;
   color: #777;
   text-decoration: line-through;
 }
 .item-service .detail-service {
-  font-size: 16px;
+  font-size: 15px;
   margin-top: 5px;
 }
 .item-service .button-service {
@@ -1943,9 +1951,10 @@ div.asl_w .probox div.asl_simple-circle {
   justify-content: center;
 }
 .item-service .btn-service {
+  font-size: 15px;
   border: 2px solid #e84f49;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
 }
 .item-service .btn-service:hover, .item-service .btn-service.active {
   background: #e33f39;
@@ -1954,7 +1963,7 @@ div.asl_w .probox div.asl_simple-circle {
 .form-booking {
   display: none;
   width: 100%;
-  font-size: 16px;
+  font-size: 15px;
   border-top: 1px solid #ddd;
   margin-top: 10px;
   padding-top: 10px;
@@ -1964,30 +1973,33 @@ div.asl_w .probox div.asl_simple-circle {
   margin-bottom: 5px;
 }
 .form-booking .row [class*="col"] label {
-  margin-bottom: 2px;
+  width: 100%;
+  margin-bottom: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .form-booking .total-price p {
-  font-size: 18px;
+  font-size: 15px;
   margin: 15px 0 0 0;
 }
 .form-booking .total-price p span {
   color: #e33f39;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
 }
 .form-booking .btn-booking {
   background: linear-gradient(45deg,#e23d37 0%,#e84f49 50%);
   color: #fff;
-  font-size: 20px;
-  font-weight: 700;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 500;
   text-transform: uppercase;
   margin-top: 17px;
-  border: none;
 }
 .form-booking .btn-booking:hover, .form-booking .btn-booking:active, .form-booking .btn-booking:focus {
   background: #e33f39;
   opacity: 0.8;
-  border: none;
 }
 .form-booking .error {
   color: #db261b;
@@ -1998,7 +2010,7 @@ div.asl_w .probox div.asl_simple-circle {
 .status-booking .status {
   font-size: 15px;
   color: #e33f39;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 0;
 }
 .lds-ellipsis {
@@ -2062,10 +2074,11 @@ div.asl_w .probox div.asl_simple-circle {
 */
  .datepicker {
   width: 366px;
+  font-size: 15px;
   padding: 20px;
   border-radius: 4px;
   direction: ltr;
-  color: #222;
+  color: #333;
 }
 
 .datepicker-inline {
@@ -2585,9 +2598,9 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .related-post h4 {
   color: #444;
-  font-family: 'Arsenal', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 22px;
   margin: 7px 0;
 }
@@ -2616,7 +2629,7 @@ div.asl_w .probox div.asl_simple-circle {
   padding: 0;
 }
 .library-img h2.entry-title {
-  font-family: 'Arsenal', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   line-height: 24px;
 }
@@ -2712,7 +2725,7 @@ ul.page-numbers li {
   padding: 0;
 }
 .entry-content {
-  font-family: 'Arsenal', sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
 }
 .entry-content h2 {
   font-size: 22px;
@@ -2735,7 +2748,7 @@ ul.page-numbers li {
   color: #333;
 }
 .single .entry-content h2, .single .entry-content h3, .single .entry-content h4, .single .entry-content h5, .single .entry-content h6 {
-  font-weight: 700;
+  font-weight: 500;
 }
 .entry-content p {
   text-align: justify;
@@ -2745,7 +2758,7 @@ ul.page-numbers li {
   text-align: center;
 }
 .entry-content.introduce, .entry-content.contact, .quality-policy {
-  font-family: 'Arsenal', sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-align: justify;
 }
 .entry-content.introduce p, .quality-policy p, .entry-content.introduce h3, .quality-policy h3,
@@ -2753,7 +2766,7 @@ ul.page-numbers li {
   margin-bottom: 25px;
 }
 .entry-content.introduce ul li, .quality-policy ul li {
-  color: #222;
+  color: #333;
   margin-bottom: 15px;;
 }
 .air-ticket {
@@ -2764,7 +2777,7 @@ ul.page-numbers li {
   margin-bottom: 40px;
 }
 .quality-policy h2, .air-ticket h2 {
-  font-family: 'Arsenal', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .quality-policy {
   padding: 30px 0;
@@ -2791,14 +2804,14 @@ ul.page-numbers li {
   margin-bottom: 0;
 }
 .air-ticket .ticket-item .info-ticket p.departure {
-  color: #222;
+  color: #333;
   font-size: 17px;
 }
 .air-ticket .ticket-item .info-ticket p.departure i {
   color: #ed1a24;
 }
 .air-ticket .ticket-item .info-ticket p.destination {
-  color: #222;
+  color: #333;
   font-size: 26px;
   line-height: 32px;
   margin-bottom: 10px;
@@ -2808,7 +2821,7 @@ ul.page-numbers li {
   width: 70%;
   float: left;
   color: #ed1a24;
-  font-weight: 700;
+  font-weight: 500;
   text-align: right;
   margin-top: 10px;
 }
@@ -2823,7 +2836,7 @@ ul.page-numbers li {
   background-color: #ed1a24;
   color: #fff;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   margin-right: 5%;
   margin-top: 10px;
 }
@@ -2835,7 +2848,7 @@ ul.page-numbers li {
   margin-bottom: 0;
 }
 .air-ticket .ticket-item .info-ticket p.date {
-  font-family: 'Arsenal', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #444;
 }
@@ -2868,6 +2881,8 @@ ul.page-numbers li {
   margin: 0 auto;
   background-color: #ed1a24;
   border: none;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 .wpcf7-form .wpcf7-submit:hover {
   background-color: #333;
@@ -2888,7 +2903,7 @@ ul.page-numbers li {
 /* =Post styling
 ----------------------------------------------- */
 .entry-meta a {
-  font-family: 'Arsenal', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 13px;
 }
 #main .page-header {
@@ -2912,21 +2927,22 @@ ul.page-numbers li {
   margin-right: 10px;
 }
 .entry-content .entry-title {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
   color: #444;
   text-transform: uppercase;
-  line-height: 24px;
+  line-height: 22px;
 }
 .entry-content .entry-title a {
   color: #444;
-  font-family: 'Arsenal', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .entry-content .entry-title a:hover {
   color: #ec2028;
 }
 .entry-content.category {
-  font-size: 17px;
+  font-size: 15px;
+  color: #444;
   background-color: #fff;
   margin: 0;
   padding-bottom: 10px;
@@ -2989,10 +3005,10 @@ ul.page-numbers li {
   background-color: rgba(0, 0, 0, 0.8);
 }
 .entry-content.category .entry-title {
-  margin: 8px 15px 0 15px;
+  margin: 8px 15px 3px 15px;
 }
 .entry-content.category .entry-meta, .entry-content.category p {
-  margin: 0 15px;
+  margin: 0 15px 5px 15px;
 }
 .btn.btn-default.read-more {
   float: right;
@@ -3020,24 +3036,24 @@ hr.section-divider {
   margin-bottom: 20px;
 }
 .title-post.page-header .entry-title {
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 22px;
+  font-weight: 500;
   text-align: left;
-  line-height: 32px;
+  line-height: 30px;
 }
 
 /** Slidebar News */
 .top-posts h3 {
   background-color: #444;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   margin-bottom: 15px;
   padding: 10px 15px;
   text-transform: uppercase;
 }
 .top-posts h3 i {
-  font-size: 24px;
+  font-size: 20px;
   margin-right: 7px;
 }
 .top-posts h3 span {
@@ -3047,7 +3063,6 @@ hr.section-divider {
 }
 .top-posts h3 p.detail-location {
   font-size: 15px;
-  font-weight: 700;
   margin-left: 82px;
   margin-bottom: 0;
   text-transform: none;
@@ -3077,28 +3092,28 @@ hr.section-divider {
   position: absolute;
   top: 0;
   left: 0;
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   transform: translate(-30px, -30px) rotate(45deg);
 }
 .top-posts .img-top .number-rank {
   position: absolute;
-  top: 3px;
-  left: 7px;
+  top: 2px;
+  left: 5px;
   color: #fff;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 500;
   line-height: 100%;
 }
 .top-posts .title-top a {
   display: block;
   height: 100%;
-  color: #555;
-  font-size: 16px;
-  font-weight: 700;
+  color: #444;
+  font-size: 15px;
+  font-weight: 500;
   margin-right: 30px;
   padding-right: 15px;
-  line-height: 22px;
+  line-height: 21px;
   overflow: hidden;
 }
 .top-posts .title-top .top-score {
@@ -3108,7 +3123,7 @@ hr.section-divider {
   width: 30px;
   height: 45px;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
 }
 .top-posts .title-top .top-score:after {
@@ -3126,17 +3141,17 @@ hr.section-divider {
   bottom: -24px;
   left: 0;
   margin: 0;
-  font-size: 14px;
-  font-family: 'Arsenal', sans-serif;
+  font-size: 13px;
+  font-family: 'Roboto', sans-serif;
   color: #f5a623;
 }
 .top-posts .title-top .star-top i {
-  font-size: 12px;
+  font-size: 11px;
   margin-right: 5px;
 }
 .top-posts .title-top .star-top span {
   color: #888;
-  font-size: 15px;
+  font-size: 13px;
   margin-left: 5px;
   margin-right: 8px;
 }
@@ -3154,7 +3169,7 @@ hr.section-divider {
 .select-location p {
   display: inline-block;
   background: #fff;
-  color: #222;
+  color: #333;
   padding: 7px 20px;
   margin-bottom: 5px;
   cursor: pointer;
@@ -3165,7 +3180,7 @@ hr.section-divider {
 }
 #name-location, #name-sort {
   color: #ed1a24;
-  font-weight: 700;
+  font-weight: 500;
 }
 .box-location {
   display: none;
@@ -3185,7 +3200,7 @@ hr.section-divider {
 }
 .box-location p.all-location a {
   color: #ec1a23;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 17px;
 }
 .box-location p a:hover, .box-sort .type-sort p a:hover {
@@ -3208,11 +3223,11 @@ hr.section-divider {
 }
 .box-location .main-location p {
   color: #ed1a24;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
 }
 .box-location .main-sub {
-  font-weight: 700;
+  font-weight: 500;
 }
 .box-location .sub-location {
   text-align: center;
@@ -3457,7 +3472,7 @@ li.recentcomments {
 }
 .btn-default:hover, .label-default[href]:hover, .label-default[href]:focus, .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, #image-navigation .nav-previous a:hover, #image-navigation .nav-next a:hover {
   background-color: #1b926c;
-  border-color: #1b926c;
+  border-color: #e33f39;
 }
 .btn.btn-default {
     color: #FFF;
@@ -3604,10 +3619,10 @@ h1.site-title {
 }
 .dropdown-menu > li > a {
   padding: 5px 20px;
-  color: #444;
+  color: #333;
   text-transform: uppercase;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 500;
 }
 .dropdown-menu,
 .dropdown-menu > .active > a,
@@ -3640,7 +3655,7 @@ h1.site-title {
 }
 .nav.navbar-nav {
   float: right;
-  margin: 10px 0;
+  margin: 14px 0;
 }
 @media (max-width: 767px) {
   .nav.navbar-nav {
@@ -3774,15 +3789,15 @@ p.logged-in-as {
   font-size: inherit;
 }
 #footer-area .widgettitle {
-  font-size: 16px;
+  font-size: 15px;
   color: #fff;
   margin-top: 0px;
   text-transform: uppercase;
-  font-weight: 700;
-  line-height: 24px;
+  font-weight: 500;
+  line-height: 23px;
 }
 #footer-area .textwidget {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   color: rgba(255,255,255,.7);
 }
@@ -3834,7 +3849,7 @@ p.logged-in-as {
 }
 .copyright {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 500;
   margin-top: 2px;
   text-align: center;
 }
@@ -3918,10 +3933,10 @@ p.logged-in-as {
   border-right: none;
 }
 .menu-footer .footer-nav li a {
-  font-size: 15px;
+  font-size: 14px;
   color: #fff !important;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
 }
 .menu-footer .footer-nav li a:hover {
   color: #ed1a24 !important;
@@ -4009,7 +4024,6 @@ p.logged-in-as {
   }
   .navbar-nav .nav-link {
     color: #fff;
-    font-size: 16px;
     padding-bottom: 6px;
     padding-top: 1px;
   }
@@ -4081,18 +4095,18 @@ p.logged-in-as {
     outline: none !important;
   }
   .inner-banner h1, .inner-banner h2 {
-    font-size: 40px;
+    font-size: 30px;
   }
   .inner-banner p {
-    font-size: 19px;
+    font-size: 16px;
   }
   .inner-banner div[id*='ajaxsearchlite'].wpdreams_asl_container {
     width: 70%;
   }
   .travel h2, .project h2, .list-project h2, .news h2, .page-header .page-title, .page-header h1.entry-title,
   .quality-policy h2, .air-ticket h2, .trading-system h2 {
-    font-size: 28px;
-    line-height: 40px;
+    font-size: 26px;
+    line-height: 38px;
   }
   .travel .multiple-slides .swiper-wrapper {
     height: calc(100vw/2.7);
@@ -4112,9 +4126,6 @@ p.logged-in-as {
     text-align: center;
     white-space: nowrap;
     overflow-x: scroll;
-  }
-  .menu-project ul li {
-    padding: 3px 0 0px 0;
   }
   .menu-project .readmore-project {
     float: none;
@@ -4143,6 +4154,17 @@ p.logged-in-as {
   .mobile-box {
     display: block;
     margin-bottom: 15px;
+  }
+  .header-project .review-star {
+    text-align: left;
+    margin-top: 5px;
+  }
+  .slide-img-product {
+    padding: 0 15px;
+  }
+  #service, #user-manual, #wc-comment-header, #experience, #refund-policy {
+    border-left: 3px solid #e84f49;
+    padding-left: 10px;
   }
 }
 
@@ -4188,34 +4210,34 @@ p.logged-in-as {
     padding: 15px 10px;
   }
   .inner-banner h1, .inner-banner h2 {
-    font-size: 32px;
+    font-size: 24px;
   }
   .inner-banner p {
-    font-size: 15px;
-	line-height: 23px;
+    font-size: 14px;
+	  line-height: 23px;
   }
   .inner-banner div[id*='ajaxsearchlite'].wpdreams_asl_container {
     width: 80%;
   }
 	.inner-banner div.asl_r .results .item .asl_content h3, div.asl_r .results .item .asl_content h3 a, .inner-banner div.asl_r .results .item .asl_content h3 a:hover {
-		font-size: 16px !important;
-		line-height: 22px !important;
+		font-size: 15px !important;
+		line-height: 21px !important;
 	}
 	div.asl_r .results .item {
     padding: 3px 5px !important;
   }
   .travel h2, .project h2, .list-project h2, .news h2, .page-header .page-title, .page-header h1.entry-title,
   .quality-policy h2, .air-ticket h2, .trading-system h2 {
-    font-size: 26px;
-    line-height: 38px;
+    font-size: 23px;
+    line-height: 35px;
   }
 	.content-project #accordion .card-header h3 .link, .related-project h3.title-related, .travel-time h3, #wc-comment-header {
 		font-size: 18px;
     	line-height: 24px;
   }
   .header-project .project-title {
-    font-size: 23px;
-    line-height: 30px;
+    font-size: 21px;
+    line-height: 28px;
   }
   .contact-info {
     padding: 0;
@@ -4258,6 +4280,10 @@ p.logged-in-as {
     margin: 10px 0;
     padding: 0 10px;
   }
+  .subinfo-ticket {
+    padding: 0;
+    margin-bottom: 15px;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -4276,7 +4302,7 @@ p.logged-in-as {
     margin: -55px 0 0 -55px;
   }
   .inner-banner h1, .inner-banner h2 {
-    font-size: 26px;
+    font-size: 20px;
     margin-bottom: 15px;
   }
   .home .inner-banner p {
@@ -4332,7 +4358,7 @@ p.logged-in-as {
     height: 0;
   }
   .list-project .info-item .bg-absolute {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.6);
   }
   .travel h2, .project h2, .list-project h2, .news h2, .page-header .page-title, .page-header h1.entry-title,
   .quality-policy h2, .air-ticket h2, .trading-system h2 {
@@ -4356,17 +4382,17 @@ p.logged-in-as {
 		margin-bottom: 3px;
 	}
 	.cat-project a .info-cat p.sub-info {
-		font-size: 16px;
+		font-size: 14px;
 		font-weight: 400;
 		margin-bottom: 10px;
-		line-height: 22px;
+		line-height: 20px;
 	}
 	#info-location .map-location p.guide-map, .related-post h4 {
-		font-size: 16px;
-    	line-height: 22px;
+		font-size: 14px;
+    line-height: 20px;
 	}
 	#info-location .location-item {
-		font-size: 16px;
+		font-size: 14px;
 		padding: 0 10px;
 	}
 	.related-post h3 {
@@ -4378,32 +4404,29 @@ p.logged-in-as {
 		margin-right: initial;
 	}
 	.list-post h3.name-project {
-		font-size: 15px !important;
+		font-size: 14px !important;
 	}
 	.list-post .investment-project .value {
 		font-size: 14px;
 	}
-	  .home .one-project {
+	.home .one-project {
 		margin-left: 0;
 		margin-right: 0;
-	  }
-	  .one-project {
+	}
+	.one-project {
 		margin-left: -15px;
 		margin-right: -15px;
-	  }
+	}
 	.one-project .info-project h3, .news .news-item .title-news .info-news h4 {
-		font-size: 16px;
-		line-height: 21px;
+		font-size: 14px;
+		line-height: 19px;
 	}
 	.one-project .info-project p.investment-project, .news-item .info-news p.investment-project {
-		font-size: 14px;
-	}
-	.one-project .info-project p .value, .news-item .info-news p .value {
-		font-size: 15px;
+		font-size: 13px;
 	}
 	.list-project .info-item .bg-absolute a h4 {
 		font-size: 16px;
-    	line-height: 23px;
+    line-height: 23px;
 	}
 	.group-news {
 		margin: 0 0 15px 0;
@@ -4413,13 +4436,13 @@ p.logged-in-as {
     	margin: 0 7px;
 	}
 	.header-project .project-title {
-		font-size: 20px;
-		font-weight: 700;
-		line-height: 27px;
+		font-size: 19px;
+		font-weight: 500;
+		line-height: 26px;
 	}
 	.subinfo-project p, .type-location span {
-		font-size: 17px;
-    	line-height: 24px;
+		font-size: 15px;
+    line-height: 24px;
 	}
   .menu-project ul li {
     margin-right: 14px;
@@ -4431,30 +4454,30 @@ p.logged-in-as {
     min-height: calc(100% + 50px);
   }
   .info-introdution #introdution {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 26px;
   }
 	.info-introdution .info-content h2 {
-		font-size: 19px;
-    	line-height: 25px;
+		font-size: 18px;
+    line-height: 24px;
 	}
 	.info-introdution .info-content h3 {
-		font-size: 18px;
-    	line-height: 24px;
+		font-size: 17px;
+    line-height: 23px;
 	}
 	.info-introdution .info-content h4, .info-introdution .info-content h5, .info-introdution .info-content h6 {
-		font-size: 17px;
-    	line-height: 23px;
+		font-size: 16px;
+    line-height: 22px;
 	}
 	.info-introdution .info-content .link-aff a, .entry-content .link-aff a {
 		line-height: 22px;
 	}
 	.hotline-project .status-hotline p {
-		font-size: 14px;
-		line-height: 21px;
+		font-size: 13px;
+		line-height: 20px;
 	}
 	.hotline-project h4, .hotline-project .hotline-number a, .top-posts h3 {
-		font-size: 18px;
+		font-size: 16px;
 	}
 	.hotline-project .container p {
 		font-size: 13px;
@@ -4467,14 +4490,14 @@ p.logged-in-as {
     padding: 4px 10px 4px 0;
   }
   .top-posts .title-top .star-top {
-    font-weight: 700;
+    font-weight: 500;
     left: auto;
   }
 	.top-posts .title-top .star-top {
-		font-size: 13px;
+		font-size: 12px;
 	}
 	.top-posts .title-top .star-top span {
-		font-size: 13px;
+		font-size: 12px;
 		margin-right: 3px;
 	}
 	.top-posts .img-top .number-rank {
@@ -4483,14 +4506,14 @@ p.logged-in-as {
 		left: 7px;
 	}
 	.top-posts .title-top .top-score {
-		font-size: 17px;
+		font-size: 15px;
 		height: 40px;
 	}
 	.top-posts h3 {
 		padding: 5px 15px;
 	}
 	.top-posts h3 i {
-		font-size: 20px;
+		font-size: 18px;
 	}
 	.top-posts h3 p.detail-location {
 		font-size: 14px;
@@ -4538,7 +4561,7 @@ p.logged-in-as {
   }
 	.title-post.page-header .entry-title {
 		font-size: 20px;
-		font-weight: 700;
+		font-weight: 500;
 		line-height: 28px;
   }
   .gm-style-pbt {
@@ -4600,18 +4623,28 @@ p.logged-in-as {
   .item-service {
     padding: 10px 0;
   }
-  .item-service .name-service p:first-child, .item-service .price-service span:first-child {
-    font-size: 17px;
-  }
   .datepicker {
     width: 315px;
   }
   .form-booking .total-price p {
-    font-size: 17px;
-    line-height: 22px;
+    font-size: 15px;
+    line-height: 20px;
   }
   .form-booking .total-price p span {
-    font-size: 20px;
+    font-size: 18px;
+  }
+  .item-service .name-service .img-service {
+    margin-left: -5px;
+    margin-bottom: 10px;
+  }
+  .hotline-project .price-naocungdi {
+    font-size: 24px;
+  }
+  .item-service .name-service {
+    margin-bottom: 5px;
+  }
+  .project .more-project .btn-outline-danger, .list-project .more-project .btn-outline-danger {
+    font-size: 15px;
   }
 }
 
@@ -4620,7 +4653,7 @@ p.logged-in-as {
     padding: 0 5px;
   }
   .inner-banner h1, .inner-banner h2 {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 10px;
   }
   .bg-search .inner-banner h2 {

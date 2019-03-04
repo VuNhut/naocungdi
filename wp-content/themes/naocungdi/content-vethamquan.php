@@ -46,12 +46,12 @@
                 <div class="header-project moveRight-500 duration-1000 hidden">
                     <div class="container">
                         <div class="row">
-                            <div class="header-title col-sm-8">
-                                <h1 class="project-title fw-600">
+                            <div class="header-title col-lg-8">
+                                <h1 class="project-title">
                                     <?php the_title(); ?>
                                 </h1>
                             </div>
-                            <div class="review-star col-sm-4">
+                            <div class="review-star col-lg-4">
                                 <div class="review-step1">
                                     <p class="text-step1">Theo bạn địa điểm này được mấy sao?</p>
                                     <p class="arrow-step1 text-xs-center"><i class="fas fa-arrow-down"></i></p>
@@ -147,17 +147,17 @@
 						<?php $i = 0; foreach ($info_service as $item_service) { ?>
 						<div class="info-content container">
 							<div class="item-service row">
-								<div class="name-service col-md-8 col-sm-12">
+								<div class="name-service col-md-8 col-sm-7">
 									<p><?php echo $item_service['ten-dich-vu']; ?></p>
 									<?php if ($detail_service[$i] != "") : ?>
 									<p class="view-detail" data-toggle="collapse" data-target="#detail-service-<?php echo $i; ?>" aria-expanded="false" aria-controls="detail-service-<?php echo $i; ?>">Chi tiết gói dịch vụ <i class="fas fa-angle-down"></i></p>
 									<?php endif; ?>
 								</div>
-								<div class="price-service col-md-2 col-sm-6 col-xs-6">
+								<div class="price-service col-md-2 col-sm-3 col-xs-6">
 									<span><?php echo $item_service['gia-naocungdi'] ?><sup>đ</sup></span>
 									<span><?php echo $item_service['gia-quay'] ?><sup>đ</sup></span>
 								</div>
-								<div class="button-service col-md-2 col-sm-6 col-xs-6">
+								<div class="button-service col-md-2 col-sm-2 col-xs-6">
 									<a href="#" class="btn btn-service" data-form="#form-booking-<?php echo $i; ?>">Chọn</a>
 								</div>
 								<form id="form-booking-<?php echo $i; ?>" class="form-booking">
@@ -192,9 +192,11 @@
 												<?php endif; ?>
 											</div>
 											<div class="col-md-8 col-sm-6 total-price"></div>
-											<input type="hidden" name="name-ticket" class="name-ticket" value="<?php echo $item_service['ten-dich-vu']; ?>">
-											<input type="hidden" name="price-ticket" class="price-ticket" value="">
-											<input class="col-md-4 btn btn-booking" type="submit" value="Đặt vé" data-form="#form-booking-<?php echo $i; ?>">
+											<div class="col-md-4 col-sm-6">
+												<input type="hidden" name="name-ticket" class="name-ticket" value="<?php echo $item_service['ten-dich-vu']; ?>">
+												<input type="hidden" name="price-ticket" class="price-ticket" value="">
+												<input class="btn btn-booking" type="submit" value="Đặt vé" data-form="#form-booking-<?php echo $i; ?>">
+											</div>
 										</div>
 									</div>
 									<div class="status-booking"></div>
