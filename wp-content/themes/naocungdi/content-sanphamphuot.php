@@ -30,7 +30,7 @@
                             </div>
                             <div class="review-star col-lg-4">
                                 <div class="review-step1">
-                                    <p class="text-step1">Theo bạn địa điểm này được mấy sao?</p>
+                                    <p class="text-step1">Bạn đánh giá sản phẩm này được mấy sao?</p>
                                     <p class="arrow-step1 text-xs-center"><i class="fas fa-arrow-down"></i></p>
                                 </div>
                                 <?php if(function_exists('the_ratings')) { the_ratings(); } ?>
@@ -107,8 +107,8 @@
 										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo $info_ticket['gia-thi-truong']; ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo $info_ticket['gia-khuyen-mai']; ?><sup>đ</sup></span></p>
 									</div>
 									<div class="col-xs-12 hotline-number">
-										<a id="order-online"><i class="fas fa-bolt"></i>Đặt hàng ngay</a>
-										<a id="review-button"><i class="far fa-comments"></i>Đánh giá</a>
+										<a id="order-online-mobile"><i class="fas fa-bolt"></i>Đặt hàng ngay</a>
+										<a id="review-button-mobile"><i class="far fa-comments"></i>Đánh giá</a>
 									</div>
 									<div class="col-xs-12 footer-hotline">
 										<p class="receive-ticket"><i class="fas fa-clock"></i>Nhận hàng ngay trong vòng 1 - 3 ngày</p>
@@ -165,10 +165,6 @@
 												<label for="phone">Số điện thoại</label>
 												<input type="text" name="phone" class="phone" placeholder="Số điện thoại liên hệ">
 											</div>
-											<!-- <div class="col-md-4 col-sm-6">
-												<label for="date-ticket">Ngày đặt vé</label>
-												<input name="date-ticket" class="date-ticket" placeholder="Ngày đặt vé tham quan" readonly>
-											</div> -->
 											<div class="col-md-4 col-sm-6">
 												<label for="amount">Số lượng</label>
 												<input type="number" min="0" name="amount" class="amount" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo $item_service['gia-khuyen-mai']; ?>" placeholder="<?php echo $item_service['gia-khuyen-mai']; ?>đ/vé">
@@ -188,7 +184,7 @@
 											<div class="col-md-4 col-sm-6">
 												<input type="hidden" name="name-product" class="name-product" value="<?php echo $item_service['ten-san-pham']; ?>">
 												<input type="hidden" name="price-product" class="price-product" value="">
-												<input class="btn btn-booking" type="submit" value="Đặt vé" data-form="#form-booking-<?php echo $i; ?>">
+												<input class="btn btn-booking" type="submit" value="Đặt mua" data-form="#form-booking-<?php echo $i; ?>">
 											</div>
 										</div>
 									</div>

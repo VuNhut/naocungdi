@@ -21,7 +21,7 @@
 						'tag__in' => $tag_ids,
 						'post__not_in' => array($post->ID),
 						'category__not_in' => 4, // Exclude category 'Cẩm nang du lịch'
-						'posts_per_page'=> 4, // Number of related posts to display.
+						'posts_per_page'=> 7, // Number of related posts to display.
 						'orderby'=>'rand'
 					);
 					$my_query = new wp_query( $args );
@@ -29,13 +29,13 @@
 			?>
 			<div class="col-xs-12 related-post">
 				<h3>Tin liên quan</h3>
-				<div class="container">
-					<div class="row">
+				<div class="swiper-container swiper-tabs">
+                    <div class="swiper-wrapper">
 			<?php
 				while( $my_query->have_posts() ) {
 				$my_query->the_post();
 			?>
-				<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 related-item">
+				<div class="swiper-slide related-item">
 					<a href="<?php the_permalink(); ?>">
 						<?php the_post_thumbnail('small-img'); ?>
 						<h4><?php the_title(); ?></h4>
@@ -224,9 +224,11 @@
 		<?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
 	</div>
 </div>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+	<?php if (!in_category(array('ve-tham-quan','shop-phuot'))) : ?>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	<?php endif; ?>
 <?php endif; ?>
 
 <?php wp_footer(); ?>

@@ -13,6 +13,7 @@
                 swiper: galleryThumbs
             }
         });
+        
         $(".gallery-thumbs .swiper-slide").on('click', function () {
             if (!$(this).hasClass("swiper-slide-active")) {
                 $(".gallery-thumbs .swiper-slide").removeClass("swiper-slide-active");

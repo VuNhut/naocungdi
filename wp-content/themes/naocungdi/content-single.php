@@ -53,3 +53,25 @@
 		endif;
 	?>
 </article><!-- #post-## -->
+<?php $slide_gallery = rwmb_meta( 'gallery' ); if (sizeof($slide_gallery) > 0) : ?>
+<div class="slide-gallery all-gallery" data-slide=".all-gallery" data-number="0">
+	<div class="main-slide">
+		<ul>
+			<?php
+				foreach ( $slide_gallery as $img_slide ) {
+					echo '<li><div class="img-gallery">';
+                    echo '<img data-src="', $img_slide['url'] ,'" alt="'. $img_slide['title'] .'" />';
+                    if ($img_slide['caption']) {
+                        echo '<div class="title-gallery">', $img_slide['caption'] ,'</div>';
+                    }
+                    echo '</div></li>';
+				}
+			?>
+		</ul>
+		<div class="updating"><i class="fas fa-spinner"></i></div>
+		<i class="previousImg fas fa-angle-left" data-slide=".all-gallery" data-number="0"></i>
+		<i class="nextImg fas fa-angle-right" data-slide=".all-gallery" data-number="0"></i>
+		<i class="closeGallery fas fa-times"></i>
+	</div>
+</div>
+<?php endif; ?>

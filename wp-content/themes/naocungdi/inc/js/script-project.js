@@ -70,15 +70,16 @@ $(document).ready(function(){
     
         $('html, body').animate({
             scrollTop: parseInt($(this).offset().top + margin)
-        }, speed);
+        }, speed, function() {
+            $('.menu-project').css({"z-index": "10"});
+        });
     };
 
-    $("#review-button").on('click', function () {
+    $("#review-button, #review-button-mobile").on('click', function () {
         $('.header-project .review-star').css({"text-align": "center"});
         $('.review-step1').scrollTo(700, -40);
         $('.review-step1').css({"visibility": "visible"});
         $('.review-step').css({"opacity": "1", "visibility": "visible"});
-        $('.menu-project').css({"z-index": "10"});
         $('body').css({"overflow": "hidden"});
 
         $('.post-ratings img').on('click', function () {
@@ -98,7 +99,7 @@ $(document).ready(function(){
             })
         })
     });
-    $("#order-online").on('click', function () {
+    $("#order-online, #order-online-mobile").on('click', function () {
         $('#service').scrollTo(700, -100);
     });
 });
@@ -123,196 +124,91 @@ document.addEventListener('DOMContentLoaded', function () {
     var posMenuProject = getPosition(menuProject).top;
     window.addEventListener('scroll', function () {
         
-        // Effect scroll menu project
-        if ((document.body.scrollTop > posMenuProject) || (document.documentElement.scrollTop > posMenuProject)) {
-            menuProject.style.cssText = "position: fixed; top: 0; background-color: #fff; width: 100%; z-index: 100";
-        } else {
-            menuProject.style.position = "relative";
-        }
-
-        // Effect scroll sidebar project
-        if (window.innerWidth >= 992) {
-            if ((document.body.scrollTop > possidebarProject - menuProject.offsetHeight*2 - 15) || (document.documentElement.scrollTop > possidebarProject - menuProject.offsetHeight*2 - 15)) {
-                var posrelatedArea = getPosition(footerArea).top;
-                if ((document.body.scrollTop > (posrelatedArea - sidebarProject.offsetHeight - menuProject.offsetHeight*2)) || (document.documentElement.scrollTop > (posrelatedArea - sidebarProject.offsetHeight - menuProject.offsetHeight*2))) {
-                    sidebarProject.style.cssText = "position: absolute; top: "+ (infoRight.offsetHeight - sidebarProject.offsetHeight) +"px; width: "+ sidebarProject.clientWidth + "px";
-                } else {
-                    sidebarProject.style.cssText = "position: fixed; top: "+ (menuProject.offsetHeight + 15) +"px; width: "+ sidebarProject.clientWidth + "px";
-                }
+        if (menuProject) {
+            // Effect scroll menu project
+            if ((document.body.scrollTop > posMenuProject) || (document.documentElement.scrollTop > posMenuProject)) {
+                menuProject.style.cssText = "position: fixed; top: 0; background-color: #fff; width: 100%; z-index: 100";
             } else {
-                sidebarProject.style.position = "relative";
-                sidebarProject.style.top = "0";
-            }   
+                menuProject.style.position = "relative";
+            }
+
+            // Effect scroll sidebar project
+            if (window.innerWidth >= 992) {
+                if ((document.body.scrollTop > possidebarProject - menuProject.offsetHeight*2 - 15) || (document.documentElement.scrollTop > possidebarProject - menuProject.offsetHeight*2 - 15)) {
+                    var posrelatedArea = getPosition(footerArea).top;
+                    if ((document.body.scrollTop > (posrelatedArea - sidebarProject.offsetHeight - menuProject.offsetHeight*2)) || (document.documentElement.scrollTop > (posrelatedArea - sidebarProject.offsetHeight - menuProject.offsetHeight*2))) {
+                        sidebarProject.style.cssText = "position: absolute; top: "+ (infoRight.offsetHeight - sidebarProject.offsetHeight) +"px; width: "+ sidebarProject.clientWidth + "px";
+                    } else {
+                        sidebarProject.style.cssText = "position: fixed; top: "+ (menuProject.offsetHeight + 15) +"px; width: "+ sidebarProject.clientWidth + "px";
+                    }
+                } else {
+                    sidebarProject.style.position = "relative";
+                    sidebarProject.style.top = "0";
+                }   
+            }
         }
     })
 
     // Slide Gallery
-    var slideGallery = document.querySelector('.main-slide ul');
-    var nextImg = document.getElementById('nextImg');
-    var previousImg = document.getElementById('previousImg');
-    var updatingSlideGallery = document.querySelector('.slide-gallery .updating');
-    var updatingMapImage = document.querySelector('.map-img .updating');
-    var closeGallery = document.getElementById('closeGallery');
-    var imgWidth = document.body.offsetWidth;
-    var countImages = slideGallery.childElementCount;
-    var posTranformStart = 0;
-    var posTranformEnd = 0;
-    slideGallery.style.width = imgWidth*countImages + "px";
-    for (var i = 0; i < slideGallery.children.length; i++) {
-        const img = slideGallery.children[i];
-        img.style.width = imgWidth + "px";
-    }
-    eventNextPrevious(nextImg);
-    eventNextPrevious(previousImg);
+    var arraySlide = [".all-gallery", ".album-1", ".album-2", ".album-3", ".album-4", ".album-5", ".album-6", ".album-7", ".album-8", ".album-9"];
+    var imgWidth = [], countImages = [], posTranformStart = [], posTranformEnd = [];
+    for (var slide = 0; slide < arraySlide.length; slide++) {
+        var eSlideGallery = arraySlide[slide] + " .main-slide ul";
+        if(document.querySelector(eSlideGallery)) {
+            var eNextImg = arraySlide[slide] + " .nextImg";
+            var ePreviousImg = arraySlide[slide] + " .previousImg";
+            var eCloseGallery = arraySlide[slide] + " .closeGallery";
+            var slideGallery = document.querySelector(eSlideGallery);
+            var nextImg = document.querySelector(eNextImg);
+            var previousImg = document.querySelector(ePreviousImg);
+            var closeGallery = document.querySelector(eCloseGallery);
+            var slideAnimation = ".slide-gallery" + arraySlide[slide];
+            imgWidth.push(document.body.offsetWidth);
+            countImages.push(slideGallery.childElementCount);
+            posTranformStart.push(0);
+            posTranformEnd.push(0);
+            slideGallery.style.width = imgWidth[slide]*countImages[slide] + "px";
+            for (var i = 0; i < slideGallery.children.length; i++) {
+                const img = slideGallery.children[i];
+                img.style.width = imgWidth[slide] + "px";
+            }
+            eventNextPrevious(nextImg);
+            eventNextPrevious(previousImg);
 
-    function getPosTransform () {
-        if (slideGallery.style.transform || slideGallery.style.msTransform || slideGallery.style.WebkitTransform) {
-            var translateString;
+            function getPosTransform (slideGallery) {
+                if (slideGallery.style.transform || slideGallery.style.msTransform || slideGallery.style.WebkitTransform) {
+                    var translateString;
 
-            // Code for IE
-            translateString = slideGallery.style.msTransform;
-            // Code for Safari
-            translateString = slideGallery.style.WebkitTransform;
-            // Standard syntax
-            translateString = slideGallery.style.transform;
+                    // Code for IE
+                    translateString = slideGallery.style.msTransform;
+                    // Code for Safari
+                    translateString = slideGallery.style.WebkitTransform;
+                    // Standard syntax
+                    translateString = slideGallery.style.transform;
 
-            var translate = "translateX(";
-            var posTranform = Number(translateString.substring(translate.length, translateString.indexOf('px')));
-        } else {
-            var posTranform = 0;
-        }
-        return posTranform;
-    }
-    function checkPosTransform (translateValue) {
-        if (translateValue > posTranformStart) {
-            translateValue = posTranformEnd + imgWidth;
-        } else if (translateValue <= posTranformEnd) {
-            translateValue = posTranformStart;
-        }
-        return translateValue;
-    }
-    function transform (button) {
-        var posTranform = getPosTransform();
-        if (button === nextImg) {
-            var translateValue = posTranform - imgWidth;
-        } else {
-            var translateValue = posTranform + imgWidth;
-        }
-        translateValue = checkPosTransform(translateValue);
-
-        // Code for IE
-        slideGallery.style.msTransform = "translateX("+ translateValue +"px)";
-        // Code for Safari
-        slideGallery.style.WebkitTransform = "translateX("+ translateValue +"px)";
-        // Standard syntax
-        slideGallery.style.transform = "translateX("+ translateValue +"px)";
-    }
-    function eventNextPrevious (button) {
-        button.addEventListener('click', function () {
-            posTranformEnd = -(imgWidth*countImages);
-            transform(button);
-        });
-    }
-
-    closeGallery.addEventListener('click', function () {
-        // Code for IE
-        document.querySelector('.slide-gallery').style.msTransform = "translateY(100%)";
-        // Code for Safari
-        document.querySelector('.slide-gallery').style.WebkitTransform = "translateY(100%)";
-        // Standard syntax
-        document.querySelector('.slide-gallery').style.transform = "translateY(100%)";
-
-        document.querySelector('.slide-gallery').style.opacity = "0";
-
-        document.querySelector('article.post').style.filter = "blur(0px)";
-        // Code for Safari, Opera
-        document.querySelector('article.post').style.WebkitFilter = "blur(0px)";
-    })
-
-    window.onkeydown = function (e) {
-        switch (e.keyCode) {
-            case 37:
-                previousImg.click();
-                break;
-            case 39:
-                nextImg.click();
-                break;
-            case 27:
-                closeGallery.click();
-                break;
-            default:
-                break;
-        }
-    }
-
-    var showGallery = document.querySelectorAll('.showGallery');
-    for (var s = 0; s < showGallery.length; s++) {
-        const elem = showGallery[s];
-        elem.addEventListener('click', function (e) {
-            e.preventDefault();
-            var num = this.getAttribute('data-number');
-
-            // Code for IE
-            slideGallery.style.msTransform = "translateX("+ (-num*imgWidth) +"px)";
-            document.querySelector('.slide-gallery').style.msTransform = "translateY(0%)";
-            // Code for Safari
-            slideGallery.style.WebkitTransform = "translateX("+ (-num*imgWidth) +"px)";
-            document.querySelector('.slide-gallery').style.WebkitTransform = "translateY(0%)";
-            // Standard syntax
-            slideGallery.style.transform = "translateX("+ (-num*imgWidth) +"px)";
-            document.querySelector('.slide-gallery').style.transform = "translateY(0%)";
-
-            document.querySelector('.slide-gallery').style.opacity = "1";
-
-            document.querySelector('article.post').style.filter = "blur(5px)";
-            // Code for Safari, Opera
-            document.querySelector('article.post').style.WebkitFilter = "blur(5px)";
-        })
-    }
-
-    document.querySelector('.img-quality').addEventListener('click', function () {
-        // Code for IE
-        slideGallery.style.msTransform = "translateX(0px)";
-        document.querySelector('.slide-gallery').style.msTransform = "translateY(0%)";
-        // Code for Safari
-        slideGallery.style.WebkitTransform = "translateX(0px)";
-        document.querySelector('.slide-gallery').style.WebkitTransform = "translateY(0%)";
-        // Standard syntax
-        slideGallery.style.transform = "translateX(0px)";
-        document.querySelector('.slide-gallery').style.transform = "translateY(0%)";
-
-        document.querySelector('.slide-gallery').style.opacity = "1";
-
-        document.querySelector('article.post').style.filter = "blur(5px)";
-        // Code for Safari, Opera
-        document.querySelector('article.post').style.WebkitFilter = "blur(5px)";
-    })
-
-    document.querySelector('.slide-gallery').addEventListener('transitionend', function () {
-        checkSrc(slideGallery.firstElementChild);
-        
-    })
-
-    // Touch Event Slide Gallery
-    document.querySelector('.slide-gallery').addEventListener('touchstart', function (event) {
-        var state = true;
-        var posClick = event.touches[0].clientX;
-        var moveNumberNews = 0, stateMove = false;
-        posTranformEnd = -(imgWidth*(countImages - 1));
-        var posTranform = getPosTransform();
-        this.addEventListener('touchmove', function (e) {
-            if (state === true) {
-                var moveValue = posClick - e.touches[0].clientX;
-                var translateValue = (-moveValue) + posTranform;
-                translateValue = checkPosTransform(translateValue);
-                if ((translateValue - imgWidth) === posTranformEnd) {
-                    translateValue = posTranformEnd;
-                }
-                if (moveValue<0) {
-                    moveNumberNews = Math.floor(Math.abs(translateValue)/imgWidth);
+                    var translate = "translateX(";
+                    var posTranform = Number(translateString.substring(translate.length, translateString.indexOf('px')));
                 } else {
-                    moveNumberNews = Math.ceil(Math.abs(translateValue)/imgWidth);
+                    var posTranform = 0;
                 }
+                return posTranform;
+            }
+            function checkPosTransform (translateValue, slide) {
+                if (translateValue > posTranformStart[slide]) {
+                    translateValue = posTranformEnd[slide] + imgWidth[slide];
+                } else if (translateValue <= posTranformEnd[slide]) {
+                    translateValue = posTranformStart[slide];
+                }
+                return translateValue;
+            }
+            function transform (button, slideGallery, slide) {
+                var posTranform = getPosTransform(slideGallery);
+                if (button.classList.contains('fa-angle-right')) {
+                    var translateValue = posTranform - imgWidth[slide];
+                } else {
+                    var translateValue = posTranform + imgWidth[slide];
+                }
+                translateValue = checkPosTransform(translateValue, slide);
 
                 // Code for IE
                 slideGallery.style.msTransform = "translateX("+ translateValue +"px)";
@@ -320,101 +216,232 @@ document.addEventListener('DOMContentLoaded', function () {
                 slideGallery.style.WebkitTransform = "translateX("+ translateValue +"px)";
                 // Standard syntax
                 slideGallery.style.transform = "translateX("+ translateValue +"px)";
+            }
+            function eventNextPrevious (button) {
+                button.addEventListener('click', function () {
+                    var slideGallery = document.querySelector(this.getAttribute('data-slide') + " .main-slide ul");
+                    var slide = this.getAttribute('data-number');
+                    posTranformEnd[slide] = -(imgWidth[slide]*countImages[slide]);
+                    transform(button, slideGallery, slide);
+                });
+            }
 
-                stateMove = true;
-            }
-        })
-        this.addEventListener('touchend', function () {
-            if (state === true) {
-                state = false;
-            }
-            if (state === false && stateMove === true) {
+            closeGallery.addEventListener('click', function () {
+                var slide = this.getAttribute('data-number');
+                var slideName = ".slide-gallery" + arraySlide[slide];
                 // Code for IE
-                slideGallery.style.msTransform = "translateX("+ (-(moveNumberNews*imgWidth)) +"px)";
+                document.querySelector(slideName).style.msTransform = "translateY(100%)";
                 // Code for Safari
-                slideGallery.style.WebkitTransform = "translateX("+ (-(moveNumberNews*imgWidth)) +"px)";
+                document.querySelector(slideName).style.WebkitTransform = "translateY(100%)";
                 // Standard syntax
-                slideGallery.style.transform = "translateX("+ (-(moveNumberNews*imgWidth)) +"px)";
+                document.querySelector(slideName).style.transform = "translateY(100%)";
 
-                stateMove = false;
-            }
-        });
-    });
+                document.querySelector(slideName).style.opacity = "0";
 
-    // Mouse Move Event Slide Gallery
-    document.querySelector('.slide-gallery').addEventListener('mousedown', function (event) {
-        var state = true;
-        var posClick = event.clientX;
-        var moveNumberNews = 0, stateMove = false;
-        posTranformEnd = -(imgWidth*(countImages - 1));
-        var posTranform = getPosTransform();
-        this.addEventListener('mousemove', function (e) {
-            if (state === true) {
-                var moveValue = posClick - e.clientX;
-                var translateValue = (-moveValue) + posTranform;
-                translateValue = checkPosTransform(translateValue);
-                if ((translateValue - imgWidth) === posTranformEnd) {
-                    translateValue = posTranformEnd;
+                document.querySelector('article.post').style.filter = "blur(0px)";
+                // Code for Safari, Opera
+                document.querySelector('article.post').style.WebkitFilter = "blur(0px)";
+            })
+
+            window.onkeydown = function (e) {
+                switch (e.keyCode) {
+                    case 37:
+                        previousImg.click();
+                        break;
+                    case 39:
+                        nextImg.click();
+                        break;
+                    case 27:
+                        closeGallery.click();
+                        break;
+                    default:
+                        break;
                 }
-                if (moveValue<0) {
-                    moveNumberNews = Math.floor(Math.abs(translateValue)/imgWidth);
-                } else {
-                    moveNumberNews = Math.ceil(Math.abs(translateValue)/imgWidth);
-                }
-
-                // Code for IE
-                slideGallery.style.msTransform = "translateX("+ translateValue +"px)";
-                // Code for Safari
-                slideGallery.style.WebkitTransform = "translateX("+ translateValue +"px)";
-                // Standard syntax
-                slideGallery.style.transform = "translateX("+ translateValue +"px)";
-
-                stateMove = true;
             }
-        })
-        this.addEventListener('mouseup', function () {
-            if (state === true) {
-                state = false;
-            }
-            if (state === false && stateMove === true) {
-                // Code for IE
-                slideGallery.style.msTransform = "translateX("+ (-(moveNumberNews*imgWidth)) +"px)";
-                // Code for Safari
-                slideGallery.style.WebkitTransform = "translateX("+ (-(moveNumberNews*imgWidth)) +"px)";
-                // Standard syntax
-                slideGallery.style.transform = "translateX("+ (-(moveNumberNews*imgWidth)) +"px)";
+
+            if (arraySlide[slide] === ".all-gallery") {
+                var eShowGallery = ".main-gallery .showGallery";
+                if (document.querySelector('.img-quality')) {
+                    document.querySelector('.img-quality').addEventListener('click', function () {
+                        // Code for IE
+                        document.querySelector('.slide-gallery.all-gallery').style.msTransform = "translateX(0px)";
+                        document.querySelector(arraySlide[0]).style.msTransform = "translateY(0%)";
+                        // Code for Safari
+                        document.querySelector('.slide-gallery.all-gallery').style.WebkitTransform = "translateX(0px)";
+                        document.querySelector(arraySlide[0]).style.WebkitTransform = "translateY(0%)";
+                        // Standard syntax
+                        document.querySelector('.slide-gallery.all-gallery').style.transform = "translateX(0px)";
+                        document.querySelector(arraySlide[0]).style.transform = "translateY(0%)";
                 
-                stateMove = false;
-            }
-        });
-    });
-
-    function checkSrc(srcImg) {
-        var checkSrc = srcImg.firstElementChild.firstElementChild.getAttribute('src');
-        if (checkSrc === null) {
-            addSrc(srcImg);
-        }
-    }
-
-    function addSrc(element) {
-        var img = element.firstElementChild.firstElementChild,
-            src = img.getAttribute('data-src'),
-            next = element.nextElementSibling;
-        img.setAttribute('src', src);
-        if (next) {
-            addSrc(next);
-        }
-        checkLoaded(img);
-    }
-
-    function checkLoaded (e) {
-        e.addEventListener('load', function () {
-            if (e === document.querySelector('.popup-img img')) {
-                updatingMapImage.style.display = "none";
+                        document.querySelector(arraySlide[0]).style.opacity = "1";
+                
+                        document.querySelector('article.post').style.filter = "blur(5px)";
+                        // Code for Safari, Opera
+                        document.querySelector('article.post').style.WebkitFilter = "blur(5px)";
+                    })
+                }
             } else {
-                updatingSlideGallery.style.display = "none";
+                var eShowGallery = ".info-gallery" + arraySlide[slide] + " .showGallery";
             }
-        })
+            var showGallery = document.querySelectorAll(eShowGallery);
+            for (var s = 0; s < showGallery.length; s++) {
+                const elem = showGallery[s];
+                elem.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var num = this.getAttribute('data-number');
+                    var slideName = ".slide-gallery" + this.getAttribute('data-slide');
+                    var slideGallery = document.querySelector(this.getAttribute('data-slide') + " .main-slide ul");
+                    // Code for IE
+                    slideGallery.style.msTransform = "translateX("+ (-num*imgWidth[arraySlide.indexOf(this.getAttribute('data-slide'))]) +"px)";
+                    document.querySelector(slideName).style.msTransform = "translateY(0%)";
+                    // Code for Safari
+                    slideGallery.style.WebkitTransform = "translateX("+ (-num*imgWidth[arraySlide.indexOf(this.getAttribute('data-slide'))]) +"px)";
+                    document.querySelector(slideName).style.WebkitTransform = "translateY(0%)";
+                    // Standard syntax
+                    slideGallery.style.transform = "translateX("+ (-num*imgWidth[arraySlide.indexOf(this.getAttribute('data-slide'))]) +"px)";
+                    document.querySelector(slideName).style.transform = "translateY(0%)";
+
+                    document.querySelector(slideName).style.opacity = "1";
+
+                    document.querySelector('article.post').style.filter = "blur(5px)";
+                    // Code for Safari, Opera
+                    document.querySelector('article.post').style.WebkitFilter = "blur(5px)";
+                })
+            }
+
+            document.querySelector(slideAnimation).addEventListener('transitionend', function () {
+                var slide = this.getAttribute('data-slide') + " .main-slide ul";
+                var slideGallery = document.querySelector(slide);
+                checkSrc(slideGallery.firstElementChild, this.getAttribute('data-slide'));
+            })
+
+            // Touch Event Slide Gallery
+            document.querySelector(slideAnimation).addEventListener('touchstart', function (event) {
+                var slide = this.getAttribute('data-number');
+                var dataSlide = this.getAttribute('data-slide') + " .main-slide ul";
+                var slideGallery = document.querySelector(dataSlide);
+                var state = true;
+                var posClick = event.touches[0].clientX;
+                var moveNumberNews = 0, stateMove = false;
+                posTranformEnd[slide] = -(imgWidth[slide]*(countImages[slide] - 1));
+                var posTranform = getPosTransform(slideGallery);
+                this.addEventListener('touchmove', function (e) {
+                    if (state === true) {
+                        var moveValue = posClick - e.touches[0].clientX;
+                        var translateValue = (-moveValue) + posTranform;
+                        translateValue = checkPosTransform(translateValue, slide);
+                        if ((translateValue - imgWidth[slide]) === posTranformEnd[slide]) {
+                            translateValue = posTranformEnd[slide];
+                        }
+                        if (moveValue<0) {
+                            moveNumberNews = Math.floor(Math.abs(translateValue)/imgWidth[slide]);
+                        } else {
+                            moveNumberNews = Math.ceil(Math.abs(translateValue)/imgWidth[slide]);
+                        }
+
+                        // Code for IE
+                        slideGallery.style.msTransform = "translateX("+ translateValue +"px)";
+                        // Code for Safari
+                        slideGallery.style.WebkitTransform = "translateX("+ translateValue +"px)";
+                        // Standard syntax
+                        slideGallery.style.transform = "translateX("+ translateValue +"px)";
+
+                        stateMove = true;
+                    }
+                })
+                this.addEventListener('touchend', function () {
+                    if (state === true) {
+                        state = false;
+                    }
+                    if (state === false && stateMove === true) {
+                        // Code for IE
+                        slideGallery.style.msTransform = "translateX("+ (-(moveNumberNews*imgWidth[slide])) +"px)";
+                        // Code for Safari
+                        slideGallery.style.WebkitTransform = "translateX("+ (-(moveNumberNews*imgWidth[slide])) +"px)";
+                        // Standard syntax
+                        slideGallery.style.transform = "translateX("+ (-(moveNumberNews*imgWidth[slide])) +"px)";
+
+                        stateMove = false;
+                    }
+                });
+            });
+
+            // Mouse Move Event Slide Gallery
+            document.querySelector(slideAnimation).addEventListener('mousedown', function (event) {
+                var slide = this.getAttribute('data-number');
+                var dataSlide = this.getAttribute('data-slide') + " .main-slide ul";
+                var slideGallery = document.querySelector(dataSlide);
+                var state = true;
+                var posClick = event.clientX;
+                var moveNumberNews = 0, stateMove = false;
+                posTranformEnd[slide] = -(imgWidth[slide]*(countImages[slide] - 1));
+                var posTranform = getPosTransform(slideGallery);
+                this.addEventListener('mousemove', function (e) {
+                    if (state === true) {
+                        var moveValue = posClick - e.clientX;
+                        var translateValue = (-moveValue) + posTranform;
+                        translateValue = checkPosTransform(translateValue, slide);
+                        if ((translateValue - imgWidth[slide]) === posTranformEnd[slide]) {
+                            translateValue = posTranformEnd[slide];
+                        }
+                        if (moveValue<0) {
+                            moveNumberNews = Math.floor(Math.abs(translateValue)/imgWidth[slide]);
+                        } else {
+                            moveNumberNews = Math.ceil(Math.abs(translateValue)/imgWidth[slide]);
+                        }
+
+                        // Code for IE
+                        slideGallery.style.msTransform = "translateX("+ translateValue +"px)";
+                        // Code for Safari
+                        slideGallery.style.WebkitTransform = "translateX("+ translateValue +"px)";
+                        // Standard syntax
+                        slideGallery.style.transform = "translateX("+ translateValue +"px)";
+
+                        stateMove = true;
+                    }
+                })
+                this.addEventListener('mouseup', function () {
+                    if (state === true) {
+                        state = false;
+                    }
+                    if (state === false && stateMove === true) {
+                        // Code for IE
+                        slideGallery.style.msTransform = "translateX("+ (-(moveNumberNews*imgWidth[slide])) +"px)";
+                        // Code for Safari
+                        slideGallery.style.WebkitTransform = "translateX("+ (-(moveNumberNews*imgWidth[slide])) +"px)";
+                        // Standard syntax
+                        slideGallery.style.transform = "translateX("+ (-(moveNumberNews*imgWidth[slide])) +"px)";
+                        
+                        stateMove = false;
+                    }
+                });
+            });
+
+            function checkSrc(srcImg, slide) {
+                var checkSrc = srcImg.firstElementChild.firstElementChild.getAttribute('src');
+                if (checkSrc === null) {
+                    addSrc(srcImg, slide);
+                }
+            }
+
+            function addSrc(element, slide) {
+                var img = element.firstElementChild.firstElementChild,
+                    src = img.getAttribute('data-src'),
+                    next = element.nextElementSibling;
+                img.setAttribute('src', src);
+                if (next) {
+                    addSrc(next, slide);
+                }
+                checkLoaded(img, slide);
+            }
+
+            function checkLoaded (e, slide) {
+                e.addEventListener('load', function () {
+                    var eUpdating = ".slide-gallery" + slide + " .updating";
+                    document.querySelector(eUpdating).style.display = "none";
+                })
+            }
+        }
     }
 
     // Search Header

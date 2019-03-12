@@ -21,7 +21,7 @@ get_header(); ?>
                         <div class="ws_images">
                                 <ul>
                                 <?php while ($query_slider->have_posts()) : $query_slider->the_post(); ?>
-										<li><img width="100vw" height="calc(100vw/2.39)" src="<?php the_post_thumbnail_url(); ?>" srcset="<?php the_post_thumbnail_url(); ?> 1920w, <?php the_post_thumbnail_url('medium-img'); ?> 768w, <?php the_post_thumbnail_url('small-img'); ?> 414w"/></li>
+				        <li><img width="100vw" height="calc(100vw/2.39)" src="<?php the_post_thumbnail_url(); ?>" srcset="<?php the_post_thumbnail_url(); ?> 1920w, <?php the_post_thumbnail_url('medium-img'); ?> 768w, <?php the_post_thumbnail_url('small-img'); ?> 414w"/></li>
                                 <?php $post_slider++; endwhile; ?>
                                 </ul>
                         </div>
@@ -263,7 +263,7 @@ get_header(); ?>
                                                         <?php while ($query_company_news->have_posts()) : $query_company_news->the_post(); ?>
                                                                 <div class="swiper-slide news-item">
                                                                         <div class="title-news">
-                                                                                <div class="img-news"><?php the_post_thumbnail('res-img', ['alt' => get_the_title(), 'sizes' => '(max-width:992px) 100vw, 414px' ]); ?></div>
+                                                                                <div class="img-news"><?php the_post_thumbnail('res-img', ['data-no-lazy' => 1, 'alt' => get_the_title(), 'sizes' => '(max-width:992px) 100vw, 414px' ]); ?></div>
                                                                                 <div class="info-news">
                                                                                         <div class="info-title">
                                                                                                 <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
@@ -294,7 +294,7 @@ get_header(); ?>
                                                         <?php while ($query_project_news->have_posts()) : $query_project_news->the_post(); ?>
                                                                 <div class="swiper-slide news-item">
                                                                         <div class="title-news">
-                                                                                <div class="img-news"><?php the_post_thumbnail('res-img', ['alt' => get_the_title(), 'sizes' => '(max-width:992px) 100vw, 414px' ]); ?></div>
+                                                                                <div class="img-news"><?php the_post_thumbnail('res-img', ['data-no-lazy' => 1, 'alt' => get_the_title(), 'sizes' => '(max-width:992px) 100vw, 414px' ]); ?></div>
                                                                                 <div class="info-news">
                                                                                         <div class="info-title">
                                                                                                 <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
@@ -325,7 +325,7 @@ get_header(); ?>
                                                         <?php while ($query_market_news->have_posts()) : $query_market_news->the_post(); ?>
                                                                 <div class="swiper-slide news-item">
                                                                         <div class="title-news">
-                                                                                <div class="img-news"><?php the_post_thumbnail('res-img', ['alt' => get_the_title(), 'sizes' => '(max-width:992px) 100vw, 414px' ]); ?></div>
+                                                                                <div class="img-news"><?php the_post_thumbnail('res-img', ['data-no-lazy' => 1, 'alt' => get_the_title(), 'sizes' => '(max-width:992px) 100vw, 414px' ]); ?></div>
                                                                                 <div class="info-news">
                                                                                         <div class="info-title">
                                                                                                 <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>

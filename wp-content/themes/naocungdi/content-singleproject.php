@@ -5,13 +5,12 @@
 ?>
 <?php $all_gallery = sizeof(rwmb_meta( 'gallery' )); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="gallery-project moveLeft-500 duration-1000 hidden">
-
+	<header class="gallery-project main-gallery moveLeft-500 duration-1000 hidden">
 		<?php
 			$images = rwmb_meta( 'gallery', array( 'size' => 'medium-img', 'limit' => 4 ) );
 			$images_num = 0; $images_item;
 			foreach ( $images as $image ) {
-				$images_item.= '<a href="#" class="showGallery" data-number="'. $images_num .'" data-target="view-photo" data-toggle="tooltip" title="Click vào để xem ảnh"><img ';
+				$images_item.= '<a href="#" class="showGallery" data-slide=".all-gallery" data-number="'. $images_num .'" data-target="view-photo" data-toggle="tooltip" title="Click vào để xem ảnh"><img ';
 				if ($images_num == 0) {
 					$images_item.= 'data-no-lazy="1" src="'. $image['url'] .'" alt="'. $image['title'] .'" srcset="'. $image['srcset'] .'"></a>';
 				} else {
@@ -456,7 +455,7 @@
 		</div>
 	</div>
 </article><!-- #post-## -->
-<div class="slide-gallery">
+<div class="slide-gallery all-gallery" data-slide=".all-gallery" data-number="0">
 	<div class="main-slide">
 		<ul>
 			<?php
@@ -472,11 +471,34 @@
 			?>
 		</ul>
 		<div class="updating"><i class="fas fa-spinner"></i></div>
-		<i id="previousImg" class="fas fa-angle-left"></i>
-		<i id="nextImg" class="fas fa-angle-right"></i>
-		<i id="closeGallery" class="fas fa-times"></i>
+		<i class="previousImg fas fa-angle-left" data-slide=".all-gallery" data-number="0"></i>
+		<i class="nextImg fas fa-angle-right" data-slide=".all-gallery" data-number="0"></i>
+		<i class="closeGallery fas fa-times" data-number="0"></i>
 	</div>
 </div>
+<?php for ($i=0; $i < 9; $i++) { 
+	$album = 'album-'. ($i+1);
+	$album_gallery = rwmb_meta($album);
+	if (sizeof($album_gallery) > 0) {
+		echo '<div class="slide-gallery ', $album ,'" data-slide=".', $album ,'" data-number="', $i+1 ,'">';
+		echo '<div class="main-slide">';
+		echo '<ul>';
+		foreach ( $album_gallery as $img_album ) {
+			echo '<li><div class="img-gallery">';
+			echo '<img data-src="', $img_album['url'] ,'" alt="'. $img_album['title'] .'" />';
+			if ($img_album['caption']) {
+				echo '<div class="title-gallery">', $img_album['caption'] ,'</div>';
+			}
+			echo '</div></li>';
+		}
+		echo '</ul>';
+		echo '<div class="updating"><i class="fas fa-spinner"></i></div>';
+		echo '<i class="previousImg fas fa-angle-left" data-slide=".', $album ,'" data-number="', $i+1 ,'"></i>';
+		echo '<i class="nextImg fas fa-angle-right" data-slide=".', $album ,'" data-number="', $i+1 ,'"></i>';
+		echo '<i class="closeGallery fas fa-times" data-number="', $i+1 ,'"></i>';
+		echo '</div></div>';
+	}
+} ?>
 <div class="review-step">
 	<p>Cảm ơn bạn đã đánh giá địa điểm này!</p>
 </div>

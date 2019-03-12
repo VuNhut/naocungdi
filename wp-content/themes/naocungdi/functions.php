@@ -216,8 +216,11 @@ function dazzling_scripts() {
 		wp_enqueue_script( 'dazzling-scriplistslide', get_template_directory_uri() . '/inc/js/script-listslide.js', array('jquery'), '1.5.4', true );
 	}
 
+	if (is_single() && in_category(array('cam-nang-du-lich', 'chia-se'))) {
+		wp_enqueue_script( 'dazzling-scriptproject', get_template_directory_uri() . '/inc/js/script-project.js', array('jquery'), '1.5.4', true );
+	}
+
   if (is_single() && in_category('cam-nang-du-lich')) {
-	wp_enqueue_script( 'dazzling-scriptproject', get_template_directory_uri() . '/inc/js/script-project.js', array('jquery'), '1.5.4', true );
 	
 	wp_enqueue_script( 'dazzling-chartjs', get_template_directory_uri() . '/inc/js/chart.min.js' );
 
@@ -247,7 +250,7 @@ function dazzling_scripts() {
 
 		wp_enqueue_script( 'dazzling-validate', get_template_directory_uri() . '/inc/js/jquery.validate.min.js');
 
-		wp_enqueue_script( 'dazzling-scriptshopphuot', get_template_directory_uri() . '/inc/js/script-shopphuot.js',array('jquery'), '1.5.4', true );
+		wp_enqueue_script( 'dazzling-scriptshopphuot', get_template_directory_uri() . '/inc/js/script-shopphuot.js', array('jquery'), '1.5.4', true );
 	}
 
   if (is_page('san-ve-may-bay')) {
@@ -615,12 +618,57 @@ function get_meta_box_gallery_project( $meta_boxes ) {
 		'post_types' => array( 'post' ),
 		'context' => 'advanced',
 		'priority' => 'default',
-    	'autosave' => false,
+    'autosave' => false,
 		'fields' => array(
 			array(
 				'id' => $prefix . 'gallery',
 				'type' => 'image_advanced',
 				'name' => esc_html__( 'Hình ảnh về địa điểm', 'dazzling' ),
+			),
+			array(
+				'id' => $prefix . 'album-1',
+				'type' => 'image_advanced',
+				'name' => esc_html__( 'Album 1', 'dazzling' ),
+			),
+			array(
+				'id' => $prefix . 'album-2',
+				'type' => 'image_advanced',
+				'name' => esc_html__( 'Album 2', 'dazzling' ),
+			),
+			array(
+				'id' => $prefix . 'album-3',
+				'type' => 'image_advanced',
+				'name' => esc_html__( 'Album 3', 'dazzling' ),
+			),
+			array(
+				'id' => $prefix . 'album-4',
+				'type' => 'image_advanced',
+				'name' => esc_html__( 'Album 4', 'dazzling' ),
+			),
+			array(
+				'id' => $prefix . 'album-5',
+				'type' => 'image_advanced',
+				'name' => esc_html__( 'Album 5', 'dazzling' ),
+			),
+			array(
+				'id' => $prefix . 'album-6',
+				'type' => 'image_advanced',
+				'name' => esc_html__( 'Album 6', 'dazzling' ),
+			),
+			array(
+				'id' => $prefix . 'album-7',
+				'type' => 'image_advanced',
+				'name' => esc_html__( 'Album 7', 'dazzling' ),
+			),
+			array(
+				'id' => $prefix . 'album-8',
+				'type' => 'image_advanced',
+				'name' => esc_html__( 'Album 8', 'dazzling' ),
+			),
+			array(
+				'id' => $prefix . 'album-9',
+				'type' => 'image_advanced',
+				'name' => esc_html__( 'Album 9', 'dazzling' ),
 			),
 		),
 	);
@@ -1238,14 +1286,18 @@ function list_post ($atts) {
 add_shortcode('listpost', 'list_post');
 
 // Shortcode gallery in post
-function gallery_post () {
+function gallery_post ($atts) {
+	$attr = shortcode_atts( array(
+			'name' => 'gallery',
+	), $atts );
 	ob_start();
-	$all_gallery = sizeof(rwmb_meta( 'gallery' ));
-    $gallery = rwmb_meta( 'gallery', array( 'size' => 'small-img', 'limit' => 5 ) );
+	$all_gallery = sizeof(rwmb_meta($attr['name']));
+  $gallery = rwmb_meta( $attr['name'], array( 'size' => 'small-img', 'limit' => 5 ) );
 	$num_gallery = sizeof($gallery); if ($num_gallery > 0) :
 	if ($all_gallery > $num_gallery) : $more_gallery = $all_gallery - $num_gallery; endif;
+	if ($attr['name']=="gallery"){$data_slide = ".all-gallery";} else {$data_slide = "." .$attr['name'];}
 	?>
-	<div class="info-gallery">
+	<div class="info-gallery <?php echo ($attr['name']=="gallery" ? 'main-gallery' : $attr['name']); ?>">
 		<div class="container">
 			<div class="row">
 				<?php if ($num_gallery == 5) : $col_1 = "w50"; $col_2 = "w33"; ?>
@@ -1257,15 +1309,15 @@ function gallery_post () {
 					$i = 1;
 					foreach ( $gallery as $img ) {
 						if ($i == 1 || $i == 2) {
-							echo '<a href="#" data-number="', $i-1 ,'" data-target="view-photo" class="', $col_1 ,' showGallery" data-toggle="tooltip" title="Click vào để xem ảnh"><img src="', $img['url'] ,'" alt="', $img['title'] ,'" srcset="', $img['srcset'] ,'" sizes="(max-width: 992px) 50vw, 414px"></a>';
+							echo '<a href="#" data-slide="', $data_slide ,'" data-number="', $i-1 ,'" data-target="view-photo" class="', $col_1 ,' showGallery" data-toggle="tooltip" title="Click vào để xem ảnh"><img src="', $img['url'] ,'" alt="', $img['title'] ,'" srcset="', $img['srcset'] ,'" sizes="(max-width: 992px) 50vw, 414px"></a>';
 						} elseif ($i == 5) {
 							if ($more_gallery) {
-								echo '<a href="#" data-number="', $i-1 ,'" data-target="view-photo" class="', $col_2 ,' showGallery" data-toggle="tooltip" title="Click vào để xem ảnh"><img src="', $img['url'] ,'" alt="', $img['title'] ,'" srcset="', $img['srcset'] ,'" sizes="(max-width: 992px) 34vw, 414px"><div class="bg-more"><p>', $more_gallery ,'+</p></div></a>';
+								echo '<a href="#" data-slide="', $data_slide ,'" data-number="', $i-1 ,'" data-target="view-photo" class="', $col_2 ,' showGallery" data-toggle="tooltip" title="Click vào để xem ảnh"><img src="', $img['url'] ,'" alt="', $img['title'] ,'" srcset="', $img['srcset'] ,'" sizes="(max-width: 992px) 34vw, 414px"><div class="bg-more"><p>', $more_gallery ,'+</p></div></a>';
 							} else {
-								echo '<a href="#" data-number="', $i-1 ,'" data-target="view-photo" class="', $col_2 ,' showGallery" data-toggle="tooltip" title="Click vào để xem ảnh"><img src="', $img['url'] ,'" alt="', $img['title'] ,'" srcset="', $img['srcset'] ,'" sizes="(max-width: 992px) 34vw, 414px"></a>';
+								echo '<a href="#" data-slide="', $data_slide ,'" data-number="', $i-1 ,'" data-target="view-photo" class="', $col_2 ,' showGallery" data-toggle="tooltip" title="Click vào để xem ảnh"><img src="', $img['url'] ,'" alt="', $img['title'] ,'" srcset="', $img['srcset'] ,'" sizes="(max-width: 992px) 34vw, 414px"></a>';
 							}
 						} else {
-							echo '<a href="#" data-number="', $i-1 ,'" data-target="view-photo" class="', $col_2 ,' showGallery" data-toggle="tooltip" title="Click vào để xem ảnh"><img src="', $img['url'] ,'" alt="', $img['title'] ,'" srcset="', $img['srcset'] ,'" sizes="(max-width: 992px) 34vw, 414px"></a>';
+							echo '<a href="#" data-slide="', $data_slide ,'" data-number="', $i-1 ,'" data-target="view-photo" class="', $col_2 ,' showGallery" data-toggle="tooltip" title="Click vào để xem ảnh"><img src="', $img['url'] ,'" alt="', $img['title'] ,'" srcset="', $img['srcset'] ,'" sizes="(max-width: 992px) 34vw, 414px"></a>';
 						}
 						$i++;
 					}
