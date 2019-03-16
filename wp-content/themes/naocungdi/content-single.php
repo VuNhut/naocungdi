@@ -71,7 +71,30 @@
 		<div class="updating"><i class="fas fa-spinner"></i></div>
 		<i class="previousImg fas fa-angle-left" data-slide=".all-gallery" data-number="0"></i>
 		<i class="nextImg fas fa-angle-right" data-slide=".all-gallery" data-number="0"></i>
-		<i class="closeGallery fas fa-times"></i>
+		<i class="closeGallery fas fa-times" data-number="0"></i>
 	</div>
 </div>
 <?php endif; ?>
+<?php for ($i=0; $i < 9; $i++) { 
+	$album = 'album-'. ($i+1);
+	$album_gallery = rwmb_meta($album);
+	if (sizeof($album_gallery) > 0) {
+		echo '<div class="slide-gallery ', $album ,'" data-slide=".', $album ,'" data-number="', $i+1 ,'">';
+		echo '<div class="main-slide">';
+		echo '<ul>';
+		foreach ( $album_gallery as $img_album ) {
+			echo '<li><div class="img-gallery">';
+			echo '<img data-src="', $img_album['url'] ,'" alt="'. $img_album['title'] .'" />';
+			if ($img_album['caption']) {
+				echo '<div class="title-gallery">', $img_album['caption'] ,'</div>';
+			}
+			echo '</div></li>';
+		}
+		echo '</ul>';
+		echo '<div class="updating"><i class="fas fa-spinner"></i></div>';
+		echo '<i class="previousImg fas fa-angle-left" data-slide=".', $album ,'" data-number="', $i+1 ,'"></i>';
+		echo '<i class="nextImg fas fa-angle-right" data-slide=".', $album ,'" data-number="', $i+1 ,'"></i>';
+		echo '<i class="closeGallery fas fa-times" data-number="', $i+1 ,'"></i>';
+		echo '</div></div>';
+	}
+} ?>

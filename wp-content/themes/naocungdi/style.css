@@ -65,8 +65,8 @@ body {
   background-color: #f1f1f1;
   color: #6B6B6B;
   word-wrap: break-word;
-  line-height: 1.6;
-  font-size: 15px;
+  line-height: 1.7;
+  font-size: 15.5px;
   overflow-x: hidden;
 }
 
@@ -1146,6 +1146,8 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .gallery-project img {
   height: 320px;
+  object-fit: cover;
+  -o-object-fit: cover
 }
 .gallery-project a:hover {
   opacity: 0.8;
@@ -1175,7 +1177,7 @@ div.asl_w .probox div.asl_simple-circle {
   font-weight: 500;
 }
 .menu-project ul li a {
-  font-size: 15px;
+  font-size: 15.5px;
   color: #333;
 }
 .menu-project ul li a:hover {
@@ -1223,7 +1225,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .info-introdution .info-content {
   color: #333;
-  font-size: 15px;
+  font-size: 15.5px;
   font-family: 'Roboto', sans-serif;
   text-align: justify;
   overflow: hidden;
@@ -1313,13 +1315,14 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .info-gallery a.w50 img, .info-gallery a.w33 img {
 	width: 100%;
-  height: auto;
+  object-fit: cover;
+  -o-object-fit: cover;
 }
 .info-gallery a.w50 img {
-  min-height: 230px;
+  height: 230px;
 }
 .info-gallery a.w33 img {
-  min-height: 145px;
+  height: 145px;
 }
 .info-gallery a .bg-more {
   position: absolute;
@@ -1338,6 +1341,14 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .info-gallery a:hover .bg-more p {
   color: #ccc;
+}
+.custom-object-fit {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+}
+.custom-object-fit img {
+  opacity: 0;
 }
 .content-project #accordion .card-header {
   background-color: #ffffff;
@@ -1785,7 +1796,7 @@ div.asl_w .probox div.asl_simple-circle {
   display: none;
 }
 .subinfo-ticket {
-  font-size: 15px;
+  font-size: 15.5px;
   color: #333;
   padding: 0 0 0 15px;
 }
@@ -1844,7 +1855,7 @@ div.asl_w .probox div.asl_simple-circle {
   color: #333;
 }
 .description-ticket ul {
-  font-size: 15px;
+  font-size: 15.5px;
   padding-left: 20px;
 }
 .description-ticket li {
@@ -1922,7 +1933,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .item-service .name-service p:first-child, .item-service .price-service span:first-child {
   width: 100%;
-  font-size: 15px;
+  font-size: 15.5px;
   font-weight: 500;
   line-height: 20px;
 }
@@ -2924,11 +2935,11 @@ ul.page-numbers li {
   margin-right: 10px;
 }
 .entry-content .entry-title {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 500;
   color: #444;
   text-transform: uppercase;
-  line-height: 22px;
+  line-height: 23px;
 }
 .entry-content .entry-title a {
   color: #444;
@@ -2938,7 +2949,7 @@ ul.page-numbers li {
   color: #ec2028;
 }
 .entry-content.category {
-  font-size: 15px;
+  font-size: 15.5px;
   color: #444;
   background-color: #fff;
   margin: 0;
@@ -4170,10 +4181,10 @@ p.logged-in-as {
     height: calc(100vw/4.5);
   }
   .info-gallery a.w50 img {
-    min-height: calc(100vw/3.5);
+    height: calc(100vw/3.5);
   }
   .info-gallery a.w33 img {
-    min-height: calc(100vw/4.5);
+    height: calc(100vw/4.5);
   }
 }
 
@@ -4432,7 +4443,7 @@ p.logged-in-as {
 	.group-news span {
 		font-size: 14px;
     	margin: 0 7px;
-	}
+  }
 	.header-project .project-title {
 		font-size: 19px;
 		font-weight: 500;
@@ -4679,9 +4690,6 @@ p.logged-in-as {
     height: 16px;
     margin-top: -8px;
     padding: 2px;
-  }
-  .gallery-project, .gallery-project img {
-    height: auto;
   }
   .bg-top {
     min-height: 150px;

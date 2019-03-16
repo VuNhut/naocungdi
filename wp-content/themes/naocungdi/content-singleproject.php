@@ -7,7 +7,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="gallery-project main-gallery moveLeft-500 duration-1000 hidden">
 		<?php
-			$images = rwmb_meta( 'gallery', array( 'size' => 'medium-img', 'limit' => 4 ) );
+			$images = rwmb_meta( 'gallery', array( 'size' => 'medium-img', 'limit' => 6 ) );
 			$images_num = 0; $images_item;
 			foreach ( $images as $image ) {
 				$images_item.= '<a href="#" class="showGallery" data-slide=".all-gallery" data-number="'. $images_num .'" data-target="view-photo" data-toggle="tooltip" title="Click vào để xem ảnh"><img ';
