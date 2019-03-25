@@ -205,37 +205,61 @@ get_header(); ?>
         </section>
         <?php endif; wp_reset_postdata(); ?>
         <!-- End Project -->
-        <!-- List Project -->
-        <?php $args_tips = array('category_name' => 'bi-quyet-du-lich-tiet-kiem', 'posts_per_page' => 3); ?>
-        <?php $query_tips = new WP_Query($args_tips); ?>
-        <?php if ($query_tips->have_posts()) : $number_tips = 1; ?>
-        <section class="list-project">
-                <h2 class="moveTop-300 duration-800 hidden">Bí quyết du lịch tiết kiệm</h2>
-                <div class="line-title moveTop-300 duration-800 hidden">
-                        <div class="line-one"></div>
-                        <div class="line-two"></div>
-                </div>
+        <!-- List Category -->
+        <section class="list-category">
                 <div class="container">
-                        <div class="row">
-                                <h3 class="col-xs-12 sub-title moveTop-300 duration-800 hidden">Cùng tham khảo những bí quyết để có một chuyến du lịch siêu tiết kiệm</h3>
-                                <?php while($query_tips->have_posts()) : $query_tips->the_post(); ?>
-                                <div class="col-sm-6 col-md-4 img-item <?php if($number_tips==2) { echo 'reverse-img moveTop-300'; } else { echo 'moveBottom-300'; } ?> duration-1000 hidden">
-										<?php the_post_thumbnail('res-img', ['data-no-lazy' => $number_tips==1 ? 1 : 0, 'alt' => get_the_title(), 'id' => $number_tips==1 ? 'img-get-height' : '' , 'class' => 'bg-project-item', 'sizes' => '(max-width:992px) 100vw, 414px']); ?>
-                                        <div class="info-item bottom">
-                                                <div class="bg-absolute">
-                                                        <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
+                        <div class="cat-slides">
+                                <div class="swiper-container">
+                                        <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                        <div class="bg-category">
+                                                                <img src="<?php echo home_url(); ?>/wp-content/themes/naocungdi/images/bg-shop-phuot-index.png" alt="shop đồ phượt">
+                                                        </div>
+                                                        <div class="info-category bg-sky">
+                                                                <h3>Khám phá<br>Shop phượt</h3>
+                                                                <p>Để chuyến du lịch của bạn an toàn hơn, hãy khám phá shop đồ phượt ngay</p>
+                                                                <a href="<?php echo home_url(); ?>/shop-phuot/" class="btn view-more">Chi tiết</a>
+                                                        </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                        <div class="bg-category">
+                                                                <img src="<?php echo home_url(); ?>/wp-content/themes/naocungdi/images/bg-ve-tham-quan-index.png" alt="vé tham quan">
+                                                        </div>
+                                                        <div class="info-category bg-green">
+                                                                <h3>Vé - Voucher<br>du lịch</h3>
+                                                                <p>Đặt vé tham quan du lịch tại Nào Cùng Đi để không cần xếp hàng mua vé<br>(Coming Soon)</p>
+                                                                <a class="btn view-more">Chi tiết</a>
+                                                        </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                        <div class="bg-category">
+                                                                <img src="<?php echo home_url(); ?>/wp-content/themes/naocungdi/images/bg-xe-dua-don-index.png" alt="xe đưa đón tại sân bay">
+                                                        </div>
+                                                        <div class="info-category bg-orange">
+                                                                <h3>Xe đưa đón<br>tại sân bay</h3>
+                                                                <p>Đặt xe đưa đón tại sân bay sẽ tiết kiệm hơn so với đi taxi hoặc Grab<br>(Coming Soon)</p>
+                                                                <a class="btn view-more">Chi tiết</a>
+                                                        </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                        <div class="bg-category">
+                                                                <img src="<?php echo home_url(); ?>/wp-content/themes/naocungdi/images/bg-bi-quyet-du-lich-index.png" alt="bí quyết du lịch tiết kiệm">
+                                                        </div>
+                                                        <div class="info-category bg-red">
+                                                                <h3>Bí quyết<br>du lịch</h3>
+                                                                <p>Chia sẻ tất tần tật bí quyết du lịch tiết kiệm nhất</p>
+                                                                <a href="<?php echo home_url(); ?>/chia-se/bi-quyet-du-lich-tiet-kiem/" class="btn view-more">Chi tiết</a>
+                                                        </div>
                                                 </div>
                                         </div>
                                 </div>
-                                <?php $number_tips++; endwhile; ?>
-                                <div class="col-xs-12 more-project moveLeft-500 duration-1000 hidden">
-                                        <a href="<?php echo home_url(); ?>/chia-se/bi-quyet-du-lich-tiet-kiem/" class="btn btn-outline-danger">Xem thêm nhiều bí quyết khác</a>
-                                </div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
                         </div>
                 </div>
+        </div>
         </section>
-        <?php endif; wp_reset_postdata(); ?>
-        <!-- End List Project -->
+        <!-- End List Category -->
         <!-- News - Events -->
         <?php $args_news = array('category_name' => 'cam-nang-du-lich', 'posts_per_page' => 1); ?>
         <?php $query_news = new WP_Query($args_news); ?>

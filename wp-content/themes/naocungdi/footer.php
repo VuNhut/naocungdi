@@ -7,7 +7,7 @@
  * @package dazzling
  */
 ?>
-	<?php if(!is_home() && (!(is_single() && in_category(array('cam-nang-du-lich')))) ) : ?>
+	<?php if(!is_home() && !in_category('shop-phuot') && (!(is_single() && in_category(array('cam-nang-du-lich')))) ) : ?>
 		<!-- Related Post -->
 		<?php if(is_single()) : ?>
 			<?php
@@ -216,7 +216,7 @@
 		</footer><!-- #colophon -->
 	</div>
 </div><!-- #page -->
-<?php if (!is_home()) : ?>
+<?php if (!is_home() && !is_category('shop-phuot')) : ?>
 <div class="bg-search">
 	<div class="inner-banner">
 		<h2>Cẩm nang du lịch</h2>

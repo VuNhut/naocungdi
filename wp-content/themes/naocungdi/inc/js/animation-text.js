@@ -51,15 +51,24 @@ $(document).ready(function () {
 
     // Start typing
     function run() {
-        let phrasesAboutUs = [
-            "Nào Cùng Đi",
-            "Cẩm nang du lịch",
-            "Kinh nghiệm du lịch",
-            "Du lịch tự túc tiết kiệm"
-        ];
-
+        var url = window.location.href;
+        let phrasesAboutUs = [];
+        console.log(url);
+        if (url === "https://naocungdi.com/shop-phuot/") {
+            phrasesAboutUs = [
+                "Shop Phượt",
+                "Dụng cụ bảo hộ xe máy",
+                "Dụng cụ hỗ trợ trekking",
+            ];
+        } else {
+            phrasesAboutUs = [
+                "Nào Cùng Đi",
+                "Cẩm nang du lịch",
+                "Kinh nghiệm du lịch",
+                "Du lịch tự túc tiết kiệm"
+            ];
+        }
         printPhrases(phrasesAboutUs, $('.inner-banner h1'));
     }
-
     run();
 })

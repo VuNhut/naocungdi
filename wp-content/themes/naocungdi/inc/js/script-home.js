@@ -25,35 +25,60 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    document.querySelectorAll('.cat-slides .swiper-container').forEach(function(elem) {
+        new Swiper(elem, {
+            slidesPerView: 4,
+            spaceBetween: 20,
+            watchOverflow: true,
+            freeMode: true,
+            autoplay: {
+                delay: 4000,
+            },
+            navigation: {
+                nextEl: elem.nextElementSibling.nextElementSibling,
+                prevEl: elem.nextElementSibling,
+            },
+            breakpoints: {
+                1024: {
+                    slidesPerView: 2.2,
+                    spaceBetween: 15,
+                },
+                576: {
+                    slidesPerView: 1.2,
+                },
+            }
+        });
+    });
     
     // Add height for info item list project
-    var imgGetHeight = document.getElementById('img-get-height');
-    var infoItemProject = document.querySelectorAll('.bg-absolute');
-    var heightImgListProject = imgGetHeight.clientHeight;
-    if (heightImgListProject === 0) {
-        imgGetHeight.addEventListener('load', function () {
-            heightImgListProject = this.clientHeight;
+    if (document.getElementById('img-get-height')) {
+        var imgGetHeight = document.getElementById('img-get-height');
+        var infoItemProject = document.querySelectorAll('.bg-absolute');
+        var heightImgListProject = imgGetHeight.clientHeight;
+        if (heightImgListProject === 0) {
+            imgGetHeight.addEventListener('load', function () {
+                heightImgListProject = this.clientHeight;
+                for (var i = 0; i < infoItemProject.length; i++) {
+                    const element = infoItemProject[i];
+                    element.style.height = heightImgListProject+"px";
+                }
+            });
+        } else {
             for (var i = 0; i < infoItemProject.length; i++) {
                 const element = infoItemProject[i];
                 element.style.height = heightImgListProject+"px";
             }
-        });
-    } else {
-        for (var i = 0; i < infoItemProject.length; i++) {
-            const element = infoItemProject[i];
-            element.style.height = heightImgListProject+"px";
         }
     }
-
-    // window.addEventListener('resize', function () {
-    //     location.reload();
-    // })
 });
 $(function(){
-    var swiperTabs = new Swiper('.swiper-tabs', {
-        allowTouchMove: false,
-    });
-    swiperTabs.slideTo(1);
+    if($('.swiper-tabs').length) {
+        var swiperTabs = new Swiper('.swiper-tabs', {
+            allowTouchMove: false,
+        });
+        swiperTabs.slideTo(1);
+    }
 
     $(".swiper-tab").each(function(i, e){
         new Swiper(e, {

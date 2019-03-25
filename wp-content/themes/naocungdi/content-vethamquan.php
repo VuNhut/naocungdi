@@ -6,7 +6,6 @@
 <?php $all_gallery = sizeof(rwmb_meta( 'gallery' )); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="gallery-project moveLeft-500 duration-1000 hidden">
-
 		<?php
 			$images = rwmb_meta( 'gallery', array( 'size' => 'medium-img', 'limit' => 4 ) );
 			$images_num = 0; $images_item;
@@ -42,6 +41,7 @@
 	</div>
 	<div class="container">
         <div class="row">
+			<?php echo the_breadcrumb(); ?>
             <div class="col-xs-12">
                 <div class="header-project moveRight-500 duration-1000 hidden">
                     <div class="container">

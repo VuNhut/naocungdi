@@ -30,7 +30,7 @@
 		<div class="container">
 			<div class="row">
 				<ul class="col-xs-12">
-					<li class="active"><a href="#introdution">Giới thiệu</a></li>
+					<li class="active"><a href="#introdution">Chi tiết</a></li>
 					<li><a href="#location">Địa điểm</a></li>
 					<li><a href="#utilities">Đánh giá</a></li>
 					<?php $info_progress = rwmb_meta( 'info-tien-do' ); ?>
@@ -42,6 +42,9 @@
 		</div>
 	</div>
 	<div class="container">
+		<div class="row">
+			<?php echo the_breadcrumb(); ?>
+		</div>
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="header-project moveRight-500 duration-1000 hidden">
@@ -107,7 +110,7 @@
 						 data-full-width-responsive="true">
 					</ins>
 					<div class="info-introdution">
-						<h2 id="introdution">Giới thiệu</h2>
+						<h2 id="introdution">Chi tiết</h2>
 						<div class="info-content">
 							<?php the_content(); ?>
 						</div>

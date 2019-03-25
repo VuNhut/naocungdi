@@ -198,10 +198,14 @@ function dazzling_scripts() {
   wp_enqueue_script( 'dazzling-scriptanimation', get_template_directory_uri() . '/inc/js/script-animation.js', array('jquery'), '1.5.4', true );
 
   if (!(is_single() && in_category(array('cam-nang-du-lich', 've-tham-quan', 'shop-phuot')))) {
-	wp_enqueue_script( 'dazzling-animation', get_template_directory_uri() . '/inc/js/menu-animation.js', array('jquery'), '1.5.4', true );
-  }
+		wp_enqueue_script( 'dazzling-animation', get_template_directory_uri() . '/inc/js/menu-animation.js', array('jquery'), '1.5.4', true );
+	}
+	
+	if (in_category("shop-phuot") && !is_single()) {
+		wp_enqueue_style( 'dazzling-style-shopphuot', get_template_directory_uri().'/inc/css/style-shopphuot.css' );
+	}
   
-  if (is_home()) {
+  if (is_home() || (in_category("shop-phuot") && !is_single())) {
 
   wp_enqueue_script( 'dazzling-wowslider', get_template_directory_uri() . '/inc/js/wow-slider.js', array('jquery'), '1.5.4', true );
 
@@ -209,7 +213,9 @@ function dazzling_scripts() {
 
 	wp_enqueue_script( 'dazzling-scripthome', get_template_directory_uri() . '/inc/js/script-home.js', array('jquery'), '1.5.4', true );
 
-	wp_enqueue_script( 'dazzling-scriptanimationtext', get_template_directory_uri() . '/inc/js/animation-text.js');
+		if(is_home() || (is_category("shop-phuot"))) {
+			wp_enqueue_script( 'dazzling-scriptanimationtext', get_template_directory_uri() . '/inc/js/animation-text.js');
+		}
 	}
 	
 	if (is_single()) {
@@ -1205,7 +1211,23 @@ function add_score_location( $post_id )
 	}
 	if(!wp_is_post_revision($post_id) && ($total_score != 0)) {
 		update_post_meta($post_id, 'total-score', $total_score);
-    }
+  }
+}
+
+// Số lượng đã bán
+add_action( 'save_post', 'add_sold_product' );
+ 
+function add_sold_product( $post_id )
+{
+	global $wpdb;
+	$sold_product = get_post_meta($post_id, 'chi-tiet-san-pham', false);
+	$number_sold = 0;
+	foreach ( $sold_product as $metakey ){
+		$number_sold = $metakey['so-luong-da-ban'];
+	}
+	if(!wp_is_post_revision($post_id) && $number_sold != 0) {
+		update_post_meta($post_id, 'sold-product', $number_sold);
+  }
 }
 
 // Shortcode Link Affilate
@@ -1369,3 +1391,61 @@ function remove_jquery_migrate($scripts)
 }
 
 add_action('wp_default_scripts', 'remove_jquery_migrate');
+
+/**
+ * Breadcrumb
+ */
+if ( ! function_exists( 'the_breadcrumb' ) ) {
+	function the_breadcrumb() {
+		if ( is_single() || is_category() ) {
+			$category_bc = get_the_category();
+			$max_numcat_bc = count($category_bc);
+			for ($i=0; $i < $max_numcat_bc; $i++) { 
+			foreach ($category_bc as $key_bc => $value_bc ) {
+			if ($value_bc->parent == $list_cat[$i]) {
+				$list_cat[$i+1] = $value_bc->term_id;
+				unset($category_bc[$key_bc]);
+			}
+		}
+	}
+	if ( is_category() ) {
+		$current_cat_id_bc = get_cat_ID( single_cat_title( '',false ) );
+		for ( $i = $max_numcat_bc; $i > 0 ; $i-- ) { 
+			if ($list_cat[$i] != $current_cat_id_bc ) {
+				unset($list_cat[$i]);
+			} else break;
+		}
+	}
+?>
+	<ol id="breadcrumb" class="col-xs-12" itemscope itemtype="http://schema.org/BreadcrumbList">
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<a href="<?php echo get_bloginfo( 'url' ); ?>" itemprop="item">
+				<span itemprop="name"><i class="fas fa-home"></i></span>
+			</a>
+			<meta itemprop="position" content="1" />
+		</li>
+<?php
+	foreach ($list_cat as $key => $value) { ?>
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a href="<?php echo get_category_link( $value ); ?>" itemprop="item">
+			<span itemprop="name"><?php echo get_the_category_by_ID( $value ); ?></span>
+		</a>
+		<meta itemprop="position" content="<?php echo( $key + 1 );?>" />
+	</li>
+<?php } ?>
+	</ol> 
+	<?php }
+	}
+}
+
+// Show title small
+function short_title($after = '', $length) {
+	$mytitle = explode(' ', get_the_title(), $length);
+	if (count($mytitle)>=$length) {
+		array_pop($mytitle);
+		$mytitle = implode(" ",$mytitle). $after;
+	} else {
+		$mytitle = implode(" ",$mytitle);
+	}
+	return $mytitle;
+}

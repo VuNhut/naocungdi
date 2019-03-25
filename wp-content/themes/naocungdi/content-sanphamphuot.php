@@ -19,6 +19,7 @@
 	</div>
 	<div class="container">
         <div class="row">
+			<?php echo the_breadcrumb(); ?>
             <div class="col-xs-12">
                 <div class="header-project moveRight-500 duration-1000 hidden">
                     <div class="container">
@@ -112,7 +113,7 @@
 									</div>
 									<div class="col-xs-12 footer-hotline">
 										<p class="receive-ticket"><i class="fas fa-clock"></i>Nhận hàng ngay trong vòng 1 - 3 ngày</p>
-										<p class="sold-ticket"><i class="fas fa-fire"></i><?php echo $info_ticket['so-luong-da-ban']; ?></p>
+										<p class="sold-ticket"><i class="fas fa-fire"></i><?php echo $info_ticket['so-luong-da-ban']; ?>+ sản phẩm đã bán</p>
 									</div>
 								</div>
 							</div>
@@ -270,7 +271,7 @@
 									</div>
 									<div class="col-xs-12 footer-hotline">
 										<p class="receive-ticket"><i class="fas fa-clock"></i>Nhận hàng ngay trong vòng 1 - 3 ngày</p>
-										<p class="sold-ticket"><i class="fas fa-fire"></i><?php echo $info_ticket['so-luong-da-ban']; ?></p>
+										<p class="sold-ticket"><i class="fas fa-fire"></i><?php echo $info_ticket['so-luong-da-ban']; ?>+ sản phẩm đã bán</p>
 									</div>
 								</div>
 							</div>

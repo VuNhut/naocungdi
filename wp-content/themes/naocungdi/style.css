@@ -43,7 +43,7 @@ background-color: #ccc;
 ::-webkit-scrollbar-thumb:active {
   background-color: #ccc;
 }
-.menu-project ul::-webkit-scrollbar { 
+.menu-project ul::-webkit-scrollbar, #breadcrumb::-webkit-scrollbar { 
   display: none; 
 }
 
@@ -227,6 +227,81 @@ textarea {
 .card-columns {
   width: 100%;
 }
+#breadcrumb {
+  list-style: none;
+  display: inline-block;
+  margin-bottom: 15px;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+#breadcrumb li {
+  display: inline-block;
+}
+#breadcrumb li a {
+  font-size: 15px;
+  color: #FFF;
+  display: block;
+  background: #3498db;
+  text-decoration: none;
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px 0 5px;
+  text-align: center;
+  margin-right: 23px;
+  transition: 0.4s;
+}
+#breadcrumb li:last-child span {
+  margin-right: 0;
+}
+#breadcrumb li a:before, #breadcrumb li a:after  {
+  content: "";
+  position: absolute;
+  top: 0;
+  border: 0 solid #3498db;
+  border-width: 15px 10px;
+  width: 0;
+  height: 0;
+  transition: 0.4s;
+}
+#breadcrumb li a:before {
+  left: -20px;
+  border-left-color: transparent;
+}
+#breadcrumb li a:after {
+  left: 100%;
+  border-color: transparent;
+  border-left-color: #3498db;
+}
+#breadcrumb li:first-child a {
+  padding-left: 15px;
+  -moz-border-radius: 4px 0 0 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px 0 0 4px;
+}
+#breadcrumb li:first-child a:before {
+  border: none;
+}
+#breadcrumb li:nth-child(odd) a:before {
+  border-color: #2980b9;
+  border-left-color: transparent;
+}
+#breadcrumb li:nth-child(odd) a:after {
+  border-left-color: #2980b9;
+}
+#breadcrumb li:nth-child(odd) a {
+  background-color: #2980b9;
+}
+#breadcrumb li a:hover {
+  background-color: #e33f39;
+}
+#breadcrumb li a:hover:before {
+  border-color: #e33f39;
+  border-left-color: transparent;
+}
+#breadcrumb li a:hover:after {
+  border-left-color: #e33f39;
+}
 
 /* Alignment */
 .alignleft {
@@ -368,21 +443,21 @@ textarea {
 	margin-bottom: 15px;
 }
 /** Swiper Slide **/
-.multiple-slides {
+.multiple-slides, .cat-slides {
   position: relative;
   width: 100%;
   margin-bottom: 20px;
 }
-.multiple-slides .swiper-wrapper {
+.multiple-slides .swiper-wrapper, .cat-slides .swiper-wrapper {
   margin-bottom: 20px;
 }
-.multiple-slides .swiper-slide {
+.multiple-slides .swiper-slide, .cat-slides .swiper-slide {
   height: auto;
 }
-.multiple-slides .swiper-button-prev {
+.multiple-slides .swiper-button-prev, .cat-slides .swiper-button-prev {
   left: -25px;
 }
-.multiple-slides .swiper-button-next {
+.multiple-slides .swiper-button-next, .cat-slides .swiper-button-next {
   right: -25px;
 }
 .slide-img-product {
@@ -558,7 +633,7 @@ textarea {
 }
 
 /** Slider **/
-.slider, .project, .travel, .list-project, .main-content-area, .air-ticket, #info-introdution, #info-gallery, #info-location {
+.slider, .project, .travel, .main-content-area, .air-ticket, #info-introdution, #info-gallery, #info-location {
   overflow: hidden;
 }
 #wowslider-container1 {
@@ -570,6 +645,11 @@ textarea {
 .home .inner-banner {
   align-content: center;
   padding-top: 23px;
+}
+.shop-phuot .inner-banner {
+  background-color: rgba(0, 0, 0, 0.5);
+  align-content: center;
+  padding-top: 0px;
 }
 .inner-banner {
   width: 100%;
@@ -672,7 +752,7 @@ div.asl_w .probox div.asl_simple-circle {
   padding: 30px 0;
   background-color: #fff;
 }
-.travel h3.sub-title, .project h3.sub-title, .list-project h3.sub-title {
+.travel h3.sub-title, .project h3.sub-title {
   font-size: 16px;
   font-weight: normal;
   color: #444;
@@ -778,7 +858,7 @@ div.asl_w .probox div.asl_simple-circle {
   padding: 0 10px;
   margin-bottom: 20px;
 }
-.travel h2, .project h2, .list-project h2, .news h2, .page-header .page-title, .page-header h1.entry-title, .quality-policy h2, .air-ticket h2, .trading-system h2 {
+.travel h2, .project h2, .news h2, .page-header .page-title, .page-header h1.entry-title, .quality-policy h2, .air-ticket h2, .trading-system h2 {
   color: #333;
   font-size: 30px;
   font-weight: 500;
@@ -939,16 +1019,16 @@ div.asl_w .probox div.asl_simple-circle {
 .one-project p.location-project i, .news-item p.location-project i {
   color: #fff;
 }
-.project .more-project, .related-project .more-project, .list-project .more-project {
+.project .more-project, .related-project .more-project{
   text-align: center;
   clear: both;
 }
-.project .more-project .btn-outline-danger, .list-project .more-project .btn-outline-danger {
+.project .more-project .btn-outline-danger {
   color: #ed1a24;
   font-size: 16px;
   border-color: #ed1a24;
 }
-.project .more-project .btn-outline-danger:hover, .list-project .more-project .btn-outline-danger:hover {
+.project .more-project .btn-outline-danger:hover {
   color: #fff;
   background-color: #ed1a24;
   border-color: #ed1a24;
@@ -988,88 +1068,75 @@ div.asl_w .probox div.asl_simple-circle {
 .list-post .post-ratings {
   font-size: 12px;
 }
-/* List Project */
-.list-project {
+/* List Category */
+.list-category {
   background-color: #fff;
-  padding: 30px 0;
+  padding: 50px 0 30px 0;
 }
-.list-project .img-item {
-  padding: 0;
-  overflow: hidden;
+.list-category .container {
+  padding: 0 10px;
 }
-.list-project .info-item {
-  position: relative;
-  background: url(images/bg-list-project.jpg) repeat;
-  background-size: cover;
-  z-index: 1;
-}
-.list-project .img-item .bg-project-item {
-  transform: scale(1);
-  -webkit-transform: scale(1);
-  transition: 1s linear;
-  -webkit-transition: 1s linear;
-}
-.list-project .info-item .bg-absolute {
-  background-color: rgba(237, 26, 36, 0.4);
+.list-category .info-category {
   display: flex;
-  align-items: center;
   justify-content: center;
-}
-.list-project .info-item .bg-absolute a {
-  width: 90%;
-}
-.list-project .info-item .bg-absolute a:hover h4 {
-  color: #333;
-}
-.list-project .info-item .bg-absolute a h4 {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  text-align: center;
-  line-height: 26px;
-}
-.list-project .info-item .bg-absolute a:hover {
-  color: #ed1a24;
-}
-.list-project .info-item:before {
-  content: "";
-  width: 25px;
-  height: 25px;
-  background-color: rgb(248, 163, 167);
-  position: absolute;
-  z-index: 1;
-}
-.list-project .info-item.top:before {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  top: calc(100% - 12px);
-  left: calc(50% - 12px);
-}
-.list-project .info-item.bottom:before {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  top: calc(0% - 12px);
-  left: calc(50% - 12px);
-}
-.list-project .img-item:hover .bg-project-item {
-  animation: bg-project-item 10s linear infinite;
-}
-.list-project .img-item.reverse-img {
-  display: flex;
-  flex-direction: column-reverse;
-}
-.list-project .img-item.reverse-img img {
-  width: 100%;
+  align-items: center;
+  flex-flow: row wrap;
   height: 100%;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.9;
+  padding: 0 20px;
+  text-align: center;
+  transition: 0.3s;
 }
-.list-project .more-project {
-  margin-top: 20px;
+.list-category .info-category.bg-sky {
+  background-image: url('images/bg-sky.png');
 }
-
+.list-category .info-category.bg-green {
+  background-image: url('images/bg-green.png');
+}
+.list-category .info-category.bg-orange {
+  background-image: url('images/bg-orange.png');
+}
+.list-category .info-category.bg-red {
+  background-image: url('images/bg-red.png');
+}
+.list-category .info-category h3 {
+  font-family: 'Tahoma', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 38px;
+}
+.list-category .info-category p {
+  font-size: 15px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.list-category .info-category a.view-more {
+  font-family: 'Tahoma', sans-serif;
+  background-color: #fff;
+  border-radius: 2px;
+  color: #333;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px 30px;
+}
+.list-category .info-category a.view-more:hover {
+  background-color: #444;
+  color: #fff;
+}
+.list-category .info-category:hover {
+  background-position: 100% 100%;
+}
 /* Project Post Single */
 .header-project {
   position: relative;
-  margin: 15px 0;
+  margin-bottom: 15px;
 }
 .header-project .project-title {
   color: #444;
@@ -1157,6 +1224,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .menu-project {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.07);
+  margin-bottom: 20px;
 }
 .menu-project .container .row {
   width: 100%;
@@ -1169,7 +1237,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .menu-project ul li {
   padding: 12px 0 6px 0;
-  margin-right: 30px;
+  margin-right: 25px;
   display: inline-block;
 }
 .menu-project ul li.active {
@@ -1603,10 +1671,10 @@ div.asl_w .probox div.asl_simple-circle {
   border-radius: 5px;
   cursor: pointer;
 }
-.hotline-project .hotline-number a#review-button {
+.hotline-project .hotline-number a#review-button, .hotline-project .hotline-number a#review-button-mobile {
   background: linear-gradient(45deg,#fc9538 0%,#ef8424 50%);
 }
-.hotline-project .hotline-number a#order-online {
+.hotline-project .hotline-number a#order-online, .hotline-project .hotline-number a#order-online-mobile {
   background: linear-gradient(45deg,#d71607 0%,#e33f39 50%);
   margin-top: 15px;
 }
@@ -1802,6 +1870,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 .subinfo-ticket.subinfo-product {
   font-size: 14px;
+  margin-bottom: 15px;
 }
 .subinfo-ticket p {
   font-weight: 500;
@@ -3991,6 +4060,7 @@ p.logged-in-as {
     margin-left: 0;
   }
   .multiple-slides .swiper-button-prev, .multiple-slides .swiper-button-next,
+  .cat-slides .swiper-button-prev, .cat-slides .swiper-button-next,
   .news .swiper-button-prev, .news .swiper-button-next {
     display: none !important;
   }
@@ -4000,6 +4070,9 @@ p.logged-in-as {
 }
 
 @media (max-width: 991.98px) {
+  .navbar-nav .nav-link {
+    font-size: 16px;
+  }
   .header.fixed .navbar-nav .nav-link {
     color: #FFF;
   }
@@ -4020,7 +4093,7 @@ p.logged-in-as {
     top: 0px;
     z-index: 10000;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.95);
     padding-top: 20px;
     overflow-y: scroll;
   }
@@ -4040,6 +4113,7 @@ p.logged-in-as {
   }
   .dropdown-menu > li > a {
     color: #f7bb3b;
+    font-size: 16px;
   }
   .navbar-nav .nav-item .nav-link::after {
     background: #ccc;
@@ -4111,7 +4185,7 @@ p.logged-in-as {
   .inner-banner div[id*='ajaxsearchlite'].wpdreams_asl_container {
     width: 70%;
   }
-  .travel h2, .project h2, .list-project h2, .news h2, .page-header .page-title, .page-header h1.entry-title,
+  .travel h2, .project h2, .news h2, .page-header .page-title, .page-header h1.entry-title,
   .quality-policy h2, .air-ticket h2, .trading-system h2 {
     font-size: 26px;
     line-height: 38px;
@@ -4151,10 +4225,6 @@ p.logged-in-as {
   .top-posts .img-top .number-rank {
     top: 7px;
     left: 12px;
-  }
-  .list-project .info-item .bg-absolute a h4 {
-    font-size: 17px;
-    line-height: 25px;
   }
   .gm-style-iw {
     max-width: 700px;
@@ -4246,7 +4316,7 @@ p.logged-in-as {
 	div.asl_r .results .item {
     padding: 3px 5px !important;
   }
-  .travel h2, .project h2, .list-project h2, .news h2, .page-header .page-title, .page-header h1.entry-title,
+  .travel h2, .project h2, .news h2, .page-header .page-title, .page-header h1.entry-title,
   .quality-policy h2, .air-ticket h2, .trading-system h2 {
     font-size: 23px;
     line-height: 35px;
@@ -4304,6 +4374,10 @@ p.logged-in-as {
     padding: 0;
     margin-bottom: 15px;
   }
+  .hotline-project .hotline-number a#review-button, .hotline-project .hotline-number a#review-button-mobile,
+  .hotline-project .hotline-number a#order-online, .hotline-project .hotline-number a#order-online-mobile {
+    margin-bottom: 15px;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -4359,33 +4433,12 @@ p.logged-in-as {
   .box-sort {
     margin-top: 5px;
   }
-  .list-project .img-item {
-    margin: 0 10px 15px 10px;
-    overflow: hidden;
-  }
-  .list-project .img-item:last-child {
-    margin-bottom: 0;
-  }
-  .list-project .info-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: unset;
-  }
-  .list-project .info-item:before {
-    width: 0;
-    height: 0;
-  }
-  .list-project .info-item .bg-absolute {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
-  .travel h2, .project h2, .list-project h2, .news h2, .page-header .page-title, .page-header h1.entry-title,
+  .travel h2, .project h2, .news h2, .page-header .page-title, .page-header h1.entry-title,
   .quality-policy h2, .air-ticket h2, .trading-system h2 {
     font-size: 20px;
     line-height: 32px;
   }
-	.travel h3.sub-title, .project h3.sub-title, .list-project h3.sub-title {
+	.travel h3.sub-title, .project h3.sub-title {
 		font-size: 15px;
 		line-height: 21px;
   }
@@ -4421,7 +4474,10 @@ p.logged-in-as {
 	}
 	.list-post .one-project .info-project p .value {
 		font-size: 14px;
-	}
+  }
+  #breadcrumb {
+    padding: 0 5px;
+  }
 	.home .one-project {
 		margin-left: 0;
 		margin-right: 0;
@@ -4432,10 +4488,6 @@ p.logged-in-as {
 	}
 	.one-project .info-project p.investment-project, .news-item .info-news p.investment-project {
 		font-size: 14px;
-	}
-	.list-project .info-item .bg-absolute a h4 {
-		font-size: 16px;
-    line-height: 24px;
 	}
 	.group-news {
 		margin: 0 0 15px 0;
@@ -4454,7 +4506,7 @@ p.logged-in-as {
     line-height: 24px;
 	}
   .menu-project ul li {
-    margin-right: 14px;
+    margin-right: 20px;
   }
   .my-review .info {
     padding: 0 15px 0 6px;
@@ -4532,7 +4584,7 @@ p.logged-in-as {
 	}
 	.top-posts .img-top .bg-rank {
 		width: 70px;
-    	height: 70px;
+    height: 70px;
 	}
 	.select-location p {
 		font-size: 14.6px;
@@ -4626,9 +4678,6 @@ p.logged-in-as {
   .air-ticket .ticket-item .info-ticket p.date {
     margin-top: 7px;
   }
-  .list-project .info-item .bg-absolute a:hover h4 {
-    color: #ed1a24;
-  }
   .item-service {
     padding: 10px 0;
   }
@@ -4652,15 +4701,12 @@ p.logged-in-as {
   .item-service .name-service {
     margin-bottom: 5px;
   }
-  .project .more-project .btn-outline-danger, .list-project .more-project .btn-outline-danger {
+  .project .more-project .btn-outline-danger {
     font-size: 15px;
   }
 }
 
 @media (max-width: 400px) {
-  .menu-project .container {
-    padding: 0 5px;
-  }
   .inner-banner h1, .inner-banner h2 {
     font-size: 18px;
     margin-bottom: 10px;

@@ -31,7 +31,7 @@
 
 </head>
 
-<body <?php body_class('preload'); ?>>
+<body <?php if(in_category('shop-phuot') && !is_single()) { body_class('shop-phuot preload'); } else { body_class('preload'); } ?>>
 <!-- <div id="preloader-wrapper">
   <div class="preloader-container">
     <div class="dot dot-1">
@@ -84,7 +84,7 @@
     <?php if ( has_post_thumbnail() ) { the_post_thumbnail(); } ?>
   </div>
   <?php endif; ?>
-  <?php if(!is_home() && (!(is_single() && in_category(array('cam-nang-du-lich', 've-tham-quan', 'shop-phuot')))) ) : ?>
+  <?php if(!is_home() && !in_category('shop-phuot') && (!(is_single() && in_category(array('cam-nang-du-lich', 've-tham-quan', 'shop-phuot')))) ) : ?>
   <div id="content" class="site-content <?php if(!is_page('san-ve-may-bay')) { echo 'container'; } ?>">
     <div class="container main-content-area"><?php
       global $post;

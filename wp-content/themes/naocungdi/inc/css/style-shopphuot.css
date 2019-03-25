@@ -1,0 +1,233 @@
+.shop-phuot #wowslider-container1 .ws_images {
+    height: auto;
+}
+.shop-phuot .hot-product {
+    background-image: url(../../images/bg-san-pham-ban-chay.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding-bottom: 15px;
+}
+.shop-phuot .hot-product.cat-child {
+    background: #fff;
+    margin: 0;
+    padding-top: 20px;
+}
+.shop-phuot .hot-product.cat-child .one-project {
+    border: 1px solid #e4e4e4;
+}
+.shop-phuot .hot-product h2 {
+    color: #fff;
+    margin-top: 30px;
+}
+.shop-phuot .hot-product h3.sub-title {
+    color: #fff;
+}
+.shop-phuot .travel-destination a p {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.shop-phuot .one-project {
+    margin-left: 0;
+    margin-right: 0;
+}
+.shop-phuot .hot-product .one-project {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.shop-phuot .one-project .info-project h3 {
+    display: flex;
+    align-items: center;
+    min-height: 42px;
+    margin: 0 0 5px 0;
+    padding-right: 0;
+}
+.shop-phuot .one-project .info-project p .value {
+    font-size: 17px;
+    margin-left: 5px;
+}
+.shop-phuot .one-project .info-project p .market-price {
+    color: #666;
+    text-decoration: line-through;
+    margin-left: 7px;
+}
+.shop-phuot .hot-product .one-project .info-project p .market-price {
+    margin-left: 0;
+}
+.shop-phuot .hot-product .one-project p.location-project {
+    background-image: linear-gradient(-90deg,#ec1f1f 0%,#ff9c00 100%);
+    position: static;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-left: 0;
+    border-radius: 15px;
+}
+.shop-phuot .hot-product .one-project p.location-project::before {
+    content: ' ';
+    display: inline-block;
+    background: url(../../images/icon-shop.svg);
+    background-size: 70% 70%;
+    width: 23px;
+    height: 23px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #f13500;
+    border-radius: 50%;
+    vertical-align: middle;
+    position: relative;
+    margin-right: 7px;
+}
+.shop-phuot .one-project p.location-project {
+    background-image: linear-gradient(to right, rgba(16, 16, 16, 0.7), rgba(101, 99, 99, 0.7), rgba(12, 12, 12, 0.7));
+    padding: 8px 12px;
+}
+.shop-phuot .one-project p.location-project i {
+    color: #fc9538;
+    margin-right: 5px;
+}
+.shop-phuot .one-project .info-project p.sold-project {
+    font-size: 13px;
+    color: #555;
+}
+.shop-phuot .gang-tay, .shop-phuot .giap-bao-ho {
+    background: #fff;
+    margin: 0;
+    padding: 30px 0;
+}
+.shop-phuot .news {
+    background: #fff;
+    margin: 0;
+    padding-bottom: 10px;
+}
+.shop-phuot .news .one-project p.location-project {
+    background-image: inherit;
+}
+.gang-tay .multiple-slides .swiper-slide, .giap-bao-ho .multiple-slides .swiper-slide {
+    margin-right: 0 !important;
+    padding-left: 6.5px;
+    padding-right: 6.5px;
+    border-top: 1px solid #e4e4e4;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+}
+.gang-tay .multiple-slides .swiper-slide:first-child, .giap-bao-ho .multiple-slides .swiper-slide:first-child {
+    border-left: 1px solid #e4e4e4;
+}
+.gang-tay .one-project, .giap-bao-ho .one-project, .shop-phuot .news .one-project {
+    box-shadow: none;
+}
+.gang-tay .one-project .info-project, .giap-bao-ho .one-project .info-project {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.shop-phuot .list-cat {
+    background-color: #fff;
+    padding-top: 15px;
+    padding-bottom: 40px;
+}
+.shop-phuot .list-cat h2 {
+    font-size: 26px;
+    font-weight: bold;
+}
+.shop-phuot .list-cat h3 {
+    color: #fff;
+    font-size: 20px;
+}
+.shop-phuot .list-cat a {
+    position: relative;
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 15px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 -1px 3px 0 rgba(0, 0, 0, 0.08);
+    padding: 15px;
+    transition: all 0.25s ease-in-out;
+}
+.shop-phuot .list-cat a:hover {
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.12), 0 -1px 2px 0 rgba(0, 0, 0, 0.08);
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+}
+.shop-phuot .list-cat .gang-tay {
+    background-image: -webkit-linear-gradient(right, #0ca2f1, #0386ca);
+    background-image: linear-gradient(to left, #0ca2f1, #0386ca);
+}
+.shop-phuot .list-cat .gang-tay:hover {
+    background-image: -webkit-linear-gradient(right, #0386ca, #0386ca);
+    background-image: linear-gradient(to left, #0386ca, #0386ca);
+}
+.shop-phuot .list-cat .non-bao-hiem {
+    background-image: -webkit-linear-gradient(right, #fbc639, #ff9a42);
+    background-image: linear-gradient(to left, #fbc639, #ff9a42);
+}
+.shop-phuot .list-cat .non-bao-hiem:hover {
+    background-image: -webkit-linear-gradient(right, #ff9a42, #ff9a42);
+    background-image: linear-gradient(to left, #ff9a42, #ff9a42);
+}
+.shop-phuot .list-cat .do-bao-ho {
+    background-image: -webkit-linear-gradient(right, #7dbe75, #25b885);
+    background-image: linear-gradient(to left, #7dbe75, #25b885);
+}
+.shop-phuot .list-cat .do-bao-ho:hover {
+    background-image: -webkit-linear-gradient(right, #25b885, #25b885);
+    background-image: linear-gradient(to left, #25b885, #25b885);
+}
+.shop-phuot .list-cat .phu-kien {
+    background-image: -webkit-linear-gradient(right, #e2da15, #c1bc25);
+    background-image: linear-gradient(to left, #e2da15, #c1bc25)
+}
+.shop-phuot .list-cat .phu-kien:hover {
+    background-image: -webkit-linear-gradient(right, #c1bc25, #c1bc25);
+    background-image: linear-gradient(to left, #c1bc25, #c1bc25)
+}
+.shop-phuot .list-cat .view-more {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 2px;
+    border: 1px solid #fff;
+}
+.shop-phuot .list-cat a svg {
+    position: absolute;
+    width: 30%;
+    fill: #fff;
+    opacity: 0.5;
+    top: 12%;
+    right: 3%;
+}
+@media (max-width: 575.98px) {
+    .shop-phuot .inner-banner p {
+        display: none;
+    }
+    .shop-phuot .inner-banner.cat-child p {
+        display: block;
+        padding: 0 15px;
+    }
+    .shop-phuot .hot-product .one-project p.location-project {
+        font-size: 13px;
+    }
+    .shop-phuot .one-project p.location-project {
+        padding: 5px;
+        font-size: 12px;
+    }
+    .shop-phuot .post-ratings {
+        display: none;
+    }
+    .shop-phuot .one-project .info-project h3 {
+        font-size: 14px;
+        line-height: 19px;
+    }
+    .shop-phuot .hot-product .one-project .info-project p.investment-project {
+        margin-top: 0;
+    }
+    .shop-phuot .one-project .info-project p.investment-project {
+        font-size: 13px;
+    }
+    .shop-phuot .one-project .info-project p .value {
+        font-size: 15px;
+    }
+    .shop-phuot .list-cat h2 {
+        font-size: 22px;
+    }
+}

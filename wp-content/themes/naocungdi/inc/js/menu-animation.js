@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Xử lý scroll phần header menu
     var hostname = window.location.protocol + "//" + window.location.hostname + "/naocungdi/";
     window.addEventListener('scroll', function () {
-        if (document.documentElement.scrollTop) {
+        if (window.pageYOffset > document.querySelector('.header').offsetTop) {
             document.querySelector('.header').classList.add('fixed');
             if (document.querySelector('body').classList.contains('home')) {
                 document.querySelector('.header .navbar-brand img').setAttribute('src', hostname + '/wp-content/uploads/2018/08/logo-naocungdi.png');
