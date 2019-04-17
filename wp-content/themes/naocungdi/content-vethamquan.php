@@ -5,9 +5,13 @@
 ?>
 <?php $all_gallery = sizeof(rwmb_meta( 'gallery' )); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="gallery-project moveLeft-500 duration-1000 hidden">
+	<header class="gallery-project moveLeft-500 duration-1000 hidden <?php echo ($all_gallery == 1) ? "one-pic" : "" ?>">
 		<?php
-			$images = rwmb_meta( 'gallery', array( 'size' => 'medium-img', 'limit' => 4 ) );
+			if($all_gallery == 1) {
+				$images = rwmb_meta( 'gallery' );
+			} else {
+				$images = rwmb_meta( 'gallery', array( 'size' => 'medium-img', 'limit' => 6 ) );
+			}
 			$images_num = 0; $images_item;
 			foreach ( $images as $image ) {
 				$images_item.= '<a href="#" class="showGallery" data-number="'. $images_num .'" data-target="view-photo" data-toggle="tooltip" title="Click vào để xem ảnh"><img ';
@@ -20,11 +24,13 @@
 			}
 			echo $images_item;
 		?>
+		<?php if($all_gallery > 1) : ?>
 		<div class="container">
 			<div class="row">
 				<p class="img-quality fadeIn duration-1000 delay-1000 hidden" data-toggle="tooltip" title="Xem <?php echo $all_gallery; ?> ảnh của dự án"><i class="far fa-images"></i><?php echo $all_gallery; ?> ảnh</p>
 			</div>
 		</div>
+		<?php endif; ?>
 	</header><!-- .entry-header -->
 	<div class="menu-project moveRight-500 duration-1000 hidden">
 		<div class="container">
@@ -100,9 +106,10 @@
 									<?php
 										if ($info_ticket['ngay-dat-ve-tu'] == "ngày mai") { $startDay = new DateTime('tomorrow'); }
 										elseif ($info_ticket['ngay-dat-ve-tu'] == "hôm nay" || $info_ticket['ngay-dat-ve-tu'] == "") { $startDay = new DateTime(); }
+										if ($info_ticket['ngay-dat-ve-den'] == "") { $endDay = date_modify(new DateTime(), "+58 days"); }
 									?>
 									<input type="hidden" name="startDay" value="<?php if ($startDay) { echo $startDay->format('d/m/Y'); } else { echo $info_ticket['ngay-dat-ve-tu']; } ?>">
-									<input type="hidden" name="endDay" value="<?php echo $info_ticket['ngay-dat-ve-den']; ?>">
+									<input type="hidden" name="endDay" value="<?php if ($endDay) { echo $endDay->format('d/m/Y'); } else { echo $info_ticket['ngay-dat-ve-den']; } ?>">
 								</div>
 							</div>
 						</div>
@@ -115,7 +122,7 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<p class="sales-off">Tiết kiệm đến <span>-<?php echo round((($info_ticket['gia-quay'] - $info_ticket['gia-naocungdi'])/$info_ticket['gia-quay'])*100); ?>%</span></p>
-										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo $info_ticket['gia-quay']; ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo $info_ticket['gia-naocungdi']; ?><sup>đ</sup></span></p>
+										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo number_format($info_ticket['gia-quay'], 0, ",", "."); ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo number_format($info_ticket['gia-naocungdi'], 0, ",", "."); ?><sup>đ</sup></span></p>
 									</div>
 									<div class="col-xs-12 hotline-number">
 										<a id="order-online-mobile"><i class="fas fa-bolt"></i>Đặt vé ngay</a>
@@ -123,7 +130,7 @@
 									</div>
 									<div class="col-xs-12 footer-hotline">
 										<p class="receive-ticket"><i class="fas fa-clock"></i>Nhận vé ngay trong vòng 24h</p>
-										<p class="sold-ticket"><i class="fas fa-fire"></i><?php echo $info_ticket['ve-da-ban']; ?></p>
+										<p class="sold-ticket"><i class="fas fa-fire"></i><?php echo number_format($info_ticket['ve-da-ban'], 0, ",", "."); ?>+ người đã mua</p>
 									</div>
 								</div>
 							</div>
@@ -154,8 +161,8 @@
 									<?php endif; ?>
 								</div>
 								<div class="price-service col-md-2 col-sm-3 col-xs-6">
-									<span><?php echo $item_service['gia-naocungdi'] ?><sup>đ</sup></span>
-									<span><?php echo $item_service['gia-quay'] ?><sup>đ</sup></span>
+									<span><?php echo number_format($item_service['gia-naocungdi'], 0, ",", ".") ?><sup>đ</sup></span>
+									<span><?php echo number_format($item_service['gia-quay'], 0, ",", ".") ?><sup>đ</sup></span>
 								</div>
 								<div class="button-service col-md-2 col-sm-2 col-xs-6">
 									<a href="#" class="btn btn-service" data-form="#form-booking-<?php echo $i; ?>">Chọn</a>
@@ -181,12 +188,12 @@
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label for="adult-ticket">Số lượng vé người lớn</label>
-												<input type="number" min="0" name="adult-ticket" class="adult-ticket" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo $item_service['gia-naocungdi']; ?>" placeholder="<?php echo $item_service['gia-naocungdi']; ?>đ/vé">
+												<input type="number" min="0" name="adult-ticket" class="adult-ticket" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo number_format($item_service['gia-naocungdi'], 0, ",", "."); ?>" placeholder="<?php echo number_format($item_service['gia-naocungdi'], 0, ",", "."); ?>đ/vé">
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label for="child-ticket">Số lượng vé trẻ em (3 - 12 tuổi)</label>
 												<?php if ($item_service['gia-ve-tre-em']) : ?>
-												<input type="number" min="0" name="child-ticket" class="child-ticket" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo $item_service['gia-ve-tre-em']; ?>" placeholder="<?php echo $item_service['gia-ve-tre-em']; ?>đ/vé">
+												<input type="number" min="0" name="child-ticket" class="child-ticket" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo number_format($item_service['gia-ve-tre-em'], 0, ",", "."); ?>" placeholder="<?php echo number_format($item_service['gia-ve-tre-em'], 0, ",", "."); ?>đ/vé">
 												<?php else : ?>
 												<input type="number" min="0" name="child-ticket" class="child-ticket" data-form="#form-booking-<?php echo $i; ?>" placeholder="Bằng giá vé người lớn" disabled>
 												<?php endif; ?>
@@ -213,7 +220,7 @@
 					<?php endif; ?>
 					<?php if (rwmb_meta('trai-nghiem-gi')) : ?>
 					<div class="info-introdution info-ticket moveTop-500 duration-1000 hidden">
-						<h2 id="experience">Trải nghiệm tại <?php rwmb_the_value('vi-tri'); ?></h2>
+						<h2 id="experience">Trải nghiệm thú vị</h2>
 						<div class="info-content">
 							<?php echo rwmb_meta('trai-nghiem-gi'); ?>
 						</div>
@@ -336,7 +343,7 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<p class="sales-off">Tiết kiệm đến <span>-<?php echo round((($info_ticket['gia-quay'] - $info_ticket['gia-naocungdi'])/$info_ticket['gia-quay'])*100); ?>%</span></p>
-										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo $info_ticket['gia-quay']; ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo $info_ticket['gia-naocungdi']; ?><sup>đ</sup></span></p>
+										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo number_format($info_ticket['gia-quay'], 0, ",", "."); ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo number_format($info_ticket['gia-naocungdi'], 0, ",", "."); ?><sup>đ</sup></span></p>
 									</div>
 									<div class="col-xs-12 hotline-number">
 										<a id="order-online"><i class="fas fa-bolt"></i>Đặt vé ngay</a>
@@ -344,7 +351,7 @@
 									</div>
 									<div class="col-xs-12 footer-hotline">
 										<p class="receive-ticket"><i class="fas fa-clock"></i>Nhận vé ngay trong vòng 24h</p>
-										<p class="sold-ticket"><i class="fas fa-fire"></i><?php echo $info_ticket['ve-da-ban']; ?></p>
+										<p class="sold-ticket"><i class="fas fa-fire"></i><?php echo number_format($info_ticket['ve-da-ban'], 0, ",", "."); ?>+ người đã mua</p>
 									</div>
 								</div>
 							</div>

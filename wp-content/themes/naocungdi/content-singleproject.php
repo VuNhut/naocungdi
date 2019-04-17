@@ -2,6 +2,44 @@
 /**
  * @package dazzling
  */
+require_once("yahoo-weather.php");
+$viTriProject = rwmb_meta('dia-diem-du-lich');
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+if ($viTriProject != "") {
+	$latLngProject = explode(',', $viTriProject);
+	$query = array(
+		'lat' => $latLngProject[0],
+		'lon' => $latLngProject[1],
+		'format' => 'json',
+	);
+	$oauth = array(
+		'oauth_consumer_key' => $consumer_key,
+		'oauth_nonce' => uniqid(mt_rand(1, 1000)),
+		'oauth_signature_method' => 'HMAC-SHA1',
+		'oauth_timestamp' => time(),
+		'oauth_version' => '1.0'
+	);
+	$base_info = buildBaseString($url, 'GET', array_merge($query, $oauth));
+	$composite_key = rawurlencode($consumer_secret) . '&';
+	$oauth_signature = base64_encode(hash_hmac('sha1', $base_info, $composite_key, true));
+	$oauth['oauth_signature'] = $oauth_signature;
+	$header = array(
+		buildAuthorizationHeader($oauth),
+		'X-Yahoo-App-Id: ' . $app_id
+	);
+	$options = array(
+		CURLOPT_HTTPHEADER => $header,
+		CURLOPT_HEADER => false,
+		CURLOPT_URL => $url . '?' . http_build_query($query),
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_SSL_VERIFYPEER => false
+	);
+	$ch = curl_init();
+	curl_setopt_array($ch, $options);
+	$response = curl_exec($ch);
+	curl_close($ch);
+	$return_data = json_decode($response);
+}
 ?>
 <?php $all_gallery = sizeof(rwmb_meta( 'gallery' )); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -22,7 +60,16 @@
 		?>
 		<div class="container">
 			<div class="row">
-				<p class="img-quality fadeIn duration-1000 delay-1000 hidden" data-toggle="tooltip" title="Xem <?php echo $all_gallery; ?> ảnh của dự án"><i class="far fa-images"></i><?php echo $all_gallery; ?> ảnh</p>
+				<p class="img-quality fadeIn duration-1000 delay-1000 hidden" data-toggle="tooltip" title="Xem <?php echo $all_gallery; ?> ảnh"><i class="far fa-images"></i><?php echo $all_gallery; ?> ảnh</p>
+				<?php if ($viTriProject != "") : ?>
+				<p class="weather-header fadeIn duration-1000 delay-1000 hidden">
+					<?php if ($iconWeather[$return_data->current_observation->condition->code]) : ?>
+					<img width="31" src="<?php echo home_url(); ?>/wp-content/themes/naocungdi/images/weather-icon/<?php echo $iconWeather[$return_data->current_observation->condition->code] ?>.svg" alt="">
+					<?php endif; $tempCurrent = round(($return_data->current_observation->condition->temperature - 32)/1.8) ?>
+					<span class="temp-current <?php if ($tempCurrent <= 20) : echo "color-low"; elseif ($tempCurrent > 20 && $tempCurrent <= 30) : echo "color-medium"; else : echo "color-high"; endif; ?>"><?php echo $tempCurrent; ?>°C</span>
+					<span class="temp-low"><?php echo round(($return_data->forecasts[0]->low - 32)/1.8) ?>°C</span>
+				</p>
+				<?php endif; ?>
 			</div>
 		</div>
 	</header><!-- .entry-header -->
@@ -33,6 +80,9 @@
 					<li class="active"><a href="#introdution">Chi tiết</a></li>
 					<li><a href="#location">Địa điểm</a></li>
 					<li><a href="#utilities">Đánh giá</a></li>
+					<?php if ($viTriProject != "") : ?>
+					<li><a href="#weather">Thời tiết</a></li>
+					<?php endif; ?>
 					<?php $info_progress = rwmb_meta( 'info-tien-do' ); ?>
 					<?php if($info_progress[0][2] != "") : ?>
 						<li><a href="#progress">Hướng dẫn</a></li>
@@ -113,15 +163,59 @@
 						<h2 id="introdution">Chi tiết</h2>
 						<div class="info-content">
 							<?php the_content(); ?>
+							<?php if ($viTriProject != "") : ?>
+							<h2 id="weather">Thời tiết 10 ngày tới</h2>
+							<div class="container">
+								<div class="row weather">
+									<div class="col-md-5 col-sm-6 info-weather-current">
+										<div class="row">
+											<p class="col-sm-12 weather-location"><?php echo (rwmb_meta("vi-tri") != "") ? rwmb_meta("vi-tri") : $return_data->location->city . ", " . $return_data->location->region; ?></p>
+											<?php if ($iconWeather[$return_data->current_observation->condition->code]) : ?>
+											<img class="col-lg-4 col-md-5 col-sm-5 col-xs-5" src="<?php echo home_url(); ?>/wp-content/themes/naocungdi/images/weather-icon/<?php echo $iconWeather[$return_data->current_observation->condition->code] ?>.svg" alt="">
+											<?php endif; ?>
+											<div class="col-lg-8 col-md-7 col-sm-7 col-xs-7 temp">
+												<p class="temp-current"><?php echo round(($return_data->current_observation->condition->temperature - 32)/1.8) ?>°</p>
+												<p class="temp-high-low">
+													<span class="temp-high"><?php echo round(($return_data->forecasts[0]->high - 32)/1.8) ?>°</span>
+													<span class="temp-low"><?php echo round(($return_data->forecasts[0]->low - 32)/1.8) ?>°</span>
+												</p>
+												<?php if ($textWeather[strtolower($return_data->current_observation->condition->text)]) : ?>
+												<p class="text-weather"><?php echo $textWeather[strtolower($return_data->current_observation->condition->text)] ?></p><br>
+												<?php endif; ?>
+											</div>
+											<p class="col-sm-12 today-info"><span>Hôm nay</span><span><?php echo date("d/m", $return_data->current_observation->pubDate) ?></span></p>
+										</div>
+									</div>
+									<div class="col-md-7 col-sm-6 weather-slides">
+										<div class="swiper-container">
+											<div class="swiper-wrapper">
+											<?php foreach ($return_data->forecasts as $key => $forecasts) { ?>
+												<?php if ($key != 0) : ?>
+												<div class="swiper-slide">
+													<p class="day-info"><span><?php echo ($key == 1) ? "Ngày mai" : $day[$forecasts->day] ?></span><span><?php echo date("d/m", $forecasts->date) ?></span></p>
+													<?php if ($iconWeather[$forecasts->code]) : ?>
+														<img width="60" src="<?php echo home_url(); ?>/wp-content/themes/naocungdi/images/weather-icon/<?php echo $iconWeather[$forecasts->code] ?>.svg" alt="">
+													<?php endif; ?>
+													<p class="temp-high"><?php echo round(($forecasts->high - 32)/1.8) ?>°</p>
+													<p class="temp-low"><?php echo round(($forecasts->low - 32)/1.8) ?>°</p>
+												</div>
+												<?php endif; ?>
+											<?php } ?>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<?php endif; ?>
 						</div>
 					</div>
+					<!-- Cuối bài viết -->
 					<ins class="adsbygoogle"
-						 style="display:block; text-align:center;"
-						 data-ad-layout="in-article"
-						 data-ad-format="fluid"
-						 data-ad-client="ca-pub-7392610376438714"
-						 data-ad-slot="8056721361">
-					</ins>
+						style="display:block"
+						data-ad-client="ca-pub-7392610376438714"
+						data-ad-slot="1407586607"
+						data-ad-format="auto"
+						data-full-width-responsive="true"></ins>
 					<?php
 						$travel_time = rwmb_meta( 'travel-time' );
 						if ($travel_time[0][0] != "") {
@@ -150,12 +244,13 @@
 						</div>
 					</div>
 					<?php } ?>
-					<?php
-						$info_traveling = rwmb_meta( 'info-traveling' );
-						$info_eating = rwmb_meta( 'info-eating' );
-						$info_staying = rwmb_meta( 'info-staying' );
-					?>
 					<div id="accordion">
+						<?php
+							if ($viTriProject != "") :
+								$info_traveling = rwmb_meta( 'info-traveling' );
+								$info_eating = rwmb_meta( 'info-eating' );
+								$info_staying = rwmb_meta( 'info-staying' );
+						?>
 						<div>
 							<div class="card-header moveTop-500 duration-1000 hidden" id="title-location">
 								<h3 id="location" class="mb-0">
@@ -173,7 +268,6 @@
 							<div id="info-location" class="collapse in" aria-labelledby="title-location" data-parent="#accordion">
 							<div class="card-body moveTop-500 duration-1000 hidden">
 								<div class="map-location">
-									<?php $viTriProject = rwmb_meta('dia-diem-du-lich'); $latLngProject = explode(',', $viTriProject); ?>
 									<div id="map-project" data-lat="<?php echo $latLngProject[0]; ?>" data-lng="<?php echo $latLngProject[1]; ?>" data-name="<span class='info-window'><?php if (in_category('kinh-nghiem-du-lich')) { echo 'Trung tâm '; rwmb_the_value('vi-tri'); } else { the_title(); } ?></span><?php if (!in_category('kinh-nghiem-du-lich')) { echo '<br/>'; rwmb_the_value('vi-tri');  } ?><br/><a href='#' id='view-direction' data-lat='<?php echo $latLngProject[0]; ?>' data-lng='<?php echo $latLngProject[1]; ?>' data-window='all'>Chỉ đường từ vị trí của bạn đến nơi này</a>"></div>
 									<div id="direction-panel">
 										<a href="#" id="hidden-panel" data-status="hidden">Ẩn bảng chỉ đường</a>
@@ -275,18 +369,12 @@
 										</div>
 									</div>
 								<?php } ?>
+									</div>
 								</div>
 							</div>
-							</div>
 						</div>
+						<?php endif; ?>
 						<div>
-							<ins class="adsbygoogle"
-								 style="display:block; text-align:center;"
-								 data-ad-layout="in-article"
-								 data-ad-format="fluid"
-								 data-ad-client="ca-pub-7392610376438714"
-								 data-ad-slot="5036764216">
-							</ins>
 							<div class="card-header moveRight-500 duration-1000 hidden" id="title-utilities">
 								<h3 id="utilities" class="mb-0">
 									<p class="link">Điểm đánh giá</p>
@@ -446,12 +534,13 @@
 							</div>
 						</div>
 						<?php endif; wp_reset_postdata(); ?>
+						<!-- Sidebar Widget -->
 						<ins class="adsbygoogle"
-							 style="display:block"
-							 data-ad-format="fluid"
-							 data-ad-layout-key="-6i+e0+16-3i+89"
-							 data-ad-client="ca-pub-7392610376438714"
-							 data-ad-slot="6342392432"></ins>
+							style="display:block"
+							data-ad-client="ca-pub-7392610376438714"
+							data-ad-slot="3402715622"
+							data-ad-format="auto"
+							data-full-width-responsive="true"></ins>
 					</div>
 				</div>
 			</div>

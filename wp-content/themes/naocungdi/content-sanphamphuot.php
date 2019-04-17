@@ -105,7 +105,7 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<p class="sales-off">Tiết kiệm đến <span>-<?php echo round((($info_ticket['gia-thi-truong'] - $info_ticket['gia-khuyen-mai'])/$info_ticket['gia-thi-truong'])*100); ?>%</span></p>
-										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo $info_ticket['gia-thi-truong']; ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo $info_ticket['gia-khuyen-mai']; ?><sup>đ</sup></span></p>
+										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo number_format($info_ticket['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo number_format($info_ticket['gia-khuyen-mai'], 0, ",", "."); ?><sup>đ</sup></span></p>
 									</div>
 									<div class="col-xs-12 hotline-number">
 										<a id="order-online-mobile"><i class="fas fa-bolt"></i>Đặt hàng ngay</a>
@@ -145,8 +145,8 @@
 									</div>
 								</div>
 								<div class="price-service col-md-2 col-sm-3 col-xs-6">
-									<span><?php echo $item_service['gia-khuyen-mai'] ?><sup>đ</sup></span>
-									<span><?php echo $item_service['gia-thi-truong'] ?><sup>đ</sup></span>
+									<span><?php echo number_format($item_service['gia-khuyen-mai'], 0, ",", ".") ?><sup>đ</sup></span>
+									<span><?php echo number_format($item_service['gia-thi-truong'], 0, ",", ".") ?><sup>đ</sup></span>
 								</div>
 								<div class="button-service col-md-2 col-sm-3 col-xs-6">
 									<a href="#" class="btn btn-service" data-form="#form-booking-<?php echo $i; ?>">Đặt mua</a>
@@ -168,7 +168,7 @@
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label for="amount">Số lượng</label>
-												<input type="number" min="0" name="amount" class="amount" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo $item_service['gia-khuyen-mai']; ?>" placeholder="<?php echo $item_service['gia-khuyen-mai']; ?>đ/vé">
+												<input type="number" min="0" name="amount" class="amount" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo number_format($item_service['gia-khuyen-mai'], 0, ",", "."); ?>" placeholder="<?php echo number_format($item_service['gia-khuyen-mai'], 0, ",", "."); ?>đ/cái">
 											</div>
 											<?php if ($item_service['size']) : $size = explode(",", $item_service['size']); ?>
 											<div class="col-md-4 col-sm-6">
@@ -263,7 +263,7 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<p class="sales-off">Tiết kiệm đến <span>-<?php echo round((($info_ticket['gia-thi-truong'] - $info_ticket['gia-khuyen-mai'])/$info_ticket['gia-thi-truong'])*100); ?>%</span></p>
-										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo $info_ticket['gia-thi-truong']; ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo $info_ticket['gia-khuyen-mai']; ?><sup>đ</sup></span></p>
+										<p class="price">Giá chỉ còn: <span class="price-agent"><?php echo number_format($info_ticket['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span><span class="price-naocungdi"><?php echo number_format($info_ticket['gia-khuyen-mai'], 0, ",", "."); ?><sup>đ</sup></span></p>
 									</div>
 									<div class="col-xs-12 hotline-number">
 										<a id="order-online"><i class="fas fa-bolt"></i>Đặt hàng ngay</a>

@@ -197,7 +197,7 @@ function dazzling_scripts() {
 
   wp_enqueue_script( 'dazzling-scriptanimation', get_template_directory_uri() . '/inc/js/script-animation.js', array('jquery'), '1.5.4', true );
 
-  if (!(is_single() && in_category(array('cam-nang-du-lich', 've-tham-quan', 'shop-phuot')))) {
+  if (!(is_single() && in_category(array('cam-nang-du-lich', 'tham-quan-giai-tri', 'shop-phuot')))) {
 		wp_enqueue_script( 'dazzling-animation', get_template_directory_uri() . '/inc/js/menu-animation.js', array('jquery'), '1.5.4', true );
 	}
 	
@@ -224,6 +224,7 @@ function dazzling_scripts() {
 
 	if (is_single() && in_category(array('cam-nang-du-lich', 'chia-se'))) {
 		wp_enqueue_script( 'dazzling-scriptproject', get_template_directory_uri() . '/inc/js/script-project.js', array('jquery'), '1.5.4', true );
+		wp_enqueue_script( 'dazzling-weather-slides', get_template_directory_uri() . '/inc/js/weather-slide.js', array('jquery'), '1.5.4', true );
 	}
 
   if (is_single() && in_category('cam-nang-du-lich')) {
@@ -237,7 +238,7 @@ function dazzling_scripts() {
 	wp_enqueue_script( 'dazzling-scriptgooglemap', get_template_directory_uri() . '/inc/js/google-map.js');
 	}
 	
-	if (is_single() && in_category('ve-tham-quan')) {
+	if (is_single() && in_category('tham-quan-giai-tri')) {
 		wp_enqueue_script( 'dazzling-scriptproject', get_template_directory_uri() . '/inc/js/script-project.js', array('jquery'), '1.5.4', true );
 
 		wp_enqueue_script( 'dazzling-scriptmapapi', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC75DNSPpK5JTSltYE74rjvYFqJQVfBIv4&language=vi&region=VN', array('jquery'), '1.5.4', true);

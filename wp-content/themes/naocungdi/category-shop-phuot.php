@@ -103,9 +103,9 @@ get_header(); ?>
                                                                 <p class="location-project"><?php echo $info_product['so-luong-da-ban']; ?>+ đã bán</p>
                                                                 <?php if(function_exists('the_ratings')) { the_ratings(); } ?>
                                                                 <?php if ($info_product['gia-khuyen-mai'] != "") : ?>
-                                                                <p class="investment-project"><span class="market-price"><?php echo $info_product['gia-thi-truong']; ?><sup>đ</sup></span> <span class="value"><?php echo $info_product['gia-khuyen-mai']; ?><sup>đ</sup></span></p>
+                                                                <p class="investment-project"><span class="market-price"><?php echo number_format($info_product['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span> <span class="value"><?php echo number_format($info_product['gia-khuyen-mai'], 0, ",", "."); ?><sup>đ</sup></span></p>
                                                                 <?php else : ?>
-                                                                <p class="investment-project"><span class="value"><?php echo $info_product['gia-thi-truong']; ?><sup>đ</sup></span></p>
+                                                                <p class="investment-project"><span class="value"><?php echo number_format($info_product['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span></p>
                                                                 <?php endif; ?>
                                                                 <div class="clearfix"></div>
                                                         </div>
@@ -145,9 +145,9 @@ get_header(); ?>
                                                                                         </div>
                                                                                         <?php if(function_exists('the_ratings')) { the_ratings(); } ?>
                                                                                         <?php if ($info_product['gia-khuyen-mai'] != "") : ?>
-                                                                                        <p class="investment-project"><span class="market-price"><?php echo $info_product['gia-thi-truong']; ?><sup>đ</sup></span> <span class="value"><?php echo $info_product['gia-khuyen-mai']; ?><sup>đ</sup></span></p>
+                                                                                        <p class="investment-project"><span class="market-price"><?php echo number_format($info_product['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span> <span class="value"><?php echo number_format($info_product['gia-khuyen-mai'], 0, ",", "."); ?><sup>đ</sup></span></p>
                                                                                         <?php else : ?>
-                                                                                        <p class="investment-project"><span class="value"><?php echo $info_product['gia-thi-truong']; ?><sup>đ</sup></span></p>
+                                                                                        <p class="investment-project"><span class="value"><?php echo number_format($info_product['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span></p>
                                                                                         <?php endif; ?>
                                                                                         <?php if ($info_product['so-luong-da-ban']) : ?>
                                                                                         <p class="sold-project"><i class="fas fa-shopping-cart"></i> <?php echo $info_product['so-luong-da-ban']; ?>+ đã bán</p>
@@ -195,9 +195,9 @@ get_header(); ?>
                                                                                         </div>
                                                                                         <?php if(function_exists('the_ratings')) { the_ratings(); } ?>
                                                                                         <?php if ($info_product['gia-khuyen-mai'] != "") : ?>
-                                                                                        <p class="investment-project"><span class="market-price"><?php echo $info_product['gia-thi-truong']; ?><sup>đ</sup></span> <span class="value"><?php echo $info_product['gia-khuyen-mai']; ?><sup>đ</sup></span></p>
+                                                                                        <p class="investment-project"><span class="market-price"><?php echo number_format($info_product['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span> <span class="value"><?php echo number_format($info_product['gia-khuyen-mai'], 0, ",", "."); ?><sup>đ</sup></span></p>
                                                                                         <?php else : ?>
-                                                                                        <p class="investment-project"><span class="value"><?php echo $info_product['gia-thi-truong']; ?><sup>đ</sup></span></p>
+                                                                                        <p class="investment-project"><span class="value"><?php echo number_format($info_product['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span></p>
                                                                                         <?php endif; ?>
                                                                                         <?php if ($info_product['so-luong-da-ban']) : ?>
                                                                                         <p class="sold-project"><i class="fas fa-shopping-cart"></i> <?php echo $info_product['so-luong-da-ban']; ?>+ đã bán</p>
@@ -245,9 +245,9 @@ get_header(); ?>
                                                                                         </div>
                                                                                         <?php if(function_exists('the_ratings')) { the_ratings(); } ?>
                                                                                         <?php if ($info_product['gia-khuyen-mai'] != "") : ?>
-                                                                                        <p class="investment-project"><span class="market-price"><?php echo $info_product['gia-thi-truong']; ?><sup>đ</sup></span> <span class="value"><?php echo $info_product['gia-khuyen-mai']; ?><sup>đ</sup></span></p>
+                                                                                        <p class="investment-project"><span class="market-price"><?php echo number_format($info_product['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span> <span class="value"><?php echo number_format($info_product['gia-khuyen-mai'], 0, ",", "."); ?><sup>đ</sup></span></p>
                                                                                         <?php else : ?>
-                                                                                        <p class="investment-project"><span class="value"><?php echo $info_product['gia-thi-truong']; ?><sup>đ</sup></span></p>
+                                                                                        <p class="investment-project"><span class="value"><?php echo number_format($info_product['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span></p>
                                                                                         <?php endif; ?>
                                                                                         <?php if ($info_product['so-luong-da-ban']) : ?>
                                                                                         <p class="sold-project"><i class="fas fa-shopping-cart"></i> <?php echo $info_product['so-luong-da-ban']; ?>+ đã bán</p>
@@ -295,9 +295,9 @@ get_header(); ?>
                                                                                         </div>
                                                                                         <?php if(function_exists('the_ratings')) { the_ratings(); } ?>
                                                                                         <?php if ($info_product['gia-khuyen-mai'] != "") : ?>
-                                                                                        <p class="investment-project"><span class="market-price"><?php echo $info_product['gia-thi-truong']; ?><sup>đ</sup></span> <span class="value"><?php echo $info_product['gia-khuyen-mai']; ?><sup>đ</sup></span></p>
+                                                                                        <p class="investment-project"><span class="market-price"><?php echo number_format($info_product['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span> <span class="value"><?php echo number_format($info_product['gia-khuyen-mai'], 0, ",", "."); ?><sup>đ</sup></span></p>
                                                                                         <?php else : ?>
-                                                                                        <p class="investment-project"><span class="value"><?php echo $info_product['gia-thi-truong']; ?><sup>đ</sup></span></p>
+                                                                                        <p class="investment-project"><span class="value"><?php echo number_format($info_product['gia-thi-truong'], 0, ",", "."); ?><sup>đ</sup></span></p>
                                                                                         <?php endif; ?>
                                                                                         <?php if ($info_product['so-luong-da-ban']) : ?>
                                                                                         <p class="sold-project"><i class="fas fa-shopping-cart"></i> <?php echo $info_product['so-luong-da-ban']; ?>+ đã bán</p>

@@ -33,13 +33,13 @@
 				'echo'              => 1
        		) );
     	?>
+		<!-- Cuối bài viết -->
 		<ins class="adsbygoogle"
-			 style="display:block; text-align:center;"
-			 data-ad-layout="in-article"
-			 data-ad-format="fluid"
-			 data-ad-client="ca-pub-7392610376438714"
-			 data-ad-slot="5036764216">
-		</ins>
+			style="display:block"
+			data-ad-client="ca-pub-7392610376438714"
+			data-ad-slot="1407586607"
+			data-ad-format="auto"
+			data-full-width-responsive="true"></ins>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-meta">

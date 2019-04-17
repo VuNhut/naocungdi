@@ -84,7 +84,7 @@
     <?php if ( has_post_thumbnail() ) { the_post_thumbnail(); } ?>
   </div>
   <?php endif; ?>
-  <?php if(!is_home() && !in_category('shop-phuot') && (!(is_single() && in_category(array('cam-nang-du-lich', 've-tham-quan', 'shop-phuot')))) ) : ?>
+  <?php if(!is_home() && !in_category('shop-phuot') && (!(is_single() && in_category(array('cam-nang-du-lich', 'tham-quan-giai-tri', 'shop-phuot')))) ) : ?>
   <div id="content" class="site-content <?php if(!is_page('san-ve-may-bay')) { echo 'container'; } ?>">
     <div class="container main-content-area"><?php
       global $post;

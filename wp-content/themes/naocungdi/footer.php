@@ -7,7 +7,7 @@
  * @package dazzling
  */
 ?>
-	<?php if(!is_home() && !in_category('shop-phuot') && (!(is_single() && in_category(array('cam-nang-du-lich')))) ) : ?>
+	<?php if(!is_home() && !in_category(array('tham-quan-giai-tri', 'shop-phuot')) && (!(is_single() && in_category(array('cam-nang-du-lich')))) ) : ?>
 		<!-- Related Post -->
 		<?php if(is_single()) : ?>
 			<?php
@@ -224,7 +224,7 @@
 		<?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
 	</div>
 </div>
-	<?php if (!in_category(array('ve-tham-quan','shop-phuot'))) : ?>
+	<?php if (!in_category(array('tham-quan-giai-tri','shop-phuot'))) : ?>
 	<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
