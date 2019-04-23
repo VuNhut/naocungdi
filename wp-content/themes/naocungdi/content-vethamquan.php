@@ -5,7 +5,7 @@
 ?>
 <?php $all_gallery = sizeof(rwmb_meta( 'gallery' )); ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="gallery-project moveLeft-500 duration-1000 hidden <?php echo ($all_gallery == 1) ? "one-pic" : "" ?>">
+	<header class="gallery-project main-gallery moveLeft-500 duration-1000 hidden <?php echo ($all_gallery == 1) ? "one-pic" : "" ?>">
 		<?php
 			if($all_gallery == 1) {
 				$images = rwmb_meta( 'gallery' );
@@ -14,7 +14,7 @@
 			}
 			$images_num = 0; $images_item;
 			foreach ( $images as $image ) {
-				$images_item.= '<a href="#" class="showGallery" data-number="'. $images_num .'" data-target="view-photo" data-toggle="tooltip" title="Click vào để xem ảnh"><img ';
+				$images_item.= '<a href="#" class="showGallery" data-slide=".all-gallery" data-number="'. $images_num .'" data-target="view-photo" data-toggle="tooltip" title="Click vào để xem ảnh"><img ';
 				if ($images_num == 0) {
 					$images_item.= 'data-no-lazy="1" src="'. $image['url'] .'" alt="'. $image['title'] .'" srcset="'. $image['srcset'] .'"></a>';
 				} else {
@@ -186,6 +186,12 @@
 												<label for="date-ticket">Ngày đặt vé</label>
 												<input name="date-ticket" class="date-ticket" placeholder="Ngày đặt vé tham quan" readonly>
 											</div>
+											<?php if (has_tag('dat-xe') || in_category('xe-dua-don-tai-san-bay')) : ?>
+											<div class="col-md-4 col-sm-6">
+												<label for="adult-ticket">Số lượng xe</label>
+												<input type="number" min="0" name="adult-ticket" class="adult-ticket" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo number_format($item_service['gia-naocungdi'], 0, ",", "."); ?>" placeholder="<?php echo number_format($item_service['gia-naocungdi'], 0, ",", "."); ?>đ/xe">
+											</div>
+											<?php else : ?>
 											<div class="col-md-4 col-sm-6">
 												<label for="adult-ticket">Số lượng vé người lớn</label>
 												<input type="number" min="0" name="adult-ticket" class="adult-ticket" data-form="#form-booking-<?php echo $i; ?>" data-price="<?php echo number_format($item_service['gia-naocungdi'], 0, ",", "."); ?>" placeholder="<?php echo number_format($item_service['gia-naocungdi'], 0, ",", "."); ?>đ/vé">
@@ -198,8 +204,10 @@
 												<input type="number" min="0" name="child-ticket" class="child-ticket" data-form="#form-booking-<?php echo $i; ?>" placeholder="Bằng giá vé người lớn" disabled>
 												<?php endif; ?>
 											</div>
+											<?php endif; ?>
 											<div class="col-md-8 col-sm-6 total-price"></div>
 											<div class="col-md-4 col-sm-6">
+												<input type="hidden" name="name-service" class="name-service" value="<?php the_title(); ?>">
 												<input type="hidden" name="name-ticket" class="name-ticket" value="<?php echo $item_service['ten-dich-vu']; ?>">
 												<input type="hidden" name="price-ticket" class="price-ticket" value="">
 												<input class="btn btn-booking" type="submit" value="Đặt vé" data-form="#form-booking-<?php echo $i; ?>">
@@ -429,7 +437,7 @@
 		</div>
 	</div>
 </article><!-- #post-## -->
-<div class="slide-gallery">
+<div class="slide-gallery all-gallery" data-slide=".all-gallery" data-number="0">
 	<div class="main-slide">
 		<ul>
 			<?php
@@ -445,9 +453,9 @@
 			?>
 		</ul>
 		<div class="updating"><i class="fas fa-spinner"></i></div>
-		<i id="previousImg" class="fas fa-angle-left"></i>
-		<i id="nextImg" class="fas fa-angle-right"></i>
-		<i id="closeGallery" class="fas fa-times"></i>
+		<i class="previousImg fas fa-angle-left" data-slide=".all-gallery" data-number="0"></i>
+		<i class="nextImg fas fa-angle-right" data-slide=".all-gallery" data-number="0"></i>
+		<i class="closeGallery fas fa-times" data-number="0"></i>
 	</div>
 </div>
 <div class="review-step">

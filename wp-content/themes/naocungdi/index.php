@@ -227,8 +227,8 @@ get_header(); ?>
                                                         </div>
                                                         <div class="info-category bg-green">
                                                                 <h3>Vé - Voucher<br>du lịch</h3>
-                                                                <p>Đặt vé tham quan du lịch tại Nào Cùng Đi để không cần xếp hàng mua vé<br>(Coming Soon)</p>
-                                                                <a class="btn view-more">Chi tiết</a>
+                                                                <p>Đặt vé tham quan du lịch tại Nào Cùng Đi để không cần xếp hàng mua vé</p>
+                                                                <a href="<?php echo home_url(); ?>/tham-quan-giai-tri/" class="btn view-more">Chi tiết</a>
                                                         </div>
                                                 </div>
                                                 <div class="swiper-slide">
@@ -237,8 +237,8 @@ get_header(); ?>
                                                         </div>
                                                         <div class="info-category bg-orange">
                                                                 <h3>Xe đưa đón<br>tại sân bay</h3>
-                                                                <p>Đặt xe đưa đón tại sân bay sẽ tiết kiệm hơn so với đi taxi hoặc Grab<br>(Coming Soon)</p>
-                                                                <a class="btn view-more">Chi tiết</a>
+                                                                <p>Đặt xe đưa đón tại sân bay sẽ tiết kiệm hơn so với đi Taxi hoặc Grab</p>
+                                                                <a href="<?php echo home_url(); ?>/tham-quan-giai-tri/xe-dua-don-tai-san-bay" class="btn view-more">Chi tiết</a>
                                                         </div>
                                                 </div>
                                                 <div class="swiper-slide">

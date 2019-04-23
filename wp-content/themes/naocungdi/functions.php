@@ -252,24 +252,29 @@ function dazzling_scripts() {
 		wp_enqueue_script( 'dazzling-ticket', get_template_directory_uri() . '/inc/js/script-ticket.js', array('jquery'), '1.5.4', true);
 	}
 
+	if (in_category("tham-quan-giai-tri") && !is_single()) {
+		wp_enqueue_style( 'dazzling-style-voucher', get_template_directory_uri().'/inc/css/style-voucher.css' );
+		wp_enqueue_script( 'dazzling-voucher', get_template_directory_uri() . '/inc/js/script-voucher.js', array('jquery') );
+	}
+
 	if (is_single() && in_category('shop-phuot')) {
 		wp_enqueue_script( 'dazzling-scriptproject', get_template_directory_uri() . '/inc/js/script-project.js', array('jquery'), '1.5.4', true );
 
-		wp_enqueue_script( 'dazzling-validate', get_template_directory_uri() . '/inc/js/jquery.validate.min.js');
+		wp_enqueue_script( 'dazzling-validate', get_template_directory_uri() . '/inc/js/jquery.validate.min.js', array('jquery'));
 
 		wp_enqueue_script( 'dazzling-scriptshopphuot', get_template_directory_uri() . '/inc/js/script-shopphuot.js', array('jquery'), '1.5.4', true );
 	}
 
   if (is_page('san-ve-may-bay')) {
-	wp_enqueue_style( 'dazzling-awesome', get_template_directory_uri() . '/inc/css/all.min.css' );
+		wp_enqueue_style( 'dazzling-awesome', get_template_directory_uri() . '/inc/css/all.min.css' );
   }
 
   if (is_category(array('thu-vien', 'hinh-anh', 'video'))) {
-	wp_enqueue_script( 'dazzling-scriptlibrary', get_template_directory_uri() . '/inc/js/script-library.js', array('jquery') );
+		wp_enqueue_script( 'dazzling-scriptlibrary', get_template_directory_uri() . '/inc/js/script-library.js', array('jquery') );
   }
 
   if (is_archive() && in_category(array('cam-nang-du-lich', 'bi-quyet-du-lich-tiet-kiem'))) {
-	wp_enqueue_script( 'dazzling-selectlocation', get_template_directory_uri() . '/inc/js/select-location.js', array('jquery') );
+		wp_enqueue_script( 'dazzling-selectlocation', get_template_directory_uri() . '/inc/js/select-location.js', array('jquery') );
   }
 
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -598,6 +603,7 @@ function get_meta_box_shopphuot( $meta_boxes ) {
 					'gia-thi-truong' => 'Giá thị trường',
 					'gia-khuyen-mai' => 'Giá khuyến mãi',
 					'size' => 'Size',
+					'stock' => "Còn hàng",
 					'hinh-anh' => 'Hình sản phẩm',
 				),
 			),
@@ -1368,7 +1374,7 @@ add_filter( 'script_loader_tag', 'async_js', 10 );
 
 //* Defer JS
 function defer_js($tag){
-$scripts_to_defer = array('inc/js/animation-text.js', 'inc/js/google-map.js', 'inc/js/script-chart.js', 'inc/js/chart.min.js', 'wpdiscuz/assets/third-party/wpdcookiejs/customcookie.js', 'wpdiscuz/assets/third-party/autogrow/jquery.autogrowtextarea.min.js', 'wpdiscuz/assets/js/wpdiscuz.js', 'wpdiscuz/assets/js/wpdiscuz-user-content.js', 'wpdiscuz/assets/third-party/lity/lity.js');
+$scripts_to_defer = array('inc/js/animation-text.js', 'inc/js/google-map.js', 'inc/js/script-chart.js', 'inc/js/chart.min.js', '/inc/js/jquery.validate.min.js', '/inc/js/script-shopphuot.js', '/inc/js/script-ticket.js', 'wpdiscuz/assets/third-party/wpdcookiejs/customcookie.js', 'wpdiscuz/assets/third-party/autogrow/jquery.autogrowtextarea.min.js', 'wpdiscuz/assets/js/wpdiscuz.js', 'wpdiscuz/assets/js/wpdiscuz-user-content.js', 'wpdiscuz/assets/third-party/lity/lity.js', 'ajax-search-lite/js/min/jquery.ajaxsearchlite.min.js');
 foreach($scripts_to_defer as $defer_script){
 	if(true == strpos($tag, $defer_script ) )
 	return str_replace( ' src', ' defer src', $tag );	

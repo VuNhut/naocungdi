@@ -31,7 +31,7 @@
 
 </head>
 
-<body <?php if(in_category('shop-phuot') && !is_single()) { body_class('shop-phuot preload'); } else { body_class('preload'); } ?>>
+<body <?php if(in_category('shop-phuot') && !is_single()) { body_class('shop-phuot preload'); } elseif(in_category('tham-quan-giai-tri') && !is_single() && !is_home()) { body_class('voucher preload'); } else { body_class('preload'); } ?>>
 <!-- <div id="preloader-wrapper">
   <div class="preloader-container">
     <div class="dot dot-1">
@@ -65,7 +65,11 @@
           <?php endif; ?>
           <div class="<?php if (is_home()) { echo 'col-lg-9 col-sm-7 col-xs-4'; } else { echo 'col-lg-7 col-sm-1 col-xs-2'; } ?> right-header">
             <?php dazzling_header_menu(); ?>
-            <button class="navbar-toggler hidden-lg-up" type="button"></button>
+            <button class="navbar-toggler hidden-lg-up" type="button">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+            </button>
           </div>
         </div>
       </div>
@@ -84,7 +88,7 @@
     <?php if ( has_post_thumbnail() ) { the_post_thumbnail(); } ?>
   </div>
   <?php endif; ?>
-  <?php if(!is_home() && !in_category('shop-phuot') && (!(is_single() && in_category(array('cam-nang-du-lich', 'tham-quan-giai-tri', 'shop-phuot')))) ) : ?>
+  <?php if(!is_home() && !in_category(array('shop-phuot', 'tham-quan-giai-tri')) && (!(is_single() && in_category(array('cam-nang-du-lich', 'tham-quan-giai-tri', 'shop-phuot')))) ) : ?>
   <div id="content" class="site-content <?php if(!is_page('san-ve-may-bay')) { echo 'container'; } ?>">
     <div class="container main-content-area"><?php
       global $post;

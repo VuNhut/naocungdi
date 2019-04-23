@@ -8,11 +8,15 @@
     $nTo = $_POST['name']; //Ten nguoi nhan
     $mTo = $_POST['email'];   //dia chi nhan mail
     $phone = $_POST['phone'];
-    if ($_POST['ticket']) {
+    $idOrder = $_POST['idOrder'];
+    if (isset($_POST['ticket'])) {
+        $service = $_POST['service'];
         $ticket = $_POST['ticket'];
         $date = $_POST['date'];
         $adult = $_POST['adult'];
-        $child = $_POST['child'];
+        if($_POST['child']) {
+            $child = $_POST['child'];
+        }
         $total = $_POST['total'];
         $mail = new PHPMailer;
         $body = '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="margin:0 auto;width:600px!important;min-width:600px!important" class="m_-3446373304322528000container">
@@ -56,7 +60,7 @@
                         <table style="width:580px;border:1px solid #ff3333;border-top:3px solid #ff3333" cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                                 <tr>
-                                    <td colspan="2" align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#666666;padding:10px 10px 20px 15px;line-height:17px"> <b>Đơn hàng của bạn</b></td>
+                                    <td colspan="2" align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#666666;padding:10px 10px 20px 15px;line-height:17px"> <b>Đơn hàng của bạn - Mã đơn hàng: '. $idOrder .'</b></td>
                                 </tr>
                                 <tr>
                                     <td align="left" valign="top">
@@ -64,6 +68,12 @@
                                             <tbody>
                                                 <tr>
                                                     <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding-left:15px;padding-right:10px;line-height:20px;padding-bottom:5px"> <b>Sản phẩm</b></td><td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
+                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px">
+                                                        '. $service .'
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding-left:15px;padding-right:10px;line-height:20px;padding-bottom:5px"> <b>Loại sản phẩm</b></td><td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
                                                     <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#333;line-height:20px;padding-left:10px;padding-bottom:5px">
                                                         <b>'. $ticket .'</b>
                                                     </td>
@@ -75,10 +85,18 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding-left:15px;padding-right:10px;line-height:20px;padding-bottom:5px"> <b>Số lượng vé</b></td><td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
-                                                        <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px">
-                                                            Vé người lớn x '. $adult .' ; Vé trẻ em x '. $child .'
-                                                        </td>
+                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding-left:15px;padding-right:10px;line-height:20px;padding-bottom:5px"> <b>Số lượng</b></td><td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
+                                                        <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px">';
+                    if (isset($child)) {
+                        if ($child != 0) {
+                            $body .= 'Vé người lớn x '. $adult .' ; Vé trẻ em x '. $child;
+                        } else {
+                            $body .= 'Vé người lớn x '. $adult;
+                        }
+                    } else {
+                        $body .= $ticket .' x '. $adult;
+                    }
+                    $body .=                            '</td>
                                                     </tr>
                                                 <tr>
                                                     <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:15px;padding-right:10px;padding-bottom:5px"> <b>Tổng thanh toán</b></td>
@@ -137,9 +155,14 @@
         </table>';   // Noi dung email
         $title = 'Nào Cùng Đi - Thông báo đặt vé thành công';   //Tieu de gui mail
     } else {
+        $address = $_POST['address'];
         $product = $_POST['product'];
         $amount = $_POST['amount'];
-        $size = $_POST['size'];
+        if(isset($_POST['size'])) {
+            $size = $_POST['size'];
+        } else {
+            $size = "";
+        }
         $total = $_POST['total'];
         if ($size != "") {
             $textSize = '<tr>
@@ -193,7 +216,7 @@
                         <table style="width:580px;border:1px solid #ff3333;border-top:3px solid #ff3333" cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                                 <tr>
-                                    <td colspan="2" align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#666666;padding:10px 10px 20px 15px;line-height:17px"> <b>Đơn hàng của bạn</b></td>
+                                    <td colspan="2" align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#666666;padding:10px 10px 20px 15px;line-height:17px"> <b>Đơn hàng của bạn - Mã đơn hàng: '. $idOrder .'</b></td>
                                 </tr>
                                 <tr>
                                     <td align="left" valign="top">
@@ -218,7 +241,13 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:15px;padding-right:10px;padding-bottom:5px"> <b>Người đặt hàng</b></td>
-                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td><td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px"> <b>'. $nTo .'</b> - Phone: '. $phone .' <br>Email nhận vé điện tử: '. $mTo .'</td>
+                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td><td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px"> <b>'. $nTo .'</b> - Phone: '. $phone .' <br>Email đặt hàng: '. $mTo .'</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="top" style="width:120px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding-left:15px;padding-right:10px;line-height:20px;padding-bottom:5px"> <b>Đ/c giao hàng</b></td><td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-bottom:5px">:</td>
+                                                    <td align="left" valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:20px;padding-left:10px;padding-bottom:5px">
+                                                        '. $address .'
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>

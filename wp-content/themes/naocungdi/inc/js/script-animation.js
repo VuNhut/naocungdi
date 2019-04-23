@@ -8,12 +8,17 @@ window.onload = function (){
     // Menu Mobile Effect
     var menu = document.getElementById('exCollapsingNavbar2');
     document.querySelector('.navbar-toggler').addEventListener('click', function () {
-        if (menu.classList.contains('in') === true) {
+        if (menu.classList.contains('in')) {
             menu.classList.remove('in');
             this.classList.remove('in');
         } else {
             menu.classList.add('in');
             this.classList.add('in');
+        }
+        if ($(".line").hasClass('line-x')) {
+            $(".line").removeClass('line-x');
+        } else {
+            $(".line").addClass('line-x');
         }
     })
 }

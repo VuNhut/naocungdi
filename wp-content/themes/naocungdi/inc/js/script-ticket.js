@@ -38,23 +38,32 @@
                 e_totalPrice = $(this).attr('data-form') + " .total-price",
                 e_priceTicket = $(this).attr('data-form') + " .price-ticket";
             var adultTicket = price_to_number($(e_adultTicket).attr('data-price'))*$(e_adultTicket).val();
-            var childTicket = price_to_number($(e_childTicket).attr('data-price'))*$(e_childTicket).val();
             var totalTicket = "";
-            if (adultTicket !== 0) {
-                totalTicket = totalTicket + "Vé người lớn x " + $(e_adultTicket).val();
-            }
-            if (childTicket !== 0) {
+            if ($(e_childTicket).val() !== undefined) {
+                var childTicket = price_to_number($(e_childTicket).attr('data-price'))*$(e_childTicket).val();
                 if (adultTicket !== 0) {
-                    totalTicket = totalTicket + " ; "
+                    totalTicket = totalTicket + "Vé người lớn x " + $(e_adultTicket).val();
                 }
-                totalTicket = totalTicket + "Vé trẻ em x " + $(e_childTicket).val();
+                if (childTicket !== 0) {
+                    if (adultTicket !== 0) {
+                        totalTicket = totalTicket + " ; "
+                    }
+                    totalTicket = totalTicket + "Vé trẻ em x " + $(e_childTicket).val();
+                }
+                var totalPrice = "<p>Tổng cộng: <span>" + number_to_price(adultTicket + childTicket) + "</span> " + totalTicket + "</p>";
+                $(e_priceTicket).val(number_to_price(adultTicket + childTicket));
+            } else {
+                if (adultTicket !== 0) {
+                    totalTicket = totalTicket + "Số lượng xe x " + $(e_adultTicket).val();
+                }
+                var totalPrice = "<p>Tổng cộng: <span>" + number_to_price(adultTicket) + "</span> " + totalTicket + "</p>";
+                $(e_priceTicket).val(number_to_price(adultTicket));
             }
-            var totalPrice = "<p>Tổng cộng: <span>" + number_to_price(adultTicket + childTicket) + "</span> " + totalTicket + "</p>";
+            
             $(e_totalPrice).text("");
             $(e_totalPrice).append(totalPrice);
-            $(e_priceTicket).val(number_to_price(adultTicket + childTicket));
         });
-        jQuery.validator.addMethod("phoneValidate", function(number, element) {
+        $.validator.addMethod("phoneValidate", function(number, element) {
             var dt_array = number.split("");
             for (var i = 0; i < dt_array.length; i++) {
                 if ((dt_array[i]!=='0') && (dt_array[i]!=='1') && (dt_array[i]!=='2') && (dt_array[i]!=='3') && (dt_array[i]!=='4')
@@ -71,6 +80,16 @@
             }
             return this.optional(element) || dt_chuan.match(/^(03|05|07|08|09)[0-9]{8}$/);
         }, "Số điện thoại không đúng");
+        function randomString() {
+            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
+            var string_length = 8;
+            var randomstring = '';
+            for (var i=0; i<string_length; i++) {
+                var rnum = Math.floor(Math.random() * chars.length);
+                randomstring += chars.substring(rnum,rnum+1);
+            }
+            return  randomstring.toUpperCase();
+        }
         $('.form-booking .btn-booking').on('click', function () {
             $($(this).attr('data-form')).validate({
                 onfocusout: false,
@@ -111,31 +130,38 @@
                         required: "Xin chọn ngày đặt vé",
                     },
                     "adult-ticket": {
-                        required: "Xin chọn số lượng vé",
-                        min: "Số lượng vé ít nhất phải là 1"
+                        required: "Xin chọn số lượng",
+                        min: "Số lượng ít nhất phải là 1"
                     }
                 },
                 submitHandler: function(form) {
                     form = "#" + $(form).attr('id');
+                    var idOrder = randomString();
                     var name = form + " .name";
                     var email = form + " .email";
                     var phone = form + " .phone";
+                    var nameService = form + " .name-service";
                     var nameTicket = form + " .name-ticket";
                     var dateTicket = form + " .date-ticket";
                     var priceTicket = form + " .price-ticket";
                     var adultTicket = form + " .adult-ticket";
                     var childTicket = form + " .child-ticket";
-                    if ($(childTicket).val()) {
-                        childTicket = $(childTicket).val();
+                    if($(childTicket)) {
+                        if ($(childTicket).val()) {
+                            childTicket = $(childTicket).val();
+                        } else {
+                            childTicket = 0;
+                        }
+                        var dataForm = {"idOrder": idOrder,"name": $(name).val(), "email": $(email).val(), "phone": $(phone).val(), "date": $(dateTicket).val(), "adult": $(adultTicket).val(), "child": childTicket, "service": $(nameService).val() , "ticket": $(nameTicket).val(), "total":$(priceTicket).val()};
                     } else {
-                        childTicket = 0;
+                        var dataForm = {"idOrder": idOrder,"name": $(name).val(), "email": $(email).val(), "phone": $(phone).val(), "date": $(dateTicket).val(), "adult": $(adultTicket).val(), "service": $(nameService).val() , "ticket": $(nameTicket).val(), "total":$(priceTicket).val()};
                     }
                     var statusBooking = form + " .status-booking";
                     $.ajax({
                         url: 'https://script.google.com/macros/s/AKfycbyYiVfITGtjCao0DN1-9eSVM8VCZ0g_E4wd8ZozNugsFu2BgeI/exec',
                         method: "GET",
                         dataType: "json",
-                        data: {"Họ tên": $(name).val(), "Email": $(email).val(), "Số điện thoại": $(phone).val(), "Ngày đặt vé": $(dateTicket).val(), "Người lớn": $(adultTicket).val(), "Trẻ em": childTicket, "Tên dịch vụ": $(nameTicket).val(), "Tổng cộng":$(priceTicket).val()},
+                        data: {"Mã đơn hàng": idOrder ,"Họ tên": $(name).val(), "Email": $(email).val(), "Số điện thoại": $(phone).val(), "Ngày đặt vé": $(dateTicket).val(), "Người lớn": $(adultTicket).val(), "Trẻ em": childTicket, "Tên dịch vụ": $(nameService).val() , "Sản phẩm": $(nameTicket).val(), "Tổng cộng":$(priceTicket).val()},
                         beforeSend: function () {
                             $(form).children(".container").hide();
                             $(statusBooking).text("");
@@ -150,7 +176,7 @@
                                 url: "/naocungdi/wp-content/themes/naocungdi/sendmail.php",
                                 method: "POST",
                                 dataType: "text",
-                                data: {"name": $(name).val(), "email": $(email).val(), "phone": $(phone).val(), "date": $(dateTicket).val(), "adult": $(adultTicket).val(), "child": childTicket, "ticket": $(nameTicket).val(), "total":$(priceTicket).val()},
+                                data: dataForm,
                                 success: function(data){
                                     if (data === "1") {
                                         $(statusBooking).text("");

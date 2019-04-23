@@ -154,6 +154,9 @@
 								<form id="form-booking-<?php echo $i; ?>" class="form-booking">
 									<div class="container">
 										<div class="row">
+											<?php if($item_service['stock'] == "0") : ?>
+											<p class="out-of-stock col-sm-12">Sản phẩm hiện tại đang hết hàng. Hãy để lại thông tin đặt hàng bên dưới, chúng tôi sẽ liên hệ với bạn ngay khi có hàng.</p>
+											<?php endif; ?>
 											<div class="col-md-4 col-sm-6">
 												<label for="name">Họ tên</label>
 												<input type="text" name="name" class="name" placeholder="Họ tên của bạn">
@@ -165,6 +168,10 @@
 											<div class="col-md-4 col-sm-6">
 												<label for="phone">Số điện thoại</label>
 												<input type="text" name="phone" class="phone" placeholder="Số điện thoại liên hệ">
+											</div>
+											<div class="col-sm-12">
+												<label for="name">Địa chỉ giao hàng</label>
+												<input type="text" name="address" class="address" placeholder="Địa chỉ giao nhận hàng">
 											</div>
 											<div class="col-md-4 col-sm-6">
 												<label for="amount">Số lượng</label>
@@ -216,42 +223,6 @@
 						endif;
 					?>
 				</div>
-				<?php
-					$term_list = wp_get_post_terms($post->ID, 'category', ['fields' => 'all']);
-					$tags = wp_get_post_tags($post->ID);
-					$except_tag = array("Việt Nam", "Thái Lan", "Malaysia", "Indonesia", "Singapore", "Myanmar", "Campuchia", "Lào", "Đài Loan", "Hàn Quốc", "Nhật Bản", "Trung Quốc");
-					if ($term_list) {
-						foreach($term_list as $term) {
-							if( get_post_meta($post->ID, '_yoast_wpseo_primary_category', true) == $term->term_id ) {
-									$cat_ID = $term->term_id;
-									if ($term->slug == "kinh-nghiem-du-lich") {
-										$cat_name = "Địa điểm du lịch";
-										$cat_url = "dia-diem-du-lich";
-									} else {
-										$cat_name = $term->name;
-										$cat_url = $term->slug;
-									}
-							}
-						}
-					}
-					if ($tags) {
-						$tag_ids = array();
-						foreach($tags as $individual_tag) {
-							if (!in_array($individual_tag->name, $except_tag)) {
-								$tag_ids[] = $individual_tag->term_id;
-							}
-							if (sizeof($tags) == 1) {
-								$tag_ids[] = $individual_tag->term_id;
-							}
-							if (!$tags_name) {
-								$tags_name = $individual_tag->name;
-							} else {
-								$tags_name = $tags_name . " - " . $individual_tag->name;
-							}
-						}
-						$list_tags = implode(",", $tag_ids);
-					}
-				?>
 				<div class="info-right col-lg-4">
 					<div class="sidebar-project moveTop-500 duration-1000 hidden">
 						<div class="hotline-project">
@@ -276,100 +247,12 @@
 								</div>
 							</div>
 						</div>
-						<?php
-							$query_topposts = array('category_name' => $cat_url, 'tag__in' => $tag_ids, 'posts_per_page' => 3, 'post__not_in' => array( get_the_ID()), 'meta_key' => 'total-score', 'orderby' => array('meta_value_num' => "DESC"));
-							$top_posts = new WP_Query($query_topposts);
-							if ($top_posts->have_posts()) : $number_posts = 1;
-						?>
-						<div class="top-posts">
-							<h3><span><i class="fas fa-award"></i>Top 3</span> <?php echo $cat_name; ?><?php if($tags_name) { echo '<p class="detail-location">tại ' . $tags_name . '</p>'; } ?></h3>
-							<div class="container">
-								<?php while ($top_posts->have_posts()) : $top_posts->the_post(); ?>
-								<div class="row">
-									<div class="col-sm-4 col-xs-5">
-										<div class="img-top">
-											<?php the_post_thumbnail('tiny-img'); ?>
-											<?php
-												if ($number_posts == 1) {
-													$bg_rank = "rgba(237, 26, 36, 0.9)";
-												} elseif ($number_posts == 2) {
-													$bg_rank = "rgba(38, 182, 239, 0.9)";
-												} else {
-													$bg_rank = "rgba(77, 171, 46, 0.9)";
-												}
-											?>
-											<span class="bg-rank" style="background-color:<?php echo $bg_rank; ?>"></span>
-											<span class="number-rank"><?php echo $number_posts; ?></span>
-										</div>
-									</div>
-									<div class="col-sm-8 col-xs-7 title-top">
-										<a href="<?php the_permalink(); ?>">
-											<?php the_title(); ?>
-										</a>
-										<div class="top-score" style="background-color:<?php echo $bg_rank; ?>">
-											<?php echo $score = get_post_meta(get_the_ID(), 'total-score', true); ?>
-										</div>
-										<p class="star-top">
-										<?php
-											$ratings_users = get_post_meta(get_the_ID(), 'ratings_users', true);
-											if ($ratings_users > 0) :
-												$ratings_average = get_post_meta(get_the_ID(), 'ratings_average', true);
-										?>
-											<i class="fas fa-star"></i><?php echo number_format($ratings_average, 1); ?><span><?php echo "(" . $ratings_users . " đánh giá)" ?></span>
-										<?php
-											endif;
-											$tags = wp_get_post_tags($post->ID);
-											if ($tags) {
-												$tags_name = ""; $tag_country = "";
-												foreach($tags as $individual_tag) {
-													if (!in_array($individual_tag->name, $except_tag)) {
-														if ($tags_name == "") {
-															$tags_name = $individual_tag->name;
-														} else {
-															$tags_name = $tags_name . " - " . $individual_tag->name;
-														}
-													} else {
-														$tag_country = $individual_tag->name;
-													}
-												}
-												echo '<span class="location-country" data-toggle="tooltip" title="', $tags_name ,' - ', $tag_country ,'"><i class="fas fa-map-marker-alt"></i>', $tags_name ,'</span>';
-											}
-										?>
-										</p>
-									</div>
-									<div class="col-sm-12 dotted-line"></div>
-								</div>
-								<?php $number_posts++; endwhile; ?>
-							</div>
-						</div>
-						<?php endif; wp_reset_postdata(); ?>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </article><!-- #post-## -->
-<div class="slide-gallery">
-	<div class="main-slide">
-		<ul>
-			<?php
-				$slide_gallery = rwmb_meta( 'gallery' );
-				foreach ( $slide_gallery as $img_slide ) {
-					echo '<li><div class="img-gallery">';
-                    echo '<img data-src="', $img_slide['url'] ,'" alt="'. $img_slide['title'] .'" />';
-                    if ($img_slide['caption']) {
-                        echo '<div class="title-gallery">', $img_slide['caption'] ,'</div>';
-                    }
-                    echo '</div></li>';
-				}
-			?>
-		</ul>
-		<div class="updating"><i class="fas fa-spinner"></i></div>
-		<i id="previousImg" class="fas fa-angle-left"></i>
-		<i id="nextImg" class="fas fa-angle-right"></i>
-		<i id="closeGallery" class="fas fa-times"></i>
-	</div>
-</div>
 <div class="review-step">
 	<p>Cảm ơn bạn đã đánh giá địa điểm này!</p>
 </div>

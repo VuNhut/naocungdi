@@ -53,7 +53,6 @@ $(document).ready(function () {
     function run() {
         var url = window.location.href;
         let phrasesAboutUs = [];
-        console.log(url);
         if (url === "https://naocungdi.com/shop-phuot/") {
             phrasesAboutUs = [
                 "Shop Phượt",

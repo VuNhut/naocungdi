@@ -55,6 +55,16 @@
             }
             return this.optional(element) || dt_chuan.match(/^(03|05|07|08|09)[0-9]{8}$/);
         }, "Số điện thoại không đúng");
+        function randomString() {
+            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
+            var string_length = 8;
+            var randomstring = '';
+            for (var i=0; i<string_length; i++) {
+                var rnum = Math.floor(Math.random() * chars.length);
+                randomstring += chars.substring(rnum,rnum+1);
+            }
+            return  randomstring.toUpperCase();
+        }
         $('.form-booking .btn-booking').on('click', function () {
             $($(this).attr('data-form')).validate({
                 onfocusout: false,
@@ -72,6 +82,9 @@
                         required: true,
                         phoneValidate: true
                     },
+                    "address": {
+                        required: true,
+                    },
                     "amount": {
                         required: true,
                         min: 1
@@ -88,6 +101,9 @@
                     "phone": {
                         required: "Xin nhập số điện thoại",
                     },
+                    "address": {
+                        required: "Xin nhập địa chỉ giao hàng",
+                    },
                     "amount": {
                         required: "Xin chọn số lượng sản phẩm",
                         min: "Số lượng ít nhất phải là 1"
@@ -95,9 +111,11 @@
                 },
                 submitHandler: function(form) {
                     form = "#" + $(form).attr('id');
+                    var idOrder = "SP-" + randomString();
                     var name = form + " .name";
                     var email = form + " .email";
                     var phone = form + " .phone";
+                    var address = form + " .address";
                     var nameProduct = form + " .name-product";
                     var priceProduct = form + " .price-product";
                     var amount = form + " .amount";
@@ -111,7 +129,7 @@
                         url: 'https://script.google.com/macros/s/AKfycbzkf1e9VpEEiMf6eeEHJjH63gSMb7qmsgSBPPXKw5ZTEzRlzDM/exec',
                         method: "GET",
                         dataType: "json",
-                        data: {"Họ tên": $(name).val(), "Email": $(email).val(), "Số điện thoại": $(phone).val(), "Tên sản phẩm": $(nameProduct).val(), "Số lượng": $(amount).val(), "Size": size, "Tổng cộng":$(priceProduct).val()},
+                        data: {"Mã đơn hàng": idOrder ,"Họ tên": $(name).val(), "Email": $(email).val(), "Số điện thoại": $(phone).val(), "Địa chỉ giao hàng": $(address).val(), "Tên sản phẩm": $(nameProduct).val(), "Số lượng": $(amount).val(), "Size": size, "Tổng cộng":$(priceProduct).val()},
                         beforeSend: function () {
                             $(form).children(".container").hide();
                             $(statusBooking).text("");
@@ -126,7 +144,7 @@
                                 url: "/naocungdi/wp-content/themes/naocungdi/sendmail.php",
                                 method: "POST",
                                 dataType: "text",
-                                data: {"name": $(name).val(), "email": $(email).val(), "phone": $(phone).val(), "product": $(nameProduct).val(), "amount": $(amount).val(), "size": size, "total":$(priceProduct).val()},
+                                data: {"idOrder": idOrder, "name": $(name).val(), "email": $(email).val(), "phone": $(phone).val(), "address": $(address).val(), "product": $(nameProduct).val(), "amount": $(amount).val(), "size": size, "total":$(priceProduct).val()},
                                 success: function(data){
                                     if (data === "1") {
                                         $(statusBooking).text("");

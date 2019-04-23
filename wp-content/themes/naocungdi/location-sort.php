@@ -38,42 +38,16 @@
                                 <p data-name=".viet-nam">Việt Nam</p>
                             </div>
                             <div class="col-xs-12">
-                                <p data-name=".thai-lan">Thái Lan</p>
+                                <p data-name=".dong-nam-a">Đông Nam Á</p>
                             </div>
                             <div class="col-xs-12">
-                                <p data-name=".malaysia">Malaysia</p>
-                            </div>
-							<div class="col-xs-12">
-                                <p data-name=".singapore">Singapore</p>
-                            </div>
-							<div class="col-xs-12">
-                                <p data-name=".indonesia">Indonesia</p>
-                            </div>
-							<div class="col-xs-12">
-                                <p data-name=".myanmar">Myanmar</p>
-                            </div>
-							<div class="col-xs-12">
-                                <p data-name=".campuchia">Campuchia</p>
-                            </div>
-							<div class="col-xs-12">
-                                <p data-name=".dai-loan">Đài Loan</p>
-                            </div>
-							<div class="col-xs-12">
-                                <p data-name=".han-quoc">Hàn Quốc</p>
-                            </div>
-							<div class="col-xs-12">
-                                <p data-name=".trung-quoc">Trung Quốc</p>
+                                <p data-name=".dong-a">Đông Á</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-7 col-sm-8 col-md-10">
                     <div class="container sub-location viet-nam">
-                        <div class="row">
-                            <div class="col-sm-4 col-md-2">
-                                <p class="all-location"><a href="#" data-name="viet-nam">Tất cả</a></p>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-sm-4 col-md-2 main-sub">
                                 <p>Miền Bắc</p>
@@ -130,69 +104,128 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container sub-location thai-lan">
+                    <div class="container sub-location dong-nam-a">
                         <div class="row">
-                            <p class="col-sm-4 col-md-3 col-lg-2 all-location"><a href="#" data-name="thai-lan">Tất cả</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="bangkok">Bangkok</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="pattaya">Pattaya</a></p>
-							<p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="hua-hin">Hua Hin</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="phuket">Phuket</a></p>
-							<p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="krabi">Krabi</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="chiang-mai">Chiang Mai</a></p>
+                            <div class="col-sm-4 col-md-2 main-sub">
+                                <p class="all-location"><a href="#" data-name="thai-lan">Thái Lan</a></p>
+                            </div>
+                            <div class="col-sm-8 col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="bangkok">Bangkok</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="pattaya">Pattaya</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="hua-hin">Hua Hin</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="phuket">Phuket</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="krabi">Krabi</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="chiang-mai">Chiang Mai</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-2 main-sub">
+                                <p class="all-location"><a href="#" data-name="malaysia">Malaysia</a></p>
+                            </div>
+                            <div class="col-sm-8 col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="kuala-lumpur">Kuala Lumpur</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="penang">Penang</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-2 main-sub">
+                                <p class="all-location"><a href="#" data-name="singapore">Singapore</a></p>
+                            </div>
+                            <div class="col-sm-8 col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="singapore">Singapore</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-2 main-sub">
+                                <p class="all-location"><a href="#" data-name="indonesia">Indonesia</a></p>
+                            </div>
+                            <div class="col-sm-8 col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="bali">Bali</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-2 main-sub">
+                                <p class="all-location"><a href="#" data-name="myanmar">Myanmar</a></p>
+                            </div>
+                            <div class="col-sm-8 col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="yangon">Yangon</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="bagan">Bagan</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-md-2 main-sub">
+                                <p class="all-location"><a href="#" data-name="campuchia">Campuchia</a></p>
+                            </div>
+                            <div class="col-sm-8 col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="koh-rong-samloem">Koh Rong Samloem</a></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="container sub-location malaysia">
+					<div class="container sub-location dong-a">
                         <div class="row">
-                            <p class="col-sm-4 col-md-3 col-lg-2 all-location"><a href="#" data-name="malaysia">Tất cả</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="kuala-lumpur">Kuala Lumpur</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="penang">Penang</a></p>
+                            <div class="col-sm-4 col-md-2 main-sub">
+                                <p class="all-location"><a href="#" data-name="han-quoc">Hàn Quốc</a></p>
+                            </div>
+                            <div class="col-sm-8 col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="seoul">Seoul</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="jeju">Jeju</a></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-					<div class="container sub-location indonesia">
                         <div class="row">
-                            <p class="col-sm-4 col-md-3 col-lg-2 all-location"><a href="#" data-name="indonesia">Tất cả</a></p>
-							<p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="bali">Bali</a></p>
+                            <div class="col-sm-4 col-md-2 main-sub">
+                                <p class="all-location"><a href="#" data-name="dai-loan">Đài Loan</a></p>
+                            </div>
+                            <div class="col-sm-8 col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="dai-bac">Đài Bắc</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="cao-hung">Cao Hùng</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="dai-trung">Đài Trung</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="gia-nghia">Gia Nghĩa</a></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-					<div class="container sub-location singapore">
                         <div class="row">
-                            <p class="col-sm-4 col-md-3 col-lg-2 all-location"><a href="#" data-name="singapore">Tất cả</a></p>
-                        </div>
-                    </div>
-					<div class="container sub-location campuchia">
-                        <div class="row">
-                            <p class="col-sm-4 col-md-3 col-lg-2 all-location"><a href="#" data-name="campuchia">Tất cả</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="koh-rong-samloem">Koh Rong Samloem</a></p>
-                        </div>
-                    </div>
-					<div class="container sub-location han-quoc">
-                        <div class="row">
-                            <p class="col-sm-4 col-md-3 col-lg-2 all-location"><a href="#" data-name="han-quoc">Tất cả</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="seoul">Seoul</a></p>
-							<p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="jeju">Jeju</a></p>
-                        </div>
-                    </div>
-					<div class="container sub-location dai-loan">
-                        <div class="row">
-                            <p class="col-sm-4 col-md-3 col-lg-2 all-location"><a href="#" data-name="dai-loan">Tất cả</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="dai-bac">Đài Bắc</a></p>
-							<p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="cao-hung">Cao Hùng</a></p>
-							<p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="dai-trung">Đài Trung</a></p>
-							<p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="gia-nghia">Gia Nghĩa</a></p>
-                        </div>
-                    </div>
-					<div class="container sub-location trung-quoc">
-                        <div class="row">
-                            <p class="col-sm-4 col-md-3 col-lg-2 all-location"><a href="#" data-name="trung-quoc">Tất cả</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="bac-kinh">Bắc Kinh</a></p>
-							<p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="hongkong">HongKong</a></p>
-                        </div>
-                    </div>
-					<div class="container sub-location myanmar">
-                        <div class="row">
-                            <p class="col-sm-4 col-md-3 col-lg-2 all-location"><a href="#" data-name="myanmar">Tất cả</a></p>
-                            <p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="yangon">Yangon</a></p>
-							<p class="col-sm-4 col-md-3 col-lg-2"><a href="#" data-name="bagan">Bagan</a></p>
+                            <div class="col-sm-4 col-md-2 main-sub">
+                                <p class="all-location"><a href="#" data-name="trung-quoc">Trung Quốc</a></p>
+                            </div>
+                            <div class="col-sm-8 col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="bac-kinh">Bắc Kinh</a></p>
+                                        <p class="col-sm-6 col-md-3"><a href="#" data-name="hongkong">HongKong</a></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

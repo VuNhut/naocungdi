@@ -80,12 +80,15 @@ $(document).ready(function(){
         $('.review-step1').scrollTo(700, -40);
         $('.review-step1').css({"visibility": "visible"});
         $('.review-step').css({"opacity": "1", "visibility": "visible"});
+        $('.menu-project').css({"position": "static"});
         $('body').css({"overflow": "hidden"});
 
         $('.post-ratings img').on('click', function () {
             $('.review-step1').removeAttr("style");
             $('.header-project .review-star').removeAttr("style");
             $('#wpcomm').scrollTo(700);
+            $('#wpcomm').css({"position": "relative", "z-index": "11"});
+            $('.menu-project').css({"position": "static"});
             $('#wpcomm form .wc_comm_submit').on('click', function () {
                 $('#wpcomm form').css({"z-index": "100"});
                 $('.review-step p').css({"visibility": "visible"});
@@ -238,9 +241,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 document.querySelector(slideName).style.opacity = "0";
 
-                document.querySelector('article.post').style.filter = "blur(0px)";
+                document.querySelector('article.post').style.filter = "initial";
                 // Code for Safari, Opera
-                document.querySelector('article.post').style.WebkitFilter = "blur(0px)";
+                document.querySelector('article.post').style.WebkitFilter = "initial";
             })
 
             window.onkeydown = function (e) {

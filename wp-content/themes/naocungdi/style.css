@@ -230,7 +230,8 @@ textarea {
 #breadcrumb {
   list-style: none;
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  padding: 0 5px;
   white-space: nowrap;
   overflow-x: scroll;
 }
@@ -1046,6 +1047,7 @@ div.asl_w .probox div.asl_simple-circle {
 }
 /* List Post */
 .list-slide.swiper-container {
+  margin-top: 15px;
   margin-bottom: 15px;
 }
 .list-post .one-project {
@@ -2154,6 +2156,11 @@ p.note .note-title {
 .lds-ellipsis div:nth-child(4) {
   left: 45px;
   animation: lds-ellipsis3 0.6s infinite;
+}
+.out-of-stock {
+  color: #db2317;
+  line-height: 22px;
+  font-weight: 500;
 }
 @keyframes lds-ellipsis1 {
   0% {
@@ -4216,13 +4223,13 @@ p.logged-in-as {
 		padding-top: 15px;
 	}
   #exCollapsingNavbar2 {
-    position: absolute;
+    position: fixed;
     right: 0px;
     top: 0px;
     z-index: 10000;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.95);
-    padding-top: 20px;
+    padding-top: 40px;
     overflow-y: scroll;
   }
   #exCollapsingNavbar2::-webkit-scrollbar {
@@ -4280,29 +4287,52 @@ p.logged-in-as {
     min-width: 330px;
     width: auto;
   }
-  .home .header .navbar-toggler, .navbar-toggler.in, .home .header.fixed .navbar-toggler.in {
-    background-position: -7px -50px !important;
-  }
-  .home .header.fixed .navbar-toggler {
-    background-position: center top !important;
-  }
   .navbar-toggler {
-    background: url(images/image-menu.png) center top no-repeat;
-    -webkit-background-size: auto;
-    -moz-background-size: auto;
-    -o-background-size: auto;
-    background-size:auto;
-    height: 2.5em;
+    overflow: hidden;
     position: absolute;
-    top: 1px;
+    top: 10px;
     right: 10px;
     z-index: 100000;
   }
   .navbar-toggler.in {
-    background: url(images/image-menu.png) no-repeat;
+    position: fixed;
   }
   .navbar-toggler:focus {
     outline: none !important;
+  }
+  .navbar-toggler .line {
+    width: 27px;
+    background-color: #111;
+    display: block;
+    height: 2px;
+    margin: 4px 0;
+    transition: 0.4s ease-in;
+  }
+  .navbar-toggler .line:last-child {
+    width: 22px;
+    background-color: #ec1a23;
+    margin-left: 5px;
+  }
+  .navbar-toggler .line-x {
+    background-color: #fff;
+  }
+  .navbar-toggler .line-x:first-child {
+    transform: rotate(40deg) translate(2px,3px);
+  }
+  .navbar-toggler .line-x:nth-child(2) {
+    transform: rotate(-40deg) translate(1px,-2px);
+  }
+  .navbar-toggler .line-x:last-child {
+    transform: translateX(200%);
+  }
+  .navbar-toggler .line-x:first-child {
+    transform: rotate(40deg) translate(2px,3px);
+  }
+  .navbar-toggler .line-x:nth-child(2) {
+    transform: rotate(-40deg) translate(1px,-2px);
+  }
+  .navbar-toggler .line-x:last-child {
+    transform: translateX(200%);
   }
   .inner-banner h1, .inner-banner h2 {
     font-size: 30px;
@@ -4603,9 +4633,6 @@ p.logged-in-as {
 	.list-post .one-project .info-project p .value {
 		font-size: 14px;
   }
-  #breadcrumb {
-    padding: 0 5px;
-  }
 	.home .one-project {
 		margin-left: 0;
 		margin-right: 0;
@@ -4831,6 +4858,9 @@ p.logged-in-as {
   }
   .project .more-project .btn-outline-danger {
     font-size: 15px;
+  }
+  .subinfo-ticket.border p {
+    margin-right: 0;
   }
 }
 

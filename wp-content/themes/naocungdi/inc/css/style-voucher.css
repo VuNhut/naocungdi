@@ -1,0 +1,211 @@
+body.voucher {
+    background: #fff;
+}
+.header-voucher {
+    background-color: #e7eff7;
+    background-image: url(../../images/banner-header-voucher.png);
+    background-repeat: no-repeat;
+    padding: 40px 0;
+}
+.header-voucher h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+.header-voucher .box-location .main-sub p, .header-voucher .box-location .main-sub p a {
+    color: #111;
+}
+.header-voucher .box-location .main-sub p a:hover {
+    color: #ed1a24;
+}
+.header-voucher .list-cat .container {
+    padding: 0;
+}
+.header-voucher .list-cat h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 26px;
+    margin-bottom: 15px;
+}
+.header-voucher .list-cat h3 {
+    color: #fff;
+    font-size: 20px;
+}
+.header-voucher .list-cat a {
+    position: relative;
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 -1px 3px 0 rgba(0, 0, 0, 0.08);
+    padding: 15px;
+    overflow: hidden;
+    transition: all 0.25s ease-in-out;
+}
+.header-voucher .list-cat a:hover {
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.12), 0 -1px 2px 0 rgba(0, 0, 0, 0.08);
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+}
+.header-voucher .list-cat .ve-tham-quan {
+    background-image: -webkit-linear-gradient(right, #0ca2f1, #0386ca);
+    background-image: linear-gradient(to left, #0ca2f1, #0386ca);
+}
+.header-voucher .list-cat .ve-tham-quan:hover {
+    background-image: -webkit-linear-gradient(right, #0386ca, #0386ca);
+    background-image: linear-gradient(to left, #0386ca, #0386ca);
+}
+.header-voucher .list-cat .phuong-tien-di-chuyen {
+    background-image: -webkit-linear-gradient(right, #fbc639, #ff9a42);
+    background-image: linear-gradient(to left, #fbc639, #ff9a42);
+}
+.header-voucher .list-cat .phuong-tien-di-chuyen:hover {
+    background-image: -webkit-linear-gradient(right, #ff9a42, #ff9a42);
+    background-image: linear-gradient(to left, #ff9a42, #ff9a42);
+}
+.header-voucher .list-cat .wifi-sim {
+    background-image: -webkit-linear-gradient(right, #7dbe75, #25b885);
+    background-image: linear-gradient(to left, #7dbe75, #25b885);
+}
+.header-voucher .list-cat .wifi-sim:hover {
+    background-image: -webkit-linear-gradient(right, #25b885, #25b885);
+    background-image: linear-gradient(to left, #25b885, #25b885);
+}
+.header-voucher .list-cat .tour-du-lich {
+    background-image: -webkit-linear-gradient(right, #e2da15, #c1bc25);
+    background-image: linear-gradient(to left, #e2da15, #c1bc25)
+}
+.header-voucher .list-cat .tour-du-lich:hover {
+    background-image: -webkit-linear-gradient(right, #c1bc25, #c1bc25);
+    background-image: linear-gradient(to left, #c1bc25, #c1bc25)
+}
+.header-voucher .list-cat a svg {
+    position: absolute;
+    width: 30%;
+    fill: #fff;
+    opacity: 0.5;
+    top: 12%;
+    right: -5%;
+}
+.header-voucher .list-cat p {
+    margin-bottom: 0;
+}
+.header-voucher .list-cat p.number-post {
+    color: #111;
+    font-weight: 500;
+}
+.list-sim, .list-sim-airport {
+    padding: 20px 0;
+}
+.list-sim h2, .list-sim-airport h2, .list-ticket h2, .list-tour h2 {
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.list-sim .one-project, .list-sim-airport .one-project, .list-tour .one-project {
+    background-color: #eee;
+}
+.list-sim-airport .swiper-button-prev, .list-sim-airport .swiper-button-next {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    padding: 20px;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.12), 0 -1px 2px 0 rgba(0, 0, 0, 0.08);
+}
+.list-sim-airport .swiper-button-prev.swiper-button-disabled, .list-sim-airport .swiper-button-next.swiper-button-disabled {
+    pointer-events: inherit;
+}
+.list-sim-airport .multiple-slides .swiper-button-prev {
+    left: -10px;
+}
+.list-sim-airport .multiple-slides .swiper-button-next {
+    right: -10px;
+}
+.voucher .market-price {
+    display: block;
+    color: #999;
+    font-weight: 300;
+    text-decoration: line-through;
+    margin-top: 5px;
+}
+.voucher .one-project {
+    overflow: hidden;
+}
+.voucher .one-project .info-project h3 {
+    min-height: 42px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-right: 0;
+}
+.voucher .one-project p.location-project {
+    font-weight: 300;
+}
+.voucher .one-project .info-project p .value {
+    display: block;
+    font-size: 18px;
+    margin-top: 2px;
+}
+.voucher .one-project .info-project p.sold-project {
+    font-size: 13px;
+    font-weight: 300;
+    margin-top: 5px;
+}
+.voucher .one-project .info-project p.date-booking {
+    font-size: 13px;
+    font-weight: 300;
+    color: #1cbb46;
+    margin-top: 5px;
+}
+.list-ticket {
+    background-color: #f1f1f1;
+    padding: 20px 0;
+}
+.cat-list {
+    padding: 30px 0 20px 0;
+}
+.cat-list #breadcrumb {
+    padding: 0;
+}
+.list-voucher {
+    margin-left: -9px;
+    margin-right: -9px;
+}
+.one-voucher {
+    padding: 0 8px;
+    margin-bottom: 17px;
+}
+.no-post {
+    color: #222;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-align: center;
+}
+@media (max-width: 575.98px) {
+    .voucher .one-project {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .header-voucher h1 {
+        font-size: 24px;
+    }
+    .header-voucher .list-cat h3, .header-voucher .list-cat h2 {
+        font-size: 18px;
+    }
+    .header-voucher .list-cat p {
+        font-size: 13px;
+    }
+    .header-voucher .select-location {
+        padding: 0 15px;
+    }
+    .list-sim h2, .list-sim-airport h2, .list-ticket h2, .list-tour h2 {
+        font-size: 21px;
+        line-height: 27px;
+    }
+    .voucher .one-project .info-project p .value {
+        font-size: 16px;
+    }
+}
